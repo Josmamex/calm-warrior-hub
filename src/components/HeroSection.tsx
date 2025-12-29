@@ -1,7 +1,11 @@
 import { Button } from "@/components/ui/button";
 import heroBackground from "@/assets/hero-background.jpg";
+import FloatingParticles from "./FloatingParticles";
+import { useParallax } from "@/hooks/useScrollAnimation";
 
 const HeroSection = () => {
+  const textParallax = useParallax(-0.2);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -13,8 +17,11 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-transparent to-background/40" />
       </div>
 
+      {/* Floating Particles & Ambient Effects */}
+      <FloatingParticles />
+
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 py-32">
+      <div ref={textParallax} className="relative z-10 container mx-auto px-6 py-32">
         <div className="max-w-3xl">
           {/* Overline */}
           <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-6 opacity-0 animate-fade-up">
@@ -48,8 +55,8 @@ const HeroSection = () => {
           {/* Credentials */}
           <div className="mt-16 pt-8 border-t border-border/30 opacity-0 animate-fade-up animation-delay-800">
             <p className="text-muted-foreground text-sm tracking-wide">
-              45 años en artes marciales • 24 años en protección operativa • 
-              Certificado por Koga, Vasiliev & Maltsev
+              25 años enseñando a protectores • Certificaciones internacionales • 
+              45 años en el camino de las artes guerreras
             </p>
           </div>
         </div>

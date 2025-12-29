@@ -1,5 +1,6 @@
 import { Shield, Activity, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
 
 const pillars = [
   {
@@ -29,6 +30,10 @@ const pillars = [
 ];
 
 const SolutionSection = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: pillarsRef, isVisible: pillarsVisible } = useScrollAnimation(0.05);
+  const numeralParallax = useParallax(0.3);
+
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
       {/* Background Elements */}
@@ -38,7 +43,10 @@ const SolutionSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mb-20">
+        <div 
+          ref={headerRef}
+          className={`max-w-3xl mb-20 animate-on-scroll ${headerVisible ? 'visible' : ''}`}
+        >
           <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-4">
             La Solución
           </p>
@@ -56,20 +64,23 @@ const SolutionSection = () => {
         </div>
 
         {/* Pillars */}
-        <div className="grid md:grid-cols-3 gap-1">
+        <div ref={pillarsRef} className="grid md:grid-cols-3 gap-1">
           {pillars.map((pillar, index) => (
             <div
               key={pillar.title}
-              className="group relative bg-card/30 border-t border-border/30 p-10 hover:bg-card/60 transition-all duration-500"
+              className={`group relative bg-card/30 border-t border-border/30 p-10 hover:bg-card/60 card-hover animate-on-scroll stagger-${index + 1} ${pillarsVisible ? 'visible' : ''}`}
             >
-              {/* Roman Numeral */}
-              <span className="font-serif text-7xl text-primary/5 absolute top-4 right-4 group-hover:text-primary/10 transition-colors">
+              {/* Roman Numeral with parallax */}
+              <span 
+                ref={index === 1 ? numeralParallax : undefined}
+                className="font-serif text-7xl text-primary/5 absolute top-4 right-4 group-hover:text-primary/15 transition-colors duration-500"
+              >
                 {pillar.number}
               </span>
 
               {/* Icon */}
               <div className="mb-8">
-                <pillar.icon className="w-10 h-10 text-primary" strokeWidth={1} />
+                <pillar.icon className="w-10 h-10 text-primary group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
               </div>
 
               {/* Content */}
@@ -95,7 +106,7 @@ const SolutionSection = () => {
 
         {/* CTA */}
         <div className="mt-16 text-center">
-          <Button variant="hero" size="xl">
+          <Button variant="hero" size="xl" className="hover:animate-pulse-gold">
             Inicia tu Transformación
           </Button>
         </div>
