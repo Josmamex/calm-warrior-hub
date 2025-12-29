@@ -1,13 +1,20 @@
 import { Quote } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const AboutSection = () => {
+  const { ref: imageRef, isVisible: imageVisible } = useScrollAnimation();
+  const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
+
   return (
     <section className="py-24 md:py-32 bg-gradient-radial relative">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Column - Image/Visual */}
-          <div className="relative">
-            <div className="aspect-[4/5] bg-gradient-to-br from-charcoal-light to-card border border-border/30 relative overflow-hidden">
+          <div 
+            ref={imageRef}
+            className={`relative animate-on-scroll-left ${imageVisible ? 'visible' : ''}`}
+          >
+            <div className="aspect-[4/5] bg-gradient-to-br from-charcoal-light to-card border border-border/30 relative overflow-hidden card-hover">
               {/* Decorative Elements */}
               <div className="absolute top-0 left-0 w-full h-full">
                 <div className="absolute top-8 left-8 w-32 h-32 border border-primary/20" />
@@ -17,7 +24,7 @@ const AboutSection = () => {
               {/* Placeholder for actual photo */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center p-8">
-                  <div className="w-32 h-32 mx-auto mb-6 rounded-full border-2 border-primary/30 flex items-center justify-center">
+                  <div className="w-32 h-32 mx-auto mb-6 rounded-full border-2 border-primary/30 flex items-center justify-center group-hover:border-primary/50 transition-colors">
                     <span className="font-serif text-4xl text-primary">JH</span>
                   </div>
                   <p className="text-muted-foreground text-sm italic">
@@ -43,7 +50,10 @@ const AboutSection = () => {
           </div>
 
           {/* Right Column - Content */}
-          <div className="lg:pl-8">
+          <div 
+            ref={contentRef}
+            className={`lg:pl-8 animate-on-scroll-right ${contentVisible ? 'visible' : ''}`}
+          >
             <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-4">
               Sobre Mí
             </p>

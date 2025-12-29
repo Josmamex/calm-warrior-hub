@@ -1,4 +1,5 @@
 import { Brain, Eye, Target } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const painPoints = [
   {
@@ -25,11 +26,17 @@ const painPoints = [
 ];
 
 const PainPointsSection = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation(0.05);
+
   return (
     <section className="py-24 md:py-32 bg-gradient-radial">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
+        <div 
+          ref={headerRef}
+          className={`text-center max-w-3xl mx-auto mb-20 animate-on-scroll ${headerVisible ? 'visible' : ''}`}
+        >
           <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-4">
             El Diagnóstico
           </p>
@@ -41,20 +48,19 @@ const PainPointsSection = () => {
         </div>
 
         {/* Pain Points Grid */}
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        <div ref={cardsRef} className="grid md:grid-cols-3 gap-8 md:gap-12">
           {painPoints.map((point, index) => (
             <div
               key={point.title}
-              className="group relative p-8 bg-card/50 border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-gold"
-              style={{ animationDelay: `${index * 200}ms` }}
+              className={`group relative p-8 bg-card/50 border border-border/50 hover:border-primary/30 card-hover animate-on-scroll-scale stagger-${index + 1} ${cardsVisible ? 'visible' : ''}`}
             >
               {/* Number */}
-              <span className="absolute -top-4 -left-4 font-serif text-6xl text-primary/10 font-bold">
+              <span className="absolute -top-4 -left-4 font-serif text-6xl text-primary/10 font-bold group-hover:text-primary/20 transition-colors duration-500">
                 {String(index + 1).padStart(2, "0")}
               </span>
 
               {/* Icon */}
-              <div className="mb-6 p-4 inline-block bg-secondary/50 border border-border/50 group-hover:border-primary/30 transition-colors">
+              <div className="mb-6 p-4 inline-block bg-secondary/50 border border-border/50 group-hover:border-primary/30 group-hover:shadow-glow transition-all duration-500">
                 <point.icon className="w-6 h-6 text-primary" />
               </div>
 
