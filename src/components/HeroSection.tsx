@@ -24,15 +24,15 @@ const HeroSection = () => {
           {/* Main Headline */}
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.1] mb-8 opacity-0 animate-fade-up animation-delay-200">
             Domina el Caos{" "}
-            <span className="text-gold-gradient">sin Disparar</span>{" "}
-            una Bala.
+            <span className="text-gold-gradient">sin Perder</span>{" "}
+            la Calma.
           </h1>
 
           {/* Subtitle */}
           <p className="text-cream-muted text-lg md:text-xl leading-relaxed max-w-2xl mb-10 opacity-0 animate-fade-up animation-delay-400">
-            La protección ejecutiva y personal no se trata de fuerza bruta. 
+            La protección ejecutiva y personal no se trata de violencia ni intimidación. 
             Se trata de <span className="text-foreground font-medium">Congruencia, Ciencia y Control Interno</span>. 
-            Transforma tu miedo en tu mayor activo estratégico.
+            Transforma el estrés y las emociones en tu mayor activo estratégico.
           </p>
 
           {/* CTA Buttons */}
