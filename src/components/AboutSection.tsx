@@ -53,20 +53,16 @@ const AboutSection = () => {
 
             <div className="space-y-6 text-cream-muted leading-relaxed">
               <p>
-                Durante <span className="text-foreground font-medium">45 años</span> he caminado el sendero de las artes marciales 
-                y <span className="text-foreground font-medium">24 años</span> en la protección operativa de alto riesgo.
+                <span className="text-foreground font-medium">25 años</span> dedicados a la enseñanza de protectores operativos de alto riesgo 
+                y más de <span className="text-foreground font-medium">45 años</span> caminando el sendero del guerrero y las artes guerreras.
               </p>
 
               <p>
-                He sido entrenado por leyendas como <span className="text-primary">Robert Koga</span> (LAPD), 
-                <span className="text-primary"> Vladimir Vasiliev</span> (Spetsnaz) y el científico 
+                He sido entrenado por leyendas como <span className="text-primary">Robert Koga</span>, 
+                <span className="text-primary"> Vladimir Vasiliev</span> (Spetsnaz), 
+                <span className="text-primary"> Matt Thomas</span> y el científico 
                 <span className="text-primary"> Oleg Maltsev</span>. Fui el primer mexicano certificado en el sistema 
-                de entrenamiento con simulaciones de estrés.
-              </p>
-
-              <p>
-                Pero mi mayor credencial no son mis diplomas, sino mi <span className="text-foreground font-medium">congruencia</span>. 
-                Vivo lo que enseño.
+                de entrenamiento con simulaciones de estrés y certificado por la Organización de las Naciones Unidas en Seguridad.
               </p>
             </div>
 
@@ -74,7 +70,7 @@ const AboutSection = () => {
             <blockquote className="mt-10 pl-6 border-l-2 border-primary">
               <Quote className="w-8 h-8 text-primary/30 mb-4" />
               <p className="font-serif text-xl italic text-foreground leading-relaxed">
-                Mi misión no es crear soldados, sino desarrollar seres humanos integrales 
+                Mi misión no es crear robots violentos, sino desarrollar seres humanos integrales 
                 que puedan protegerse a sí mismos y a otros con inteligencia, ética y una 
                 calma inquebrantable.
               </p>
@@ -86,9 +82,9 @@ const AboutSection = () => {
                 <div className="space-y-2">
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">Certificaciones</p>
                   <ul className="space-y-1 text-sm text-cream-muted">
-                    <li>• Sistema Koga (LAPD)</li>
+                    <li>• Sistema Koga</li>
                     <li>• Systema Vasiliev</li>
-                    <li>• Metodología Maltsev</li>
+                    <li>• Model Mugging</li>
                   </ul>
                 </div>
                 <div className="space-y-2">
@@ -96,7 +92,7 @@ const AboutSection = () => {
                   <ul className="space-y-1 text-sm text-cream-muted">
                     <li>• Protección Ejecutiva</li>
                     <li>• Psicología de Combate</li>
-                    <li>• Force Science</li>
+                    <li>• Simulacros y Toma de Decisiones en Alto Estrés</li>
                   </ul>
                 </div>
               </div>
