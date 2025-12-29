@@ -73,25 +73,29 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden py-6 border-t border-border/30 animate-fade-in">
-            <div className="flex flex-col gap-4">
+        <div
+          className={`lg:hidden fixed inset-x-0 top-20 bg-background/98 backdrop-blur-xl border-b border-border/50 transition-all duration-300 ${
+            isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+          }`}
+        >
+          <div className="container mx-auto px-6 py-8">
+            <div className="flex flex-col gap-6">
               {navLinks.map((link) => (
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-lg text-muted-foreground hover:text-foreground transition-colors py-2"
+                  className="text-xl font-serif text-foreground hover:text-primary transition-colors py-2 border-b border-border/20"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.label}
                 </a>
               ))}
-              <Button variant="hero" className="mt-4">
+              <Button variant="hero" className="mt-4 w-full">
                 Contactar
               </Button>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
