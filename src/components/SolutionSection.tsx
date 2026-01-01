@@ -55,11 +55,7 @@ const SolutionSection = () => {
             <span className="text-gold-gradient">La Ciencia de la Supervivencia</span>
           </h2>
           <p className="text-cream-muted text-lg leading-relaxed">
-            No enseño a combatir. Enseño a <span className="text-foreground">apagar la señal del ego, la sobre-confianza y la robotización</span> y 
-            a encender el guerrero y la mente estratégica. Utilizando las metodologías de mis maestros: 
-            los principios de control de Robert Koga, la ciencia de las emociones de Systema, 
-            la ciencia de Maltsev/Force Science y el control de la adrenalina de Thomas, 
-            reprogramamos tus instintos.
+            No enseño técnicas de combate. Enseño lo que me costó décadas descubrir: cómo <span className="text-foreground">apagar la señal del ego, la sobre-confianza y los automatismos</span> que te convierten en víctima — y cómo encender al guerrero consciente. Lo aprendí de Koga, Vasiliev, Maltsev y Thomas. Ahora lo transmito: reprogramamos tus instintos para que sirvan, no para que te traicionen.
           </p>
         </div>
 
