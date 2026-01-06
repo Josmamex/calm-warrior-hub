@@ -45,6 +45,7 @@ const AboutSection = () => {
               <div className="text-center">
                 <span className="block font-serif text-4xl font-medium text-primary-foreground">45</span>
                 <span className="text-xs uppercase tracking-widest text-primary-foreground/80">Años</span>
+                <span className="block text-[10px] uppercase tracking-wider text-primary-foreground/60 mt-1">Artes Guerreras</span>
               </div>
             </div>
           </div>
@@ -88,9 +89,9 @@ const AboutSection = () => {
 
             {/* Credentials List */}
             <div className="mt-10 pt-8 border-t border-border/30">
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="space-y-2">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Certificaciones</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Sistemas de Combate</p>
                   <ul className="space-y-1 text-sm text-cream-muted">
                     <li>• Sistema Koga</li>
                     <li>• Systema Vasiliev</li>
@@ -98,11 +99,19 @@ const AboutSection = () => {
                   </ul>
                 </div>
                 <div className="space-y-2">
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">Certificaciones</p>
+                  <ul className="space-y-1 text-sm text-cream-muted">
+                    <li>• ONU (Seguridad)</li>
+                    <li>• H&K</li>
+                    <li>• Simmunition</li>
+                  </ul>
+                </div>
+                <div className="space-y-2">
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">Especialización</p>
                   <ul className="space-y-1 text-sm text-cream-muted">
                     <li>• Protección Ejecutiva</li>
                     <li>• Psicología de Combate</li>
-                    <li>• Simulacros y Toma de Decisiones en Alto Estrés</li>
+                    <li>• Alto Estrés</li>
                   </ul>
                 </div>
               </div>
