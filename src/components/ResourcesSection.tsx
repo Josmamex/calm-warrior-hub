@@ -1,199 +1,134 @@
-import { FileText, Video, Award, Download, MessageCircle, Calendar } from "lucide-react";
+import { Download, MessageCircle, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const resources = [
   {
-    icon: FileText,
     tag: "Gratuito",
-    title: "El Manual del Hombre Gris",
-    description:
-      "Guía esencial para dominar el arte de la invisibilidad táctica. Incluye ejercicios de respiración basados en Systema.",
-    content: [
-      "Gestión del miedo y limpieza de programación equivocada",
-      "Protocolos Maltsev y Koga",
-      "Ejercicios de respiración Systema",
-      "Invisibilidad operativa",
-    ],
-    cta: "Descargar PDF gratis",
+    title: "Manual del Hombre Gris",
+    description: "Guía + ejercicios Systema",
+    cta: "Descargar →",
     ctaIcon: Download,
+    gradient: "from-emerald-500/20 to-transparent",
     featured: false,
   },
   {
-    icon: Video,
-    tag: "Taller Online",
+    tag: "Online",
     title: "Ego Bajo Control",
-    description:
-      "Workshop intensivo para identificar y neutralizar las debilidades internas que sabotean tu desempeño bajo presión.",
-    content: [
-      "Identificación de automatismos destructivos",
-      "Neutralización del ego como vulnerabilidad",
-      "Protocolos de auto-evaluación",
-      "Ejercicios prácticos aplicables inmediatamente",
-    ],
-    note: "Duración: Workshop de 3-4 horas online",
-    cta: "Solicitar información",
+    description: "Workshop 3-4 horas",
+    cta: "Info →",
     ctaIcon: MessageCircle,
+    gradient: "from-primary/30 to-transparent",
     featured: true,
   },
   {
-    icon: Award,
-    tag: "Certificación",
-    title: "CIPE Presencial",
-    description:
-      "Programa completo de Certificación Internacional en Protección Ejecutiva. Metodología Koga-Maltsev-Vasiliev integrada.",
-    content: [
-      "Biomecánica Koga: Eficiencia sin fuerza bruta",
-      "Recensura Maltsev: Soluciones adaptables",
-      "Systema Vasiliev: Control emocional bajo estrés",
-      "Ciclo OODA: Decisiones tácticas inteligentes",
-    ],
-    modalities: [
-      "Lobo Solitario (entrenamiento individual)",
-      "Binomio Táctico (entrenamiento en pareja)",
-      "Equipos corporativos (consultar disponibilidad)",
-    ],
-    note: "Formación presencial. Duración y costo según modalidad.",
-    cta: "Agendar consulta estratégica",
+    tag: "Presencial",
+    title: "CIPE",
+    description: "Certificación completa",
+    cta: "Consultar →",
     ctaIcon: Calendar,
+    gradient: "from-amber-500/20 to-transparent",
     featured: false,
   },
 ];
 
 const ResourcesSection = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation(0.05);
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation(0.1);
 
   return (
-    <section id="recursos" className="py-24 md:py-32 relative">
-      <div className="container mx-auto px-6">
+    <section id="recursos" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-radial" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      
+      {/* Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div
           ref={headerRef}
-          className={`text-center max-w-3xl mx-auto mb-20 animate-on-scroll ${headerVisible ? "visible" : ""}`}
+          className={`text-center max-w-2xl mx-auto mb-16 animate-on-scroll ${headerVisible ? "visible" : ""}`}
         >
-          <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-4">
+          <p className="text-primary text-xs tracking-[0.4em] uppercase mb-4 font-medium">
             Tu Camino
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium leading-tight mb-6">
-            Elige tu Nivel de{" "}
-            <span className="text-gold-gradient">Transformación</span>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium">
+            Elige tu <span className="text-gold-gradient">Nivel</span>
           </h2>
-          <p className="text-cream-muted text-lg">
-            Desde recursos gratuitos hasta certificación completa. Cada paso te
-            acerca al dominio de ti mismo.
-          </p>
         </div>
 
         {/* Resources Grid */}
         <div
           ref={cardsRef}
-          className="grid md:grid-cols-3 gap-8"
+          className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto"
         >
           {resources.map((resource, index) => (
             <div
               key={resource.title}
-              className={`group relative p-8 transition-all duration-500 animate-on-scroll stagger-${index + 1} ${cardsVisible ? "visible" : ""} ${
-                resource.featured
-                  ? "bg-gradient-to-b from-primary/10 to-card border-2 border-primary/30 shadow-gold"
-                  : "bg-card/50 border border-border/50 hover:border-primary/30"
+              className={`group relative overflow-hidden animate-on-scroll stagger-${index + 1} ${cardsVisible ? "visible" : ""} ${
+                resource.featured ? "md:-mt-4 md:mb-4" : ""
               }`}
             >
-              {/* Tag */}
-              <div className="mb-6">
-                <span
-                  className={`inline-block px-4 py-1 text-xs uppercase tracking-wider ${
-                    resource.featured
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-secondary text-muted-foreground"
-                  }`}
-                >
-                  {resource.tag}
-                </span>
-              </div>
-
-              {/* Icon */}
-              <div className="mb-6">
-                <resource.icon
-                  className={`w-12 h-12 ${
-                    resource.featured
-                      ? "text-primary"
-                      : "text-muted-foreground group-hover:text-primary"
-                  } transition-colors`}
-                  strokeWidth={1}
-                />
-              </div>
-
-              {/* Content */}
-              <h3 className="font-serif text-2xl font-medium mb-4 text-foreground">
-                {resource.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {resource.description}
-              </p>
-
-              {/* Content List */}
-              <div className="mb-6">
-                <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                  {resource.tag === "Certificación" ? "Metodología:" : "Contenido:"}
-                </p>
-                <ul className="space-y-2">
-                  {resource.content.map((item) => (
-                    <li key={item} className="text-sm text-cream-muted flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Modalities (for CIPE) */}
-              {resource.modalities && (
-                <div className="mb-6">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                    Modalidades disponibles:
-                  </p>
-                  <ul className="space-y-1">
-                    {resource.modalities.map((mod) => (
-                      <li key={mod} className="text-sm text-primary">
-                        ✓ {mod}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Note */}
-              {resource.note && (
-                <p className="text-xs text-muted-foreground italic mb-6">
-                  {resource.note}
-                </p>
-              )}
-
-              {/* CTA */}
-              <Button
-                variant={resource.featured ? "hero" : "heroOutline"}
-                className="w-full"
+              <div
+                className={`relative h-[400px] border transition-all duration-500 ${
+                  resource.featured
+                    ? "border-primary/50 bg-gradient-to-b from-primary/10 to-card shadow-gold"
+                    : "border-border/30 bg-card/30 hover:border-primary/30"
+                }`}
               >
-                <resource.ctaIcon className="w-4 h-4 mr-2" />
-                {resource.cta}
-              </Button>
+                {/* Gradient Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-b ${resource.gradient} opacity-50`} />
+                
+                {/* Content */}
+                <div className="relative h-full flex flex-col justify-between p-8">
+                  {/* Tag */}
+                  <div>
+                    <span
+                      className={`inline-block px-4 py-2 text-xs uppercase tracking-wider font-medium ${
+                        resource.featured
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-muted-foreground"
+                      }`}
+                    >
+                      {resource.tag}
+                    </span>
+                  </div>
 
-              {/* Featured Glow Effect */}
-              {resource.featured && (
-                <div className="absolute -inset-px bg-gradient-to-b from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-              )}
+                  {/* Title & Description */}
+                  <div className="flex-1 flex flex-col justify-center">
+                    <h3 className="font-serif text-3xl md:text-4xl font-medium text-foreground mb-3">
+                      {resource.title}
+                    </h3>
+                    <p className="text-cream-muted text-lg">
+                      {resource.description}
+                    </p>
+                  </div>
+
+                  {/* CTA */}
+                  <Button
+                    variant={resource.featured ? "hero" : "heroOutline"}
+                    className="w-full justify-center gap-2"
+                  >
+                    <resource.ctaIcon className="w-4 h-4" />
+                    {resource.cta}
+                  </Button>
+                </div>
+
+                {/* Hover Effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="absolute inset-0 shadow-[inset_0_0_60px_hsl(38_70%_55%/0.1)]" />
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Disclaimer */}
+        {/* Note */}
         <div className="mt-16 text-center">
-          <p className="text-muted-foreground text-sm italic max-w-2xl mx-auto">
-            <span className="text-foreground font-medium">Importante:</span> No
-            vendemos certificados. Desarrollamos capacidad operativa real. Si
-            buscas "papel bonito para enmarcar", hay opciones más baratas en el
-            mercado.
+          <p className="text-muted-foreground text-sm italic">
+            No vendemos certificados. <span className="text-foreground">Desarrollamos capacidad operativa real.</span>
           </p>
         </div>
       </div>

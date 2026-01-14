@@ -1,45 +1,33 @@
 import { Button } from "@/components/ui/button";
-import { Brain, Eye, Target } from "lucide-react";
-import heroBackground from "@/assets/hero-background.jpg";
+import heroTactical from "@/assets/hero-tactical.jpg";
+import problemFear from "@/assets/problem-fear.jpg";
+import problemEgo from "@/assets/problem-ego.jpg";
+import problemCopy from "@/assets/problem-copy.jpg";
 import FloatingParticles from "./FloatingParticles";
 import { useParallax, useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const problems = [
   {
-    number: "01",
-    icon: Brain,
-    title: "El Cortocircuito Interno",
-    subtitle: "EL MIEDO TE PARALIZA",
-    description:
-      "Entrenas técnicas físicas durante años, pero bajo estrés real, tu respiración se detiene, tu cerebro entra en cortocircuito y tu cuerpo se congela. El miedo automático te sabotea.",
-    solution:
-      "La solución: Gestión del miedo y limpieza de la programación equivocada mediante los protocolos de Maltsev y Koga. Reprogramamos los patrones de reacción automática que te sabotean bajo presión.",
+    image: problemFear,
+    title: "El Miedo Te Paraliza",
+    description: "Bajo estrés real, tu cerebro se apaga. No es debilidad. Nadie te preparó para esto.",
   },
   {
-    number: "02",
-    icon: Eye,
-    title: "La Trampa del Ego",
-    subtitle: "LA FUERZA BRUTA TE DESTRUYE",
-    description:
-      "Crees que debes ser el más fuerte o agresivo. Pero en LATAM, la agresión desmedida te lleva a la cárcel o a la muerte. El ego te hace creer que 'sentirte duro' es sinónimo de efectividad.",
-    solution:
-      "La solución: Movimientos basados en principios de Systema y Koga: relajación activa, eficiencia y economía de fuerza. Máximo resultado con menor desgaste físico y emocional.",
+    image: problemEgo,
+    title: "La Fuerza Te Destruye",
+    description: "Agresión desmedida = prisión. En LATAM, el ego te lleva a la cárcel o la muerte.",
   },
   {
-    number: "03",
-    icon: Target,
-    title: "La Desconexión Científica",
-    subtitle: "COPIAS LO QUE NO APLICA",
-    description:
-      "Copias estilos militares extranjeros que no se aplican a nuestra realidad legal ni táctica. La mejor escolta es la que nadie nota, pero te enseñaron a 'parecer operador'.",
-    solution:
-      "La solución: El Ciclo OODA, legalidad táctica y el arte del 'Hombre Gris'. Decisiones inteligentes que te mantienen libre y vivo en el contexto legal latinoamericano.",
+    image: problemCopy,
+    title: "Copias Lo Que No Aplica",
+    description: "Estilos extranjeros que no funcionan en nuestra realidad legal ni táctica.",
   },
 ];
 
 const HeroSection = () => {
-  const textParallax = useParallax(-0.2);
-  const { ref: problemsRef, isVisible: problemsVisible } = useScrollAnimation(0.05);
+  const bgParallax = useParallax(-0.3);
+  const textParallax = useParallax(-0.1);
+  const { ref: problemsRef, isVisible: problemsVisible } = useScrollAnimation(0.1);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -50,150 +38,138 @@ const HeroSection = () => {
 
   return (
     <section id="inicio" className="relative">
-      {/* Hero Part */}
+      {/* HERO - Full Visual Impact */}
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
+        {/* Background with Parallax */}
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${heroBackground})` }}
+          ref={bgParallax}
+          className="absolute inset-0 scale-110"
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-transparent to-background/40" />
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: `url(${heroTactical})` }}
+          />
+          {/* Overlays for depth */}
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/60" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_70%)]" />
         </div>
 
-        {/* Floating Particles & Ambient Effects */}
+        {/* Floating Particles & Ambient Glow */}
         <FloatingParticles />
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px]" />
+        </div>
 
-        {/* Content */}
-        <div ref={textParallax} className="relative z-10 container mx-auto px-6 py-32">
-          <div className="max-w-3xl">
-            {/* Overline */}
-            <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-6 opacity-0 animate-fade-up">
-              Protección del Ser · Ciencia del Control
-            </p>
+        {/* Content - Minimal Text */}
+        <div ref={textParallax} className="relative z-10 container mx-auto px-6 py-32 text-center">
+          <div className="max-w-4xl mx-auto">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm mb-8 opacity-0 animate-fade-up">
+              <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+              <span className="text-primary text-xs tracking-[0.3em] uppercase font-medium">
+                Protección del Ser · Ciencia del Control
+              </span>
+            </div>
 
-            {/* Main Headline */}
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.1] mb-8 opacity-0 animate-fade-up animation-delay-200">
-              Domina el Caos{" "}
-              <span className="text-gold-gradient">sin Perder</span> la Calma.
+            {/* Main Headline - BIG */}
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] mb-8 opacity-0 animate-fade-up animation-delay-200">
+              Domina el Caos
+              <br />
+              <span className="text-gold-gradient">sin Perder la Calma</span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="text-cream-muted text-lg md:text-xl leading-relaxed max-w-2xl mb-10 opacity-0 animate-fade-up animation-delay-400">
-              La protección ejecutiva y personal no se trata de violencia ni
-              intimidación. Se trata de{" "}
-              <span className="text-foreground font-medium">
-                Congruencia, Ciencia y Control Interno
-              </span>
-              . Transforma el estrés y las emociones en tu mayor activo
-              estratégico.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 opacity-0 animate-fade-up animation-delay-600">
+            {/* CTA - Prominent */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-up animation-delay-400">
               <Button
                 variant="hero"
                 size="xl"
-                onClick={() => scrollToSection("recursos")}
+                className="text-lg px-10 py-6 shadow-gold hover:shadow-[0_0_60px_hsl(38_70%_55%/0.4)] transition-shadow"
+                onClick={() => scrollToSection("contacto")}
               >
-                Comienza tu Entrenamiento
-              </Button>
-              <Button
-                variant="heroOutline"
-                size="xl"
-                onClick={() => scrollToSection("metodologia")}
-              >
-                Conoce la Metodología
+                Comienza Ahora →
               </Button>
             </div>
 
-            {/* Credentials */}
-            <div className="mt-16 pt-8 border-t border-border/30 opacity-0 animate-fade-up animation-delay-800">
-              <p className="text-muted-foreground text-sm tracking-wide">
-                25 años enseñando a protectores · Certificaciones internacionales
-                · 45 años en el camino de las artes guerreras
-              </p>
+            {/* Credential Badge */}
+            <div className="mt-16 inline-flex items-center gap-3 px-6 py-3 bg-primary/10 border border-primary/20 opacity-0 animate-fade-up animation-delay-600">
+              <span className="text-3xl font-serif text-primary font-medium">1er</span>
+              <span className="text-sm text-cream-muted text-left leading-tight">
+                Mexicano certificado<br />ONU en Seguridad
+              </span>
             </div>
           </div>
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800">
-          <div className="flex flex-col items-center gap-2 text-muted-foreground">
-            <span className="text-xs tracking-widest uppercase">Descubre más</span>
-            <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent animate-pulse" />
+        <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800">
+          <div className="flex flex-col items-center gap-3">
+            <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex items-start justify-center p-2">
+              <div className="w-1.5 h-3 bg-primary rounded-full animate-bounce" />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Problems Section (Integrated) */}
-      <div className="py-24 md:py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/20 to-background" />
+      {/* PROBLEMS - Visual Cards with Images */}
+      <div className="py-24 md:py-32 relative overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/30 to-background" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+        
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
 
         <div className="container mx-auto px-6 relative z-10">
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-20">
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-medium leading-tight">
-              ¿Por qué fallan los protectores en el{" "}
-              <span className="text-gold-gradient">momento de la verdad</span>?
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium">
+              ¿Te suena <span className="text-gold-gradient">familiar</span>?
             </h2>
           </div>
 
-          {/* Problems Grid */}
+          {/* Problem Cards - Image First */}
           <div
             ref={problemsRef}
-            className="grid md:grid-cols-3 gap-8"
+            className="grid md:grid-cols-3 gap-6 lg:gap-8"
           >
             {problems.map((problem, index) => (
               <div
                 key={problem.title}
-                className={`group relative bg-card/30 border border-border/30 p-8 hover:bg-card/60 card-hover animate-on-scroll stagger-${index + 1} ${problemsVisible ? "visible" : ""}`}
+                className={`group relative overflow-hidden animate-on-scroll stagger-${index + 1} ${problemsVisible ? "visible" : ""}`}
               >
-                {/* Number */}
-                <span className="font-serif text-6xl text-primary/10 absolute top-4 right-4 group-hover:text-primary/20 transition-colors duration-500">
-                  {problem.number}
-                </span>
-
-                {/* Icon */}
-                <div className="mb-6">
-                  <problem.icon
-                    className="w-10 h-10 text-primary group-hover:scale-110 transition-transform duration-500"
-                    strokeWidth={1}
+                {/* Image */}
+                <div className="aspect-square relative overflow-hidden">
+                  <img
+                    src={problem.image}
+                    alt={problem.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                </div>
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
+                  
+                  {/* Content Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-6">
+                    <h3 className="font-serif text-2xl md:text-3xl font-medium text-foreground mb-3 drop-shadow-lg">
+                      {problem.title}
+                    </h3>
+                    <p className="text-cream-muted text-sm md:text-base leading-relaxed">
+                      {problem.description}
+                    </p>
+                  </div>
 
-                {/* Title & Subtitle */}
-                <p className="text-primary text-xs font-sans uppercase tracking-[0.2em] mb-2">
-                  {problem.subtitle}
-                </p>
-                <h3 className="font-serif text-2xl font-medium mb-4 text-foreground">
-                  {problem.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  {problem.description}
-                </p>
-
-                {/* Solution */}
-                <div className="pt-4 border-t border-border/30">
-                  <p className="text-cream-muted text-sm leading-relaxed">
-                    {problem.solution}
-                  </p>
+                  {/* Hover Glow */}
+                  <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500" />
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Closing Statement */}
-          <div className="mt-16 text-center max-w-2xl mx-auto">
-            <p className="text-cream-muted text-lg leading-relaxed border-l-2 border-primary pl-6 text-left">
-              Estos tres problemas no se resuelven con más repeticiones de
-              técnicas físicas. Se resuelven{" "}
-              <span className="text-foreground font-medium">
-                transformando quién eres bajo presión extrema
-              </span>
-              .
+          {/* Hook */}
+          <div className="mt-16 text-center">
+            <p className="font-serif text-2xl md:text-3xl text-foreground">
+              No eres el único. <span className="text-primary">Y tiene solución.</span>
             </p>
           </div>
         </div>

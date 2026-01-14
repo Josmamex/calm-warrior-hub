@@ -1,156 +1,99 @@
-import { Quote } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
 
 const AboutSection = () => {
-  const { ref: imageRef, isVisible: imageVisible } = useScrollAnimation();
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
+  const decorParallax = useParallax(0.2);
 
   return (
-    <section id="sobre-mi" className="py-24 md:py-32 bg-gradient-radial relative">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Image/Visual */}
-          <div
-            ref={imageRef}
-            className={`relative animate-on-scroll-left ${imageVisible ? "visible" : ""}`}
-          >
-            <div className="aspect-[4/5] bg-gradient-to-br from-charcoal-light to-card border border-border/30 relative overflow-hidden card-hover">
-              {/* Decorative Elements */}
-              <div className="absolute top-0 left-0 w-full h-full">
-                <div className="absolute top-8 left-8 w-32 h-32 border border-primary/20" />
-                <div className="absolute bottom-8 right-8 w-48 h-48 border border-primary/10" />
-              </div>
+    <section id="sobre-mi" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/20 to-background" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      
+      {/* Decorative Elements with Parallax */}
+      <div ref={decorParallax} className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-32 -right-32 w-96 h-96 border border-primary/10 rotate-45" />
+        <div className="absolute -bottom-32 -left-32 w-64 h-64 border border-primary/5 rotate-12" />
+        <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />
+      </div>
 
-              {/* Placeholder for actual photo */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-32 h-32 mx-auto mb-6 rounded-full border-2 border-primary/30 flex items-center justify-center group-hover:border-primary/50 transition-colors">
-                    <span className="font-serif text-4xl text-primary">JH</span>
-                  </div>
-                  <p className="text-muted-foreground text-sm italic">
-                    "Somos un breve momento físico"
-                  </p>
-                </div>
-              </div>
+      <div className="container mx-auto px-6 relative z-10">
+        <div
+          ref={contentRef}
+          className={`max-w-4xl mx-auto animate-on-scroll ${contentVisible ? "visible" : ""}`}
+        >
+          {/* Header */}
+          <div className="text-center mb-16">
+            <p className="text-primary text-xs tracking-[0.4em] uppercase mb-4 font-medium">
+              Sobre Mí
+            </p>
+            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium">
+              Josafath Herrera
+            </h2>
+          </div>
 
-              {/* Corner Accents */}
-              <div className="absolute top-0 left-0 w-16 h-px bg-primary" />
-              <div className="absolute top-0 left-0 w-px h-16 bg-primary" />
-              <div className="absolute bottom-0 right-0 w-16 h-px bg-primary" />
-              <div className="absolute bottom-0 right-0 w-px h-16 bg-primary" />
+          {/* Visual Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            <div className="text-center p-6 border border-border/30 bg-card/30 group hover:border-primary/30 transition-colors">
+              <span className="block font-serif text-4xl md:text-5xl text-primary font-medium mb-2">25</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">Años<br/>Enseñando</span>
             </div>
-
-            {/* Experience Badge */}
-            <div className="absolute -bottom-6 -right-6 bg-primary p-8 shadow-gold">
-              <div className="text-center">
-                <span className="block font-serif text-4xl font-medium text-primary-foreground">
-                  45
-                </span>
-                <span className="text-xs uppercase tracking-widest text-primary-foreground/80">
-                  Años
-                </span>
-                <span className="block text-[10px] uppercase tracking-wider text-primary-foreground/60 mt-1">
-                  Artes Guerreras
-                </span>
-              </div>
+            <div className="text-center p-6 border border-border/30 bg-card/30 group hover:border-primary/30 transition-colors">
+              <span className="block font-serif text-4xl md:text-5xl text-primary font-medium mb-2">45</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">Años<br/>Artes Guerreras</span>
+            </div>
+            <div className="text-center p-6 border border-border/30 bg-card/30 group hover:border-primary/30 transition-colors">
+              <span className="block font-serif text-4xl md:text-5xl text-primary font-medium mb-2">1er</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">Mexicano<br/>ONU Seguridad</span>
+            </div>
+            <div className="text-center p-6 border border-border/30 bg-card/30 group hover:border-primary/30 transition-colors">
+              <span className="block font-serif text-4xl md:text-5xl text-primary font-medium mb-2">4</span>
+              <span className="text-xs text-muted-foreground uppercase tracking-wider">Maestros<br/>Legendarios</span>
             </div>
           </div>
 
-          {/* Right Column - Content */}
-          <div
-            ref={contentRef}
-            className={`lg:pl-8 animate-on-scroll-right ${contentVisible ? "visible" : ""}`}
-          >
-            <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-4">
-              Sobre Mí
+          {/* Masters */}
+          <div className="mb-16">
+            <p className="text-center text-muted-foreground text-sm uppercase tracking-wider mb-6">
+              Formación Directa Con:
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-medium leading-tight mb-8">
-              Josafath Herrera
-            </h2>
-
-            <div className="space-y-6 text-cream-muted leading-relaxed">
-              <p>
-                <span className="text-foreground font-medium">25 años</span>{" "}
-                dedicados a la enseñanza de protectores operativos de alto riesgo y
-                más de <span className="text-foreground font-medium">45 años</span>{" "}
-                caminando el sendero del guerrero y las artes guerreras.
-              </p>
-
-              <p>
-                He sido entrenado por leyendas como{" "}
-                <span className="text-primary">Robert Koga</span>,
-                <span className="text-primary"> Vladimir Vasiliev</span> (Spetsnaz),
-                <span className="text-primary"> Matt Thomas</span> y el científico
-                <span className="text-primary"> Oleg Maltsev</span>. Fui el primer
-                mexicano certificado en el sistema de entrenamiento con simulaciones
-                de estrés y certificado por la Organización de las Naciones Unidas
-                en Seguridad.
-              </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              {["Robert Koga", "Vladimir Vasiliev", "Matt Thomas", "Oleg Maltsev"].map((master) => (
+                <span
+                  key={master}
+                  className="px-6 py-3 border border-primary/30 bg-primary/5 text-primary font-medium text-sm"
+                >
+                  {master}
+                </span>
+              ))}
             </div>
+          </div>
 
-            {/* Quote */}
-            <blockquote className="mt-10 pl-6 border-l-2 border-primary">
-              <Quote className="w-8 h-8 text-primary/30 mb-4" />
-              <p className="font-serif text-xl italic text-foreground leading-relaxed">
-                Mi misión no es crear robots violentos, sino desarrollar seres
-                humanos integrales que puedan protegerse a sí mismos y a otros con
-                inteligencia, ética y una calma inquebrantable.
-              </p>
+          {/* Quote */}
+          <div className="text-center mb-16">
+            <blockquote className="font-serif text-2xl md:text-3xl text-foreground italic leading-relaxed">
+              "Mi misión no es crear robots violentos, sino desarrollar seres humanos integrales 
+              con inteligencia, ética y una calma inquebrantable."
             </blockquote>
+          </div>
 
-            {/* Credentials List */}
-            <div className="mt-10 pt-8 border-t border-border/30">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="space-y-2">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                    Sistemas de Combate
-                  </p>
-                  <ul className="space-y-1 text-sm text-cream-muted">
-                    <li>• Sistema Koga</li>
-                    <li>• Systema Vasiliev</li>
-                    <li>• Model Mugging</li>
-                  </ul>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                    Certificaciones
-                  </p>
-                  <ul className="space-y-1 text-sm text-cream-muted">
-                    <li>• ONU (Seguridad)</li>
-                    <li>• H&K</li>
-                    <li>• Simmunition</li>
-                  </ul>
-                </div>
-                <div className="space-y-2">
-                  <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                    Especialización
-                  </p>
-                  <ul className="space-y-1 text-sm text-cream-muted">
-                    <li>• Protección Ejecutiva</li>
-                    <li>• Psicología de Combate</li>
-                    <li>• Alto Estrés</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            {/* Philosophy */}
-            <div className="mt-10 pt-8 border-t border-border/30">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">
-                Filosofía de Trabajo:
-              </p>
-              <p className="text-cream-muted leading-relaxed">
-                No enseño técnicas de combate. Enseño lo que me costó décadas
-                descubrir: cómo apagar la señal del ego, la sobre-confianza y los
-                automatismos que te convierten en víctima — y cómo encender al
-                guerrero consciente.
-              </p>
-              <p className="text-cream-muted leading-relaxed mt-4">
-                Lo aprendí de Koga, Vasiliev, Maltsev y Thomas. Ahora lo transmito:
-                reprogramamos tus instintos para que sirvan, no para que te
-                traicionen.
-              </p>
-            </div>
+          {/* Certifications */}
+          <div className="flex flex-wrap justify-center gap-8 text-sm text-cream-muted">
+            <span className="flex items-center gap-2">
+              <span className="text-primary">✓</span> ONU (Seguridad)
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="text-primary">✓</span> H&K
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="text-primary">✓</span> Simmunition
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="text-primary">✓</span> Sistema Koga
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="text-primary">✓</span> Systema Vasiliev
+            </span>
           </div>
         </div>
       </div>
