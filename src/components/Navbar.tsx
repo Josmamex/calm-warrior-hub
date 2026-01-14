@@ -15,12 +15,20 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: "Inicio", href: "#" },
+    { label: "Inicio", href: "#inicio" },
     { label: "Metodología", href: "#metodologia" },
-    { label: "Programas", href: "#programas" },
+    { label: "Recursos", href: "#recursos" },
     { label: "Blog", href: "#blog" },
     { label: "Sobre Mí", href: "#sobre-mi" },
   ];
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   return (
     <nav
@@ -33,12 +41,21 @@ const Navbar = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
+          <a
+            href="#inicio"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("#inicio");
+            }}
+            className="flex items-center gap-3"
+          >
             <div className="w-10 h-10 border border-primary/50 flex items-center justify-center">
               <span className="font-serif text-lg text-primary">JH</span>
             </div>
             <div className="hidden sm:block">
-              <span className="font-serif text-lg text-foreground">Josafath Herrera</span>
+              <span className="font-serif text-lg text-foreground">
+                Josafath Herrera
+              </span>
             </div>
           </a>
 
@@ -48,6 +65,10 @@ const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(link.href);
+                }}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors relative group"
               >
                 {link.label}
@@ -58,7 +79,11 @@ const Navbar = () => {
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button variant="hero" size="sm">
+            <Button
+              variant="hero"
+              size="sm"
+              onClick={() => scrollToSection("#contacto")}
+            >
               Contactar
             </Button>
           </div>
@@ -68,14 +93,20 @@ const Navbar = () => {
             className="lg:hidden p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
         {/* Mobile Menu */}
         <div
           className={`lg:hidden fixed inset-x-0 top-20 bg-background/98 backdrop-blur-xl border-b border-border/50 transition-all duration-300 ${
-            isMobileMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4 pointer-events-none"
+            isMobileMenuOpen
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-4 pointer-events-none"
           }`}
         >
           <div className="container mx-auto px-6 py-8">
@@ -85,12 +116,19 @@ const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   className="text-xl font-serif text-foreground hover:text-primary transition-colors py-2 border-b border-border/20"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(link.href);
+                  }}
                 >
                   {link.label}
                 </a>
               ))}
-              <Button variant="hero" className="mt-4 w-full">
+              <Button
+                variant="hero"
+                className="mt-4 w-full"
+                onClick={() => scrollToSection("#contacto")}
+              >
                 Contactar
               </Button>
             </div>

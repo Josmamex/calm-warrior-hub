@@ -1,25 +1,27 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import PainPointsSection from "@/components/PainPointsSection";
+import OperationalRealitySection from "@/components/OperationalRealitySection";
 import SolutionSection from "@/components/SolutionSection";
-import AboutSection from "@/components/AboutSection";
-import ProductsSection from "@/components/ProductsSection";
-import CTASection from "@/components/CTASection";
+import ResourcesSection from "@/components/ResourcesSection";
 import BlogSection from "@/components/BlogSection";
+import AboutSection from "@/components/AboutSection";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
-      <PainPointsSection />
+      <OperationalRealitySection />
       <SolutionSection />
-      <AboutSection />
-      <ProductsSection />
-      <CTASection />
+      <ResourcesSection />
       <BlogSection />
+      <AboutSection />
+      <ContactSection />
       <Footer />
+      <WhatsAppButton />
     </main>
   );
 };
