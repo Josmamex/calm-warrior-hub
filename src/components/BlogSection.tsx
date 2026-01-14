@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const blogPosts = [
   {
@@ -25,11 +26,17 @@ const blogPosts = [
 ];
 
 const BlogSection = () => {
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
+  const { ref: postsRef, isVisible: postsVisible } = useScrollAnimation(0.05);
+
   return (
-    <section className="py-24 md:py-32 bg-gradient-radial">
+    <section id="blog" className="py-24 md:py-32 bg-gradient-radial">
       <div className="container mx-auto px-6">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-16">
+        <div
+          ref={headerRef}
+          className={`flex flex-col md:flex-row md:items-end md:justify-between mb-16 animate-on-scroll ${headerVisible ? "visible" : ""}`}
+        >
           <div>
             <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-4">
               Escritos
@@ -49,18 +56,30 @@ const BlogSection = () => {
         </div>
 
         {/* Blog Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div
+          ref={postsRef}
+          className="grid md:grid-cols-3 gap-8"
+        >
           {blogPosts.map((post, index) => (
             <article
               key={post.title}
-              className="group cursor-pointer"
+              className={`group cursor-pointer animate-on-scroll stagger-${index + 1} ${postsVisible ? "visible" : ""}`}
             >
               {/* Image Placeholder */}
               <div className="aspect-[16/10] bg-card border border-border/50 mb-6 overflow-hidden relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-charcoal-light to-secondary flex items-center justify-center">
-                  <span className="font-serif text-6xl text-primary/10">{String(index + 1).padStart(2, "0")}</span>
+                  <span className="font-serif text-6xl text-primary/10">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                 </div>
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors" />
+
+                {/* Próximamente Badge */}
+                <div className="absolute top-4 right-4 bg-primary/90 px-3 py-1">
+                  <span className="text-xs text-primary-foreground uppercase tracking-wider">
+                    Próximamente
+                  </span>
+                </div>
               </div>
 
               {/* Meta */}
@@ -69,9 +88,7 @@ const BlogSection = () => {
                   {post.category}
                 </span>
                 <span className="w-1 h-1 rounded-full bg-border" />
-                <span className="text-muted-foreground text-xs">
-                  {post.date}
-                </span>
+                <span className="text-muted-foreground text-xs">{post.date}</span>
               </div>
 
               {/* Title */}

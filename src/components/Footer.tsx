@@ -1,7 +1,14 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <footer className="py-20 bg-charcoal border-t border-border/30">
       <div className="container mx-auto px-6">
@@ -13,24 +20,30 @@ const Footer = () => {
               Josafath Herrera
             </h3>
             <p className="text-muted-foreground leading-relaxed max-w-md mb-6">
-              Transformando protectores y civiles en seres humanos integrales 
-              con dominio interno, inteligencia táctica y calma inquebrantable.
+              Transformando protectores y civiles en seres humanos integrales con
+              dominio interno, inteligencia táctica y calma inquebrantable.
             </p>
             <div className="flex items-center gap-6">
               <a
-                href="#"
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 LinkedIn
               </a>
               <a
-                href="#"
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 YouTube
               </a>
               <a
-                href="#"
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Instagram
@@ -45,27 +58,62 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a href="#" className="text-cream-muted hover:text-primary transition-colors">
+                <a
+                  href="#inicio"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("#inicio");
+                  }}
+                  className="text-cream-muted hover:text-primary transition-colors"
+                >
                   Inicio
                 </a>
               </li>
               <li>
-                <a href="#" className="text-cream-muted hover:text-primary transition-colors">
+                <a
+                  href="#metodologia"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("#metodologia");
+                  }}
+                  className="text-cream-muted hover:text-primary transition-colors"
+                >
                   Metodología
                 </a>
               </li>
               <li>
-                <a href="#" className="text-cream-muted hover:text-primary transition-colors">
-                  Programas
+                <a
+                  href="#recursos"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("#recursos");
+                  }}
+                  className="text-cream-muted hover:text-primary transition-colors"
+                >
+                  Recursos
                 </a>
               </li>
               <li>
-                <a href="#" className="text-cream-muted hover:text-primary transition-colors">
+                <a
+                  href="#blog"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("#blog");
+                  }}
+                  className="text-cream-muted hover:text-primary transition-colors"
+                >
                   Blog
                 </a>
               </li>
               <li>
-                <a href="#" className="text-cream-muted hover:text-primary transition-colors">
+                <a
+                  href="#contacto"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("#contacto");
+                  }}
+                  className="text-cream-muted hover:text-primary transition-colors"
+                >
                   Contacto
                 </a>
               </li>
