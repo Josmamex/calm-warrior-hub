@@ -1,291 +1,183 @@
-import { Users, User } from "lucide-react";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-
-const gapData = [
-  { config: "1 escolta solo", realPct: "~45%", trainPct: "<5%", gap: "-40%" },
-  { config: "2 escoltas (binomio)", realPct: "~28%", trainPct: "<3%", gap: "-25%" },
-  { config: "3-5 escoltas", realPct: "~20%", trainPct: "~20%", gap: "0%" },
-  { config: "6+ escoltas (equipo completo)", realPct: "~7%", trainPct: "~72%", gap: "+65%" },
-];
+import gapComparison from "@/assets/gap-comparison.jpg";
+import loboSolitario from "@/assets/lobo-solitario.jpg";
+import binomioImg from "@/assets/binomio.jpg";
+import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
 
 const OperationalRealitySection = () => {
-  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation(0.05);
-  const { ref: tableRef, isVisible: tableVisible } = useScrollAnimation(0.1);
+  const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation(0.2);
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollAnimation(0.1);
+  const bgParallax = useParallax(-0.2);
 
   return (
-    <section id="realidad-operativa" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/30 to-background" />
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+    <section id="realidad-operativa" className="relative overflow-hidden">
+      {/* Full-width Visual Comparison */}
+      <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        {/* Background Image with Parallax */}
+        <div ref={bgParallax} className="absolute inset-0 scale-110">
+          <img
+            src={gapComparison}
+            alt="Gap de entrenamiento: 73% vs 92%"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/40 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/80" />
+        </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
+        {/* Stats Overlay */}
         <div
-          ref={headerRef}
-          className={`text-center max-w-4xl mx-auto mb-16 animate-on-scroll ${headerVisible ? "visible" : ""}`}
+          ref={statsRef}
+          className={`relative z-10 container mx-auto px-6 text-center animate-on-scroll-scale ${statsVisible ? "visible" : ""}`}
         >
-          <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-4">
-            La Realidad que Nadie Menciona
+          <p className="text-primary text-xs tracking-[0.4em] uppercase mb-6 font-medium">
+            El Problema que Nadie Resuelve
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium leading-tight mb-8">
-            Tu Realidad Operativa:{" "}
-            <span className="text-gold-gradient">1-2 Personas</span>
-          </h2>
-
-          {/* Stats */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-12">
+          
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+            {/* Left Stat */}
             <div className="text-center">
-              <span className="block font-serif text-6xl md:text-7xl text-primary font-medium">
+              <span className="block font-serif text-8xl md:text-9xl text-primary font-medium drop-shadow-[0_0_30px_hsl(38_70%_55%/0.5)]">
                 73%
               </span>
-              <p className="text-cream-muted text-sm mt-2 max-w-[200px]">
-                de las operaciones en LATAM se ejecutan con 1-2 escoltas
+              <p className="text-foreground text-lg mt-2">
+                Operaciones reales
+              </p>
+              <p className="text-muted-foreground text-sm">
+                1-2 escoltas
               </p>
             </div>
 
-            <span className="text-4xl text-muted-foreground font-light">VS</span>
+            {/* VS */}
+            <span className="text-5xl md:text-6xl text-muted-foreground font-light opacity-50">
+              VS
+            </span>
 
+            {/* Right Stat */}
             <div className="text-center">
-              <span className="block font-serif text-6xl md:text-7xl text-muted-foreground font-medium">
+              <span className="block font-serif text-8xl md:text-9xl text-muted-foreground/50 font-medium">
                 92%
               </span>
-              <p className="text-cream-muted text-sm mt-2 max-w-[200px]">
-                del entrenamiento disponible está diseñado para equipos de 6+
+              <p className="text-muted-foreground text-lg mt-2">
+                Entrenamiento disponible
+              </p>
+              <p className="text-muted-foreground/60 text-sm">
+                Para equipos de 6+
               </p>
             </div>
           </div>
 
-          <p className="text-cream-muted text-lg mt-12 max-w-2xl mx-auto">
-            La mayoría de los escoltas enfrentan DOS configuraciones operativas
-            constantemente. No puedes especializarte solo en una, porque tu
-            realidad laboral cambia semana a semana.
+          {/* Tagline */}
+          <p className="mt-12 font-serif text-xl md:text-2xl text-foreground max-w-2xl mx-auto">
+            Te entrenan para equipos que nunca tendrás.
+            <br />
+            <span className="text-primary">Nosotros te preparamos para tu realidad.</span>
           </p>
         </div>
+      </div>
 
-        {/* Two Cards: Lobo Solitario & Binomio */}
-        <div
-          ref={cardsRef}
-          className="grid md:grid-cols-2 gap-8 mb-20"
-        >
-          {/* Card 1: Lobo Solitario */}
+      {/* Two Cards: Lobo Solitario & Binomio */}
+      <div className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/20 to-background" />
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div
-            className={`group relative bg-card/30 border border-border/30 p-8 md:p-10 hover:bg-card/60 card-hover animate-on-scroll stagger-1 ${cardsVisible ? "visible" : ""}`}
+            ref={cardsRef}
+            className="grid md:grid-cols-2 gap-6 lg:gap-8"
           >
-            {/* Icon */}
-            <div className="mb-6 flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <User className="w-8 h-8 text-primary" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h3 className="font-serif text-2xl font-medium text-foreground">
-                  Operación Individual
+            {/* Card 1: Lobo Solitario */}
+            <div
+              className={`group relative overflow-hidden h-[500px] animate-on-scroll stagger-1 ${cardsVisible ? "visible" : ""}`}
+            >
+              {/* Background Image */}
+              <img
+                src={loboSolitario}
+                alt="Lobo Solitario - Operación Individual"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+              
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-8">
+                <span className="text-4xl mb-4">🐺</span>
+                <h3 className="font-serif text-3xl md:text-4xl font-medium text-foreground mb-2">
+                  Lobo Solitario
                 </h3>
-                <p className="text-primary text-xs uppercase tracking-wider">
-                  "Lobo Solitario" — Sin backup disponible
+                <p className="text-primary text-sm uppercase tracking-wider mb-4">
+                  Sin backup disponible
                 </p>
+                <ul className="space-y-2 text-cream-muted">
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary">✓</span>
+                    Decisión autónoma total
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary">✓</span>
+                    Invisibilidad obligatoria
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary">✓</span>
+                    Control emocional sin apoyo
+                  </li>
+                </ul>
               </div>
+
+              {/* Hover Glow */}
+              <div className="absolute inset-0 shadow-[inset_0_0_100px_hsl(38_70%_55%/0)] group-hover:shadow-[inset_0_0_100px_hsl(38_70%_55%/0.1)] transition-shadow duration-500" />
             </div>
 
-            {/* When */}
-            <div className="mb-6">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                ¿Cuándo operas así?
-              </p>
-              <ul className="space-y-2 text-sm text-cream-muted">
-                <li>• Cliente pequeño (1 ejecutivo, presupuesto limitado)</li>
-                <li>• Eventos privados de bajo perfil</li>
-                <li>• Traslados rutinarios</li>
-                <li>• Situaciones donde 2 escoltas "llaman demasiado la atención"</li>
-              </ul>
-            </div>
+            {/* Card 2: Binomio */}
+            <div
+              className={`group relative overflow-hidden h-[500px] animate-on-scroll stagger-2 ${cardsVisible ? "visible" : ""}`}
+            >
+              {/* Background Image */}
+              <img
+                src={binomioImg}
+                alt="Binomio Táctico - 2 Escoltas"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              
+              {/* Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+              
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-8">
+                <span className="text-4xl mb-4">🤝</span>
+                <h3 className="font-serif text-3xl md:text-4xl font-medium text-foreground mb-2">
+                  Binomio Táctico
+                </h3>
+                <p className="text-primary text-sm uppercase tracking-wider mb-4">
+                  2 escoltas coordinados
+                </p>
+                <ul className="space-y-2 text-cream-muted">
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary">✓</span>
+                    Coordinación sin radio
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary">✓</span>
+                    Testigo cruzado legal
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-primary">✓</span>
+                    Roles intercambiables
+                  </li>
+                </ul>
+              </div>
 
-            {/* Challenges */}
-            <div className="mb-6">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                Desafíos específicos:
-              </p>
-              <ul className="space-y-2 text-sm text-cream-muted">
-                <li>• Decisión autónoma total: No hay a quién consultar en tiempo real</li>
-                <li>• Estrés psicológico extremo: No hay backup si fallas</li>
-                <li>• Velocidad crítica: Actúas o mueres, no hay segunda línea</li>
-                <li>• Invisibilidad obligatoria: "Hombre Gris" es supervivencia</li>
-              </ul>
-            </div>
-
-            {/* What you need */}
-            <div className="pt-6 border-t border-border/30">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                Qué necesitas dominar:
-              </p>
-              <ul className="space-y-2 text-sm">
-                <li className="text-primary">✓ Adaptabilidad sin protocolo rígido</li>
-                <li className="text-primary">✓ Control emocional sin apoyo externo (Systema)</li>
-                <li className="text-primary">✓ Respuesta pre-consciente sub-segundo (Recensura Maltsev)</li>
-                <li className="text-primary">✓ Gestión del miedo en soledad operativa (Koga mindset)</li>
-              </ul>
+              {/* Hover Glow */}
+              <div className="absolute inset-0 shadow-[inset_0_0_100px_hsl(38_70%_55%/0)] group-hover:shadow-[inset_0_0_100px_hsl(38_70%_55%/0.1)] transition-shadow duration-500" />
             </div>
           </div>
 
-          {/* Card 2: Binomio */}
-          <div
-            className={`group relative bg-card/30 border border-border/30 p-8 md:p-10 hover:bg-card/60 card-hover animate-on-scroll stagger-2 ${cardsVisible ? "visible" : ""}`}
-          >
-            {/* Icon */}
-            <div className="mb-6 flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Users className="w-8 h-8 text-primary" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h3 className="font-serif text-2xl font-medium text-foreground">
-                  Operación Binomio
-                </h3>
-                <p className="text-primary text-xs uppercase tracking-wider">
-                  2 escoltas coordinados — Testigo cruzado
-                </p>
-              </div>
-            </div>
-
-            {/* When */}
-            <div className="mb-6">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                ¿Cuándo operas así?
-              </p>
-              <ul className="space-y-2 text-sm text-cream-muted">
-                <li>• Cliente corporativo (presupuesto permite 2 elementos)</li>
-                <li>• Alto riesgo (amenaza documentada)</li>
-                <li>• Eventos públicos con múltiples variables</li>
-                <li>• Operaciones que requieren cobertura 360°</li>
-              </ul>
-            </div>
-
-            {/* Challenges */}
-            <div className="mb-6">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                Desafíos específicos:
-              </p>
-              <ul className="space-y-2 text-sm text-cream-muted">
-                <li>• Coordinación sin radio: Comunicación debe ser imperceptible</li>
-                <li>• Confianza mutua absoluta: Tu vida depende del otro</li>
-                <li>• Roles intercambiables: Primario/secundario fluyen según situación</li>
-                <li>• Testigo cruzado: Documentación legal mutua de acciones</li>
-              </ul>
-            </div>
-
-            {/* What you need */}
-            <div className="pt-6 border-t border-border/30">
-              <p className="text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                Qué necesitas dominar:
-              </p>
-              <ul className="space-y-2 text-sm">
-                <li className="text-primary">✓ Lenguaje no verbal estandarizado (sin palabras)</li>
-                <li className="text-primary">✓ Cobertura 360° sin zonas muertas</li>
-                <li className="text-primary">✓ Decisión distribuida (no centralizada en uno)</li>
-                <li className="text-primary">✓ Protección legal mutua (justificación cruzada)</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* Truth Section */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <div className="bg-card/50 border border-primary/20 p-8 md:p-12">
-            <h3 className="text-primary text-xs font-sans uppercase tracking-[0.2em] mb-4">
-              La Verdad que Nadie te Dice:
-            </h3>
-            <p className="font-serif text-2xl md:text-3xl text-foreground font-medium mb-6">
+          {/* Bottom Message */}
+          <div className="mt-16 text-center">
+            <p className="font-serif text-xl md:text-2xl text-cream-muted max-w-3xl mx-auto">
               No puedes especializarte solo en una configuración.
-            </p>
-            <p className="text-cream-muted leading-relaxed mb-6">
-              El escolta profesional en LATAM cambia de contexto operativo
-              constantemente. Un día trabajas solo protegiendo a un empresario en
-              traslado rutinario. La semana siguiente trabajas en binomio porque el
-              cliente pagó por 2 elementos después de recibir amenaza específica.
-            </p>
-            <p className="text-cream-muted leading-relaxed">
+              <br />
               <span className="text-foreground font-medium">
-                Necesitas dominar AMBAS configuraciones
-              </span>{" "}
-              porque tu realidad operativa no es estable. El problema es que el 92%
-              del entrenamiento disponible no prepara para ninguna de las dos —
-              prepara para equipos completos de 6-12 personas que casi nunca existen
-              en la práctica.
-            </p>
-          </div>
-        </div>
-
-        {/* Gap Table */}
-        <div
-          ref={tableRef}
-          className={`max-w-4xl mx-auto animate-on-scroll ${tableVisible ? "visible" : ""}`}
-        >
-          <h3 className="text-primary text-xs font-sans uppercase tracking-[0.2em] mb-6 text-center">
-            El Gap de Preparación:
-          </h3>
-
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="border-b border-border/50">
-                  <th className="text-left py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-sans">
-                    Configuración
-                  </th>
-                  <th className="text-center py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-sans">
-                    % Operaciones Reales
-                  </th>
-                  <th className="text-center py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-sans">
-                    % Entrenamiento Disponible
-                  </th>
-                  <th className="text-center py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-sans">
-                    Gap
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {gapData.map((row, index) => (
-                  <tr
-                    key={row.config}
-                    className={`border-b border-border/30 ${index < 2 ? "bg-destructive/5" : ""}`}
-                  >
-                    <td className="py-4 px-4 text-sm text-cream-muted">
-                      {row.config}
-                    </td>
-                    <td className="py-4 px-4 text-sm text-center text-foreground font-medium">
-                      {row.realPct}
-                    </td>
-                    <td className="py-4 px-4 text-sm text-center text-muted-foreground">
-                      {row.trainPct}
-                    </td>
-                    <td
-                      className={`py-4 px-4 text-sm text-center font-medium ${
-                        row.gap.startsWith("-")
-                          ? "text-destructive"
-                          : row.gap === "0%"
-                            ? "text-muted-foreground"
-                            : "text-primary"
-                      }`}
-                    >
-                      {row.gap}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Interpretation */}
-          <div className="mt-8 space-y-4 text-sm text-cream-muted">
-            <p>
-              <span className="text-foreground font-medium">Interpretación:</span>{" "}
-              El 73% de tu tiempo operativo (1-2 personas) recibe menos del 8% del
-              entrenamiento disponible. Mientras tanto, el 7% de situaciones (equipo
-              completo) recibe 72% del contenido de formación.
-            </p>
-            <p>
-              <span className="text-foreground font-medium">Resultado:</span> Cuando
-              enfrentas tu realidad más común (solo o en binomio), no sabes qué hacer
-              porque nunca te prepararon para eso. Te entrenaron para una fantasía
-              operativa que casi nunca ocurre.
+                Tu realidad operativa cambia semana a semana.
+              </span>
             </p>
           </div>
         </div>

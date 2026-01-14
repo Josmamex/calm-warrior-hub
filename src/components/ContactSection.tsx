@@ -1,111 +1,82 @@
-import { MessageCircle, Calendar, Mail, MapPin } from "lucide-react";
+import { MessageCircle, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
 
 const ContactSection = () => {
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
+  const glowParallax = useParallax(-0.1);
 
   return (
     <section id="contacto" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/20 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/30 to-background" />
+      
+      {/* Ambient Glow with Parallax */}
+      <div ref={glowParallax} className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[200px]" />
+      </div>
 
-      {/* Decorative Elements */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+      {/* Top Line */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
 
       <div className="container mx-auto px-6 relative z-10">
         <div
           ref={contentRef}
-          className={`max-w-4xl mx-auto animate-on-scroll ${contentVisible ? "visible" : ""}`}
+          className={`max-w-3xl mx-auto text-center animate-on-scroll ${contentVisible ? "visible" : ""}`}
         >
           {/* Header */}
-          <div className="text-center mb-12">
-            <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-4">
-              Contacto
-            </p>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6">
-              Comienza tu{" "}
-              <span className="text-gold-gradient">Transformación</span>
-            </h2>
-            <p className="text-cream-muted text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
-              Si estás leyendo hasta aquí, probablemente reconoces que la gestión
-              de tu miedo, ego y automatismos bajo presión podría ser la variable
-              entre supervivencia y tragedia.
-            </p>
-          </div>
+          <p className="text-primary text-xs tracking-[0.4em] uppercase mb-4 font-medium">
+            Contacto
+          </p>
+          <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium leading-tight mb-8">
+            ¿Listo Para{" "}
+            <span className="text-gold-gradient">Transformarte</span>?
+          </h2>
 
-          {/* Contact Cards */}
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
-            {/* Card 1: Escoltas */}
-            <div className="bg-card/30 border border-border/30 p-8 text-center hover:bg-card/60 transition-colors">
-              <h3 className="font-serif text-xl font-medium mb-2 text-foreground">
-                Para escoltas individuales:
-              </h3>
-              <p className="text-muted-foreground text-sm mb-6">
-                WhatsApp directo — Respuesta en 24-48 hrs
-              </p>
-              <Button variant="whatsapp" size="xl" className="w-full" asChild>
-                <a
-                  href="https://wa.me/yourNumber"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  WhatsApp
-                </a>
-              </Button>
-            </div>
-
-            {/* Card 2: Directors */}
-            <div className="bg-card/30 border border-border/30 p-8 text-center hover:bg-card/60 transition-colors">
-              <h3 className="font-serif text-xl font-medium mb-2 text-foreground">
-                Para directores/coordinadores:
-              </h3>
-              <p className="text-muted-foreground text-sm mb-6">
-                Consulta estratégica — 30 minutos
-              </p>
-              <Button variant="hero" size="xl" className="w-full" asChild>
-                <a
-                  href="https://calendly.com/yourCalendly"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Calendar className="w-5 h-5 mr-2" />
-                  Agendar llamada
-                </a>
-              </Button>
-              <p className="text-xs text-muted-foreground mt-4">
-                Evaluación de gaps en estructura operativa actual
-              </p>
-            </div>
-          </div>
-
-          {/* Contact Info */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-sm text-cream-muted mb-12">
-            <a
-              href="mailto:contacto@josafathherrera.com"
-              className="flex items-center gap-2 hover:text-primary transition-colors"
+          {/* CTAs - Big and Obvious */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+            <Button
+              variant="whatsapp"
+              size="xl"
+              className="text-lg px-10 py-7 shadow-[0_0_40px_rgba(37,211,102,0.3)] hover:shadow-[0_0_60px_rgba(37,211,102,0.5)] transition-shadow"
+              asChild
             >
-              <Mail className="w-4 h-4 text-primary" />
-              contacto@josafathherrera.com
-            </a>
-            <span className="hidden md:block text-border">|</span>
-            <span className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-primary" />
-              Ciudad de México, México
-            </span>
+              <a
+                href="https://wa.me/yourNumber"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <MessageCircle className="w-6 h-6 mr-3" />
+                WhatsApp Directo
+              </a>
+            </Button>
+
+            <Button
+              variant="hero"
+              size="xl"
+              className="text-lg px-10 py-7 shadow-gold hover:shadow-[0_0_60px_hsl(38_70%_55%/0.4)] transition-shadow"
+              asChild
+            >
+              <a
+                href="https://calendly.com/yourCalendly"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Calendar className="w-6 h-6 mr-3" />
+                Agendar Llamada
+              </a>
+            </Button>
           </div>
+
+          {/* Subtext */}
+          <p className="text-cream-muted text-lg mb-8">
+            Respuesta en 24-48 hrs. Sin compromiso.
+          </p>
 
           {/* Note */}
-          <div className="text-center">
-            <p className="text-foreground font-medium mb-2">
-              No vendo certificados. Desarrollo capacidad operativa real.
-            </p>
-            <p className="text-muted-foreground text-sm italic">
-              Si no soy la solución correcta para tu situación, te lo digo
-              directamente en la primera conversación.
+          <div className="inline-block px-8 py-4 border border-primary/20 bg-primary/5">
+            <p className="text-foreground font-medium">
+              Si no soy la solución correcta, te lo digo directamente.
             </p>
           </div>
         </div>

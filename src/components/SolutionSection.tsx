@@ -1,44 +1,37 @@
-import { Shield, Activity, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import pilarPsique from "@/assets/pilar-psique.jpg";
+import pilarFisico from "@/assets/pilar-fisico.jpg";
+import pilarTactica from "@/assets/pilar-tactica.jpg";
 import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
 
 const pillars = [
   {
-    icon: Shield,
-    number: "I",
+    image: pilarPsique,
+    icon: "🛡️",
     title: "Psique",
     subtitle: "Control Mental",
-    description:
-      "Gestión del miedo y limpieza de la programación equivocada mediante los protocolos de Maltsev y Koga. Reprogramamos los patrones de reacción automática que te sabotean bajo presión.",
-    lobo: "Gestión del miedo en soledad absoluta. No hay a quién pedir apoyo emocional.",
-    binomio: "Confianza mutua. Gestión del miedo compartido sin contagio emocional.",
+    description: "Gestiona el miedo. Reprograma automatismos.",
   },
   {
-    icon: Activity,
-    number: "II",
+    image: pilarFisico,
+    icon: "⚡",
     title: "Físico",
     subtitle: "Biomecánica Eficiente",
-    description:
-      "Movimientos basados en principios de Systema y Koga: relajación activa, eficiencia y economía de fuerza. Máximo resultado con menor desgaste.",
-    lobo: "Eficiencia máxima. Un error = no hay quien te cubra. Economía de movimiento crítica.",
-    binomio: "Coordinación física. Roles intercambiables sin chocar. Testigo biomecánico.",
+    description: "Eficiencia sin fuerza bruta. Koga + Systema.",
   },
   {
-    icon: Compass,
-    number: "III",
+    image: pilarTactica,
+    icon: "🎯",
     title: "Táctica",
     subtitle: "Estrategia Aplicada",
-    description:
-      "El Ciclo OODA, legalidad táctica y el arte del 'Hombre Gris'. Decisiones inteligentes que te mantienen libre y vivo en el contexto legal latinoamericano.",
-    lobo: "Decisión autónoma instantánea. Ciclo OODA individual bajo presión extrema.",
-    binomio: "Decisión distribuida. OODA compartido sin comunicación verbal constante.",
+    description: "Decisiones inteligentes. OODA + Hombre Gris.",
   },
 ];
 
 const SolutionSection = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
-  const { ref: pillarsRef, isVisible: pillarsVisible } = useScrollAnimation(0.05);
-  const numeralParallax = useParallax(0.3);
+  const { ref: pillarsRef, isVisible: pillarsVisible } = useScrollAnimation(0.1);
+  const bgParallax = useParallax(-0.15);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -49,118 +42,94 @@ const SolutionSection = () => {
 
   return (
     <section id="metodologia" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/30 to-background" />
-      <div className="absolute top-0 left-0 w-1/2 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-      <div className="absolute bottom-0 right-0 w-1/2 h-px bg-gradient-to-l from-transparent via-primary/30 to-transparent" />
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/20 to-background" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      
+      {/* Ambient Glow */}
+      <div ref={bgParallax} className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[120px]" />
+      </div>
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div
           ref={headerRef}
-          className={`max-w-3xl mb-20 animate-on-scroll ${headerVisible ? "visible" : ""}`}
+          className={`text-center max-w-3xl mx-auto mb-20 animate-on-scroll ${headerVisible ? "visible" : ""}`}
         >
-          <p className="text-primary font-sans text-xs tracking-[0.3em] uppercase mb-4">
+          <p className="text-primary text-xs tracking-[0.4em] uppercase mb-4 font-medium">
             La Solución
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-medium leading-tight mb-8">
-            Protección del Ser:{" "}
-            <span className="text-gold-gradient">La Ciencia de la Supervivencia</span>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
+            Protección del Ser:
+            <br />
+            <span className="text-gold-gradient">3 Pilares</span>
           </h2>
-          <p className="text-cream-muted text-lg leading-relaxed">
-            No enseño técnicas de combate. Enseño lo que me costó décadas descubrir:
-            cómo{" "}
-            <span className="text-foreground">
-              apagar la señal del ego, la sobre-confianza y los automatismos
-            </span>{" "}
-            que te convierten en víctima — y cómo encender al guerrero consciente.
-            Lo aprendí de Koga, Vasiliev, Maltsev y Thomas. Ahora lo transmito:
-            reprogramamos tus instintos para que sirvan, no para que te traicionen.
-          </p>
         </div>
 
-        {/* Pillars */}
-        <div ref={pillarsRef} className="grid md:grid-cols-3 gap-1">
+        {/* Pillars Grid - Visual First */}
+        <div
+          ref={pillarsRef}
+          className="grid md:grid-cols-3 gap-6 lg:gap-8"
+        >
           {pillars.map((pillar, index) => (
             <div
               key={pillar.title}
-              className={`group relative bg-card/30 border-t border-border/30 p-10 hover:bg-card/60 card-hover animate-on-scroll stagger-${index + 1} ${pillarsVisible ? "visible" : ""}`}
+              className={`group relative overflow-hidden h-[600px] animate-on-scroll stagger-${index + 1} ${pillarsVisible ? "visible" : ""}`}
             >
-              {/* Roman Numeral with parallax */}
-              <span
-                ref={index === 1 ? numeralParallax : undefined}
-                className="font-serif text-7xl text-primary/5 absolute top-4 right-4 group-hover:text-primary/15 transition-colors duration-500"
-              >
-                {pillar.number}
-              </span>
-
-              {/* Icon */}
-              <div className="mb-8">
-                <pillar.icon
-                  className="w-10 h-10 text-primary group-hover:scale-110 transition-transform duration-500"
-                  strokeWidth={1}
-                />
-              </div>
-
+              {/* Background Image */}
+              <img
+                src={pillar.image}
+                alt={pillar.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              
+              {/* Overlay Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20" />
+              
               {/* Content */}
-              <p className="text-primary text-xs font-sans uppercase tracking-[0.2em] mb-2">
-                {pillar.subtitle}
-              </p>
-              <h3 className="font-serif text-3xl font-medium mb-4 text-foreground">
-                {pillar.title}
-              </h3>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                {pillar.description}
-              </p>
+              <div className="absolute inset-0 flex flex-col justify-end p-8">
+                {/* Icon */}
+                <span className="text-5xl mb-4 drop-shadow-lg">{pillar.icon}</span>
+                
+                {/* Subtitle */}
+                <p className="text-primary text-xs uppercase tracking-[0.2em] mb-2">
+                  {pillar.subtitle}
+                </p>
+                
+                {/* Title */}
+                <h3 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">
+                  {pillar.title}
+                </h3>
+                
+                {/* Description */}
+                <p className="text-cream-muted text-lg leading-relaxed">
+                  {pillar.description}
+                </p>
 
-              {/* Dual Application */}
-              <div className="space-y-4 pt-4 border-t border-border/30">
-                <div>
-                  <p className="text-xs text-primary uppercase tracking-wider mb-1">
-                    En Lobo Solitario:
-                  </p>
-                  <p className="text-sm text-cream-muted">{pillar.lobo}</p>
-                </div>
-                <div>
-                  <p className="text-xs text-primary uppercase tracking-wider mb-1">
-                    En Binomio:
-                  </p>
-                  <p className="text-sm text-cream-muted">{pillar.binomio}</p>
-                </div>
+                {/* Decorative Line */}
+                <div className="mt-6 w-16 h-0.5 bg-gradient-to-r from-primary to-transparent group-hover:w-32 transition-all duration-500" />
               </div>
 
-              {/* Bottom Line */}
-              <div className="mt-8 pt-6 border-t border-border/30">
-                <span className="text-xs text-muted-foreground tracking-wider uppercase group-hover:text-primary transition-colors cursor-pointer">
-                  Profundizar →
-                </span>
+              {/* Hover Glow Effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-gold-light to-primary" />
               </div>
             </div>
           ))}
         </div>
 
-        {/* Note */}
-        <div className="mt-16 max-w-3xl mx-auto text-center">
-          <p className="text-cream-muted leading-relaxed border-l-2 border-primary pl-6 text-left">
-            Los 3 pilares se aplican en ambos contextos operativos (solo y binomio).
-            No entrenas "para ser lobo" o "para ser binomio". Entrenas para ser
-            efectivo en ambos contextos, porque{" "}
-            <span className="text-foreground font-medium">
-              tu realidad operativa no te pregunta cuál prefieres
-            </span>
-            .
-          </p>
-        </div>
-
         {/* CTA */}
-        <div className="mt-16 text-center">
+        <div className="mt-20 text-center">
           <Button
             variant="hero"
             size="xl"
-            className="hover:animate-pulse-gold"
+            className="text-lg px-12 py-6 shadow-gold hover:shadow-[0_0_60px_hsl(38_70%_55%/0.4)] transition-all"
             onClick={() => scrollToSection("recursos")}
           >
-            Inicia tu Transformación
+            Ver Programas →
           </Button>
         </div>
       </div>
