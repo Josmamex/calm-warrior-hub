@@ -23,8 +23,8 @@ const resources = [
   },
   {
     tag: "Presencial",
-    title: "CIPE",
-    description: "Certificación completa",
+    title: "Mundo PE",
+    description: "Formación completa",
     cta: "Consultar →",
     ctaIcon: Calendar,
     gradient: "from-amber-500/20 to-transparent",
@@ -128,7 +128,7 @@ const ResourcesSection = () => {
         {/* Note */}
         <div className="mt-16 text-center">
           <p className="text-muted-foreground text-sm italic">
-            No vendemos certificados. <span className="text-foreground">Desarrollamos capacidad operativa real.</span>
+            No vendemos certificados. <span className="text-foreground">Desarrollamos capacidades congruentes con la necesidad real de los protectores.</span>
           </p>
         </div>
       </div>

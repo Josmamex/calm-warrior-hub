@@ -9,18 +9,18 @@ import { useParallax, useScrollAnimation } from "@/hooks/useScrollAnimation";
 const problems = [
   {
     image: problemFear,
-    title: "El Miedo Te Paraliza",
-    description: "Bajo estrés real, tu cerebro se apaga. No es debilidad. Nadie te preparó para esto.",
+    title: "El Miedo Afecta tus Decisiones",
+    description: "Bajo estrés real, tu cerebro táctico se desconecta. Nadie te preparó realmente para esto.",
   },
   {
     image: problemEgo,
-    title: "La Fuerza Te Destruye",
-    description: "Agresión desmedida = prisión. En LATAM, el ego te lleva a la cárcel o la muerte.",
+    title: "La Fuerza Excesiva te Destruye",
+    description: "En LATAM, el ego o el exceso de tu respuesta te lleva a la cárcel o a la muerte.",
   },
   {
     image: problemCopy,
-    title: "Copias Lo Que No Aplica",
-    description: "Estilos extranjeros que no funcionan en nuestra realidad legal ni táctica.",
+    title: "Realidad vs Teoría de Libro",
+    description: "25 años de experiencia verificable transformando a profesionales.",
   },
 ];
 

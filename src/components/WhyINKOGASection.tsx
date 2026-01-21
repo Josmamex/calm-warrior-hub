@@ -5,7 +5,7 @@ const differentiators = [
   {
     icon: Target,
     title: "Realidad > Fantasía",
-    description: "No entrenamos para el equipo de 6 que jamás tendrás. Entrenamos para las configuraciones que SÍ existen: 1 escolta o 2 trabajando juntos.",
+    description: "No entrenamos para el equipo de 4+ que jamás tendrás. Entrenamos para las configuraciones que SÍ existen: 1 escolta o 2 trabajando juntos.",
     accentColor: "hsl(var(--inkoga-red))",
   },
   {

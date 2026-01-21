@@ -74,11 +74,16 @@ const ContactSection = () => {
           </p>
 
           {/* Note */}
-          <div className="inline-block px-8 py-4 border border-primary/20 bg-primary/5">
+          <div className="inline-block px-8 py-4 border border-primary/20 bg-primary/5 mb-6">
             <p className="text-foreground font-medium">
               Si no soy la solución correcta, te lo digo directamente.
             </p>
           </div>
+
+          {/* Philosophy */}
+          <p className="text-muted-foreground text-sm italic max-w-xl mx-auto">
+            No vendemos certificados. Desarrollamos capacidades congruentes con la necesidad real de los protectores.
+          </p>
         </div>
       </div>
     </section>
