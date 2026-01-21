@@ -5,54 +5,51 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const programs = [
   {
     badge: "Nivel Entrada",
-    title: "Guardian Foundations",
+    title: "Guardian Mindset Foundations",
     subtitle: "Operador Individual",
-    description: "Domina los fundamentos de la operación en solitario. Para escoltas que trabajan solos la mayor parte del tiempo.",
+    description: "Protocolos de alto rendimiento de protección ejecutiva. El antes, durante y después de la protección de personas.",
     includes: [
-      "Neurociencia del desempeño bajo estrés",
-      "Protocolos específicos para 1 persona",
-      "Auto-regulación Systema (respiración + recovery)",
-      "Toma de decisiones sin validación",
-      "Supervivencia legal básica",
-      "Acceso a comunidad Guardian",
+      "Protocolos de alto rendimiento PE",
+      "El antes, durante y después de la protección",
+      "Auto-regulación Systema Soviética (calma + recuperación)",
+      "Protocolos legales fundamentales",
+      "Acceso a comunidad de protectores",
     ],
-    modality: "Online: 20 horas • Presencial: 3 días",
+    modality: "Online: 20 horas (4 semanas) | Presencial: 3 días intensivos",
     icon: User,
     featured: false,
     accentColor: "border-inkoga-silver/30",
   },
   {
     badge: "Más Popular",
-    title: "Guardian Tactical",
+    title: "Guardian Mindset Tactical",
     subtitle: "Operador + Binomio",
-    description: "Certificación dual: opera solo Y coordinado. Para escoltas que alternan entre ambas configuraciones.",
+    description: "Sistema de coordinación binomio por niveles. Modelos mentales compartidos.",
     includes: [
       "Todo lo de Guardian Foundations",
-      "Sistema de coordinación binomio (4 niveles)",
-      "Shared mental models",
+      "Sistema de coordinación binomio por niveles",
+      "Modelos mentales compartidos",
       "Protocolos pre-reflejos en pareja",
-      "Regulación cruzada (co-regulation)",
-      "Certificación: Guardian Binomio Táctico",
+      "Regulación cruzada (co-regulación fisiológica)",
     ],
-    modality: "Online: 40 horas • Presencial: 5 días",
+    modality: "Online: 40 horas (8 semanas) | Presencial: 5 días intensivos",
     icon: Users,
     featured: true,
     accentColor: "border-primary",
   },
   {
     badge: "Nivel Avanzado",
-    title: "Guardian Instructor",
-    subtitle: "Forma a Otros",
-    description: "Certifícate para enseñar la metodología Guardian. Para líderes de equipo y directores de seguridad.",
+    title: "Guardian Mindset TEAMS e Instrucción",
+    subtitle: "La Ciencia de la Instrucción Operativa",
+    description: "Pedagogía para protección ejecutiva y creación de simulaciones y escenarios.",
     includes: [
       "Todo lo de Guardian Tactical",
       "Pedagogía para protección ejecutiva",
-      "Diseño de simulacros",
-      "Evaluación de competencias",
-      "Licencia para usar metodología",
-      "Soporte continuo para instructores",
+      "Pedagogía para creación de simulaciones y escenarios",
+      "Metodologías científicas para tiro real",
+      "Soporte continuo",
     ],
-    modality: "Presencial: 10 días (requiere Tactical)",
+    modality: "Presencial: 10 días | Requiere: Guardian Tactical completado",
     icon: Award,
     featured: false,
     accentColor: "border-inkoga-red/30",
@@ -87,13 +84,13 @@ const ProgramsSection = () => {
           className={`text-center max-w-3xl mx-auto mb-16 animate-on-scroll ${headerVisible ? "visible" : ""}`}
         >
           <p className="text-primary text-xs tracking-[0.4em] uppercase mb-4 font-medium">
-            Programas de Certificación
+            Programas de Formación
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium mb-6">
             Elige tu <span className="text-gold-gradient">Nivel</span>
           </h2>
           <p className="text-cream-muted text-lg">
-            Tres niveles de preparación. Elige según tu situación actual.
+            Tres niveles de preparación según tu situación actual y objetivos.
           </p>
         </div>
 
@@ -181,6 +178,13 @@ const ProgramsSection = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Note */}
+        <div className="mt-16 text-center">
+          <p className="text-muted-foreground text-sm italic">
+            No vendemos certificados. <span className="text-foreground font-medium">Desarrollamos capacidades congruentes con la necesidad real de los protectores.</span>
+          </p>
         </div>
       </div>
     </section>

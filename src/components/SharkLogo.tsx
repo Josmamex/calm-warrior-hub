@@ -1,70 +1,72 @@
+import { cn } from "@/lib/utils";
+
 interface SharkLogoProps {
-  size?: "sm" | "md" | "lg";
-  variant?: "full" | "mono-light" | "mono-dark";
+  size?: "sm" | "md" | "lg" | "xl";
+  variant?: "full" | "light" | "mono";
   className?: string;
 }
 
-const SharkLogo = ({ size = "md", variant = "full", className = "" }: SharkLogoProps) => {
-  const sizeClasses = {
-    sm: "w-10 h-6",
-    md: "w-16 h-10",
-    lg: "w-24 h-14",
-  };
+const sizeClasses = {
+  sm: "w-12 h-8",
+  md: "w-16 h-10",
+  lg: "w-24 h-14",
+  xl: "w-32 h-20",
+};
 
-  const getColors = () => {
-    switch (variant) {
-      case "mono-light":
-        return { body: "hsl(var(--foreground))", accent: "hsl(var(--foreground))" };
-      case "mono-dark":
-        return { body: "hsl(var(--inkoga-navy))", accent: "hsl(var(--inkoga-navy))" };
-      default:
-        return { body: "hsl(var(--inkoga-silver))", accent: "hsl(var(--inkoga-red))" };
-    }
-  };
-
-  const colors = getColors();
+const SharkLogo = ({ size = "md", variant = "full", className }: SharkLogoProps) => {
+  // Colors based on variant - Official INKOGA colors
+  const bodyColor = variant === "light" ? "#1a2744" : "#8a9bb3"; // Navy for light bg, Silver for dark bg
+  const tailColor = variant === "mono" ? bodyColor : "#c41e3a"; // Red tail unless mono
+  const gillColor = variant === "light" ? "#f8f9fa" : "#ffffff";
+  const eyeColor = "#1a2744";
 
   return (
     <svg
-      viewBox="0 0 140 85"
-      className={`${sizeClasses[size]} ${className}`}
+      viewBox="0 0 185 110"
+      className={cn(sizeClasses[size], className)}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Main body */}
+      {/* Main Body - Curved shark shape */}
       <path
-        d="M20 45 Q5 45 10 55 Q15 70 35 70 L110 70 Q130 70 135 55 Q140 40 120 35 L45 35 Q25 35 20 45Z"
-        fill={colors.body}
+        d="M10 55 Q25 20, 80 25 Q120 28, 140 45 Q150 55, 140 65 Q120 82, 80 85 Q25 90, 10 55 Z"
+        fill={bodyColor}
       />
-      {/* Dorsal fin */}
+      
+      {/* Dorsal Fin */}
       <path
-        d="M60 35 L75 5 L85 35Z"
-        fill={colors.body}
+        d="M75 25 Q85 5, 95 10 Q100 18, 95 28 Q88 26, 75 25 Z"
+        fill={bodyColor}
       />
-      {/* Tail */}
+      
+      {/* Tail/Caudal Fin - Red accent */}
       <path
-        d="M10 50 L0 35 L5 50 L0 65 L10 55Z"
-        fill={colors.body}
+        d="M140 55 Q155 35, 175 25 Q170 45, 165 55 Q170 65, 175 85 Q155 75, 140 55 Z"
+        fill={tailColor}
       />
-      {/* Pectoral fin */}
+      
+      {/* Pectoral Fin */}
       <path
-        d="M70 70 L85 85 L95 70Z"
-        fill={colors.body}
+        d="M70 65 Q60 85, 50 90 Q55 75, 65 65 Q68 63, 70 65 Z"
+        fill={bodyColor}
       />
+      
+      {/* Gill Slits */}
+      <line x1="55" y1="45" x2="58" y2="60" stroke={gillColor} strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="62" y1="43" x2="65" y2="58" stroke={gillColor} strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="69" y1="42" x2="72" y2="57" stroke={gillColor} strokeWidth="1.5" strokeLinecap="round" />
+      
       {/* Eye */}
-      <circle cx="115" cy="50" r="5" fill={colors.accent} />
-      {/* Gill lines */}
+      <circle cx="35" cy="52" r="5" fill={eyeColor} />
+      <circle cx="33" cy="50" r="1.5" fill={gillColor} />
+      
+      {/* Mouth line */}
       <path
-        d="M100 42 L100 58"
-        stroke={colors.accent}
-        strokeWidth="2"
-        opacity="0.6"
-      />
-      <path
-        d="M95 44 L95 56"
-        stroke={colors.accent}
-        strokeWidth="2"
-        opacity="0.4"
+        d="M15 58 Q25 62, 40 60"
+        stroke={eyeColor}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        fill="none"
       />
     </svg>
   );

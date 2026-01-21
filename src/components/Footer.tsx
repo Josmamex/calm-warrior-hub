@@ -170,7 +170,7 @@ const Footer = () => {
             © 2026 INKOGA Security Consulting. Todos los derechos reservados.
           </p>
           <p className="text-muted-foreground/50 text-xs">
-            Certificado ONU • Instructor Systema • Representante Koga LATAM • H&K Autorizado
+            Certificado ONU • Instructor Systema • Representante Koga LATAM • H&K Autorizado • Mundo PE
           </p>
         </div>
       </div>

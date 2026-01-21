@@ -60,14 +60,14 @@ const OperationalRealitySection = () => {
                 Entrenamiento disponible
               </p>
               <p className="text-muted-foreground/60 text-sm">
-                Para equipos de 6+
+                Para equipos de 4+
               </p>
             </div>
           </div>
 
           {/* Tagline */}
           <p className="mt-12 font-serif text-xl md:text-2xl text-foreground max-w-2xl mx-auto">
-            Te entrenan para equipos que nunca tendrás.
+            Te entrenan para equipos grandes que difícilmente tendrás.
             <br />
             <span className="text-primary">Nosotros te preparamos para tu realidad.</span>
           </p>
@@ -235,7 +235,7 @@ const OperationalRealitySection = () => {
                     <td className="py-4 px-4 text-center text-muted-foreground">0%</td>
                   </tr>
                   <tr className="hover:bg-primary/5 transition-colors">
-                    <td className="py-4 px-4 text-foreground font-medium">6+ escoltas</td>
+                    <td className="py-4 px-4 text-foreground font-medium">4+ escoltas</td>
                     <td className="py-4 px-4 text-center text-cream-muted">~7%</td>
                     <td className="py-4 px-4 text-center text-cream-muted">~72%</td>
                     <td className="py-4 px-4 text-center text-primary font-bold">+65%</td>
@@ -253,6 +253,11 @@ const OperationalRealitySection = () => {
                 Resultado: Cuando enfrentas tu realidad más común, no sabes qué hacer porque te entrenaron para una fantasía operativa.
               </p>
             </div>
+
+            {/* Source */}
+            <p className="mt-4 text-xs text-muted-foreground text-center italic">
+              Fuente: Análisis TorchStone Global 2024, Royal American Group, TSS LATAM — Operaciones PE documentadas en México, Colombia, Brasil y Argentina.
+            </p>
           </div>
         </div>
       </div>
