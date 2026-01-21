@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SharkLogo from "./SharkLogo";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -16,8 +17,9 @@ const Navbar = () => {
 
   const navLinks = [
     { label: "Inicio", href: "#inicio" },
+    { label: "Por qué INKOGA", href: "#por-que-inkoga" },
     { label: "Metodología", href: "#metodologia" },
-    { label: "Recursos", href: "#recursos" },
+    { label: "Programas", href: "#programas" },
     { label: "Blog", href: "#blog" },
     { label: "Sobre Mí", href: "#sobre-mi" },
   ];
@@ -47,14 +49,13 @@ const Navbar = () => {
               e.preventDefault();
               scrollToSection("#inicio");
             }}
-            className="flex items-center gap-3"
+            className="flex items-center gap-3 group"
           >
-            <div className="w-10 h-10 border border-primary/50 flex items-center justify-center">
-              <span className="font-serif text-lg text-primary">JH</span>
-            </div>
-            <div className="hidden sm:block">
-              <span className="font-serif text-lg text-foreground">
-                Josafath Herrera
+            <SharkLogo size="sm" />
+            <div className="hidden sm:flex items-center">
+              <span className="font-sans text-lg font-semibold tracking-widest">
+                <span className="text-primary">IN</span>
+                <span className="text-foreground">KOGA</span>
               </span>
             </div>
           </a>

@@ -11,6 +11,8 @@ const pillars = [
     title: "Psique",
     subtitle: "Control Mental",
     description: "Gestiona el miedo. Reprograma automatismos.",
+    lobo: "Gestión del miedo en soledad absoluta. No hay a quién pedir apoyo emocional.",
+    binomio: "Confianza mutua. Gestión del miedo compartido sin contagio emocional.",
   },
   {
     image: pilarFisico,
@@ -18,6 +20,8 @@ const pillars = [
     title: "Físico",
     subtitle: "Biomecánica Eficiente",
     description: "Eficiencia sin fuerza bruta. Koga + Systema.",
+    lobo: "Eficiencia máxima. Un error = no hay quien te cubra. Economía de movimiento crítica.",
+    binomio: "Coordinación física. Roles intercambiables sin chocar. Testigo biomecánico.",
   },
   {
     image: pilarTactica,
@@ -25,6 +29,8 @@ const pillars = [
     title: "Táctica",
     subtitle: "Estrategia Aplicada",
     description: "Decisiones inteligentes. OODA + Hombre Gris.",
+    lobo: "Decisión autónoma instantánea. Ciclo OODA individual bajo presión extrema.",
+    binomio: "Decisión distribuida. OODA compartido sin comunicación verbal constante.",
   },
 ];
 
@@ -104,9 +110,21 @@ const SolutionSection = () => {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-cream-muted text-lg leading-relaxed">
+                <p className="text-cream-muted text-lg leading-relaxed mb-4">
                   {pillar.description}
                 </p>
+
+                {/* Dual Application */}
+                <div className="space-y-3 pt-4 border-t border-border/30">
+                  <div className="flex items-start gap-2">
+                    <span className="text-xs px-2 py-1 bg-inkoga-silver/20 text-inkoga-silver-light font-medium shrink-0">🐺 LOBO</span>
+                    <p className="text-xs text-cream-muted leading-relaxed">{pillar.lobo}</p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <span className="text-xs px-2 py-1 bg-primary/20 text-primary font-medium shrink-0">🤝 BINOMIO</span>
+                    <p className="text-xs text-cream-muted leading-relaxed">{pillar.binomio}</p>
+                  </div>
+                </div>
 
                 {/* Decorative Line */}
                 <div className="mt-6 w-16 h-0.5 bg-gradient-to-r from-primary to-transparent group-hover:w-32 transition-all duration-500" />
@@ -121,13 +139,22 @@ const SolutionSection = () => {
           ))}
         </div>
 
+        {/* Note about dual application */}
+        <div className="mt-16 max-w-3xl mx-auto text-center">
+          <p className="text-cream-muted text-sm leading-relaxed border border-border/30 bg-card/30 backdrop-blur-sm p-6">
+            <span className="text-primary font-medium">Los 3 pilares se aplican en ambos contextos operativos.</span>{" "}
+            No entrenas "para ser lobo" o "para ser binomio". Entrenas para ser{" "}
+            <span className="text-foreground">efectivo en ambos contextos</span>, porque tu realidad operativa no te pregunta cuál prefieres.
+          </p>
+        </div>
+
         {/* CTA */}
-        <div className="mt-20 text-center">
+        <div className="mt-12 text-center">
           <Button
             variant="hero"
             size="xl"
             className="text-lg px-12 py-6 shadow-gold hover:shadow-[0_0_60px_hsl(38_70%_55%/0.4)] transition-all"
-            onClick={() => scrollToSection("recursos")}
+            onClick={() => scrollToSection("programas")}
           >
             Ver Programas →
           </Button>

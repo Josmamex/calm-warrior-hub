@@ -60,6 +60,15 @@ export default {
           DEFAULT: "hsl(var(--cream))",
           muted: "hsl(var(--cream-muted))",
         },
+        inkoga: {
+          navy: "hsl(var(--inkoga-navy))",
+          "navy-dark": "hsl(var(--inkoga-navy-dark))",
+          "navy-light": "hsl(var(--inkoga-navy-light))",
+          red: "hsl(var(--inkoga-red))",
+          "red-light": "hsl(var(--inkoga-red-light))",
+          silver: "hsl(var(--inkoga-silver))",
+          "silver-light": "hsl(var(--inkoga-silver-light))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
