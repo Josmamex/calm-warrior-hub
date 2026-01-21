@@ -27,9 +27,21 @@ const AboutSection = () => {
             <p className="text-primary text-xs tracking-[0.4em] uppercase mb-4 font-medium">
               Sobre Mí
             </p>
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium">
+            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium mb-6">
               Josafath Herrera
             </h2>
+            {/* Philosophy Quote */}
+            <blockquote className="font-serif text-2xl md:text-3xl text-primary/80 italic">
+              "Somos un breve momento físico"
+            </blockquote>
+          </div>
+
+          {/* Intro Text */}
+          <div className="text-center mb-12">
+            <p className="text-cream-muted text-lg leading-relaxed max-w-2xl mx-auto">
+              25 años formando protectores operativos de alto riesgo y más de 45 años 
+              caminando el sendero del guerrero y las artes guerreras.
+            </p>
           </div>
 
           {/* Visual Stats Grid */}
@@ -78,7 +90,7 @@ const AboutSection = () => {
           </div>
 
           {/* Certifications */}
-          <div className="flex flex-wrap justify-center gap-8 text-sm text-cream-muted">
+          <div className="flex flex-wrap justify-center gap-8 text-sm text-cream-muted mb-12">
             <span className="flex items-center gap-2">
               <span className="text-primary">✓</span> ONU (Seguridad)
             </span>
@@ -94,6 +106,23 @@ const AboutSection = () => {
             <span className="flex items-center gap-2">
               <span className="text-primary">✓</span> Systema Vasiliev
             </span>
+          </div>
+
+          {/* International Experience */}
+          <div className="text-center border-t border-border/30 pt-8">
+            <p className="text-xs uppercase tracking-wider text-muted-foreground mb-4">
+              Experiencia Internacional
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              {["Finlandia", "Holanda", "Brasil", "Estados Unidos", "Canadá", "México"].map((country) => (
+                <span
+                  key={country}
+                  className="px-4 py-2 border border-border/30 bg-card/30 text-cream-muted text-sm"
+                >
+                  {country}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

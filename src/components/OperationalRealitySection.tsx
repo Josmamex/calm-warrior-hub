@@ -182,6 +182,80 @@ const OperationalRealitySection = () => {
           </div>
         </div>
       </div>
+
+      {/* GAP Table Section */}
+      <div className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/10 to-background" />
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto">
+            {/* Table Header */}
+            <div className="text-center mb-12">
+              <h3 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
+                El <span className="text-gold-gradient">GAP</span> de Preparación
+              </h3>
+            </div>
+
+            {/* Table */}
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b border-primary/30">
+                    <th className="text-left py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-medium">
+                      Configuración
+                    </th>
+                    <th className="text-center py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-medium">
+                      % Operaciones
+                    </th>
+                    <th className="text-center py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-medium">
+                      % Entrenamiento
+                    </th>
+                    <th className="text-center py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-medium">
+                      GAP
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors">
+                    <td className="py-4 px-4 text-foreground font-medium">1 escolta solo</td>
+                    <td className="py-4 px-4 text-center text-cream-muted">~45%</td>
+                    <td className="py-4 px-4 text-center text-cream-muted">&lt;5%</td>
+                    <td className="py-4 px-4 text-center text-inkoga-red font-bold">-40%</td>
+                  </tr>
+                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors">
+                    <td className="py-4 px-4 text-foreground font-medium">2 escoltas (binomio)</td>
+                    <td className="py-4 px-4 text-center text-cream-muted">~28%</td>
+                    <td className="py-4 px-4 text-center text-cream-muted">&lt;3%</td>
+                    <td className="py-4 px-4 text-center text-inkoga-red font-bold">-25%</td>
+                  </tr>
+                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors">
+                    <td className="py-4 px-4 text-foreground font-medium">3-5 escoltas</td>
+                    <td className="py-4 px-4 text-center text-cream-muted">~20%</td>
+                    <td className="py-4 px-4 text-center text-cream-muted">~20%</td>
+                    <td className="py-4 px-4 text-center text-muted-foreground">0%</td>
+                  </tr>
+                  <tr className="hover:bg-primary/5 transition-colors">
+                    <td className="py-4 px-4 text-foreground font-medium">6+ escoltas</td>
+                    <td className="py-4 px-4 text-center text-cream-muted">~7%</td>
+                    <td className="py-4 px-4 text-center text-cream-muted">~72%</td>
+                    <td className="py-4 px-4 text-center text-primary font-bold">+65%</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* Interpretation */}
+            <div className="mt-8 p-6 border border-inkoga-red/30 bg-inkoga-red/5">
+              <p className="text-sm text-cream-muted mb-2">
+                <span className="text-foreground font-medium">Interpretación:</span> El 73% de tu tiempo operativo recibe menos del 8% del entrenamiento disponible.
+              </p>
+              <p className="text-sm text-inkoga-red font-medium">
+                Resultado: Cuando enfrentas tu realidad más común, no sabes qué hacer porque te entrenaron para una fantasía operativa.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 };

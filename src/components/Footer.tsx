@@ -1,5 +1,6 @@
 import { Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import SharkLogo from "./SharkLogo";
 
 const Footer = () => {
   const scrollToSection = (href: string) => {
@@ -16,12 +17,16 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           {/* Brand Column */}
           <div className="md:col-span-2">
-            <h3 className="font-serif text-2xl font-medium mb-4">
-              Josafath Herrera
-            </h3>
+            <div className="flex items-center gap-3 mb-4">
+              <SharkLogo size="md" />
+              <span className="font-sans text-2xl font-semibold tracking-widest">
+                <span className="text-primary">IN</span>
+                <span className="text-foreground">KOGA</span>
+              </span>
+            </div>
             <p className="text-muted-foreground leading-relaxed max-w-md mb-6">
-              Transformando protectores y civiles en seres humanos integrales con
-              dominio interno, inteligencia táctica y calma inquebrantable.
+              Protección Ejecutiva con Integridad. Ciencia aplicada para operaciones 
+              de 1-2 escoltas en LATAM. Fundador: Josafath Herrera.
             </p>
             <div className="flex items-center gap-6">
               <a
@@ -162,10 +167,10 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border/30 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2024 Josafath Herrera. Todos los derechos reservados.
+            © 2026 INKOGA Security Consulting. Todos los derechos reservados.
           </p>
-          <p className="text-muted-foreground/50 text-xs italic font-serif">
-            "El verdadero guerrero no pelea; se domina a sí mismo"
+          <p className="text-muted-foreground/50 text-xs">
+            Certificado ONU • Instructor Systema • Representante Koga LATAM • H&K Autorizado
           </p>
         </div>
       </div>

@@ -45,6 +45,15 @@
     --cream: 40 25% 95%;
     --cream-muted: 40 20% 78%;
 
+    /* INKOGA Brand Colors */
+    --inkoga-navy: 220 40% 18%;
+    --inkoga-navy-dark: 220 50% 10%;
+    --inkoga-navy-light: 220 35% 27%;
+    --inkoga-red: 350 75% 45%;
+    --inkoga-red-light: 350 70% 58%;
+    --inkoga-silver: 220 15% 62%;
+    --inkoga-silver-light: 220 20% 75%;
+
     /* Typography */
     --font-serif: 'Cormorant Garamond', Georgia, serif;
     --font-sans: 'Inter', system-ui, sans-serif;
