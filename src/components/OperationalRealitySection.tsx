@@ -2,6 +2,7 @@ import gapComparison from "@/assets/gap-comparison.jpg";
 import loboSolitario from "@/assets/lobo-solitario.jpg";
 import binomioImg from "@/assets/binomio.jpg";
 import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
+import AnimatedBackground from "./AnimatedBackground";
 
 const OperationalRealitySection = () => {
   const { ref: statsRef, isVisible: statsVisible } = useScrollAnimation(0.2);
@@ -12,6 +13,9 @@ const OperationalRealitySection = () => {
     <section id="realidad-operativa" className="relative overflow-hidden">
       {/* Full-width Visual Comparison */}
       <div className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+        {/* Animated Background */}
+        <AnimatedBackground variant="particles" intensity="low" />
+        
         {/* Background Image with Parallax */}
         <div ref={bgParallax} className="absolute inset-0 scale-110">
           <img
@@ -33,11 +37,13 @@ const OperationalRealitySection = () => {
           </p>
           
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-            {/* Left Stat */}
-            <div className="text-center">
-              <span className="block font-serif text-8xl md:text-9xl text-primary font-medium drop-shadow-[0_0_30px_hsl(38_70%_55%/0.5)]">
+            {/* Left Stat - Enhanced with glow */}
+            <div className="text-center relative">
+              <span className="block font-serif text-8xl md:text-9xl text-primary font-medium text-glow">
                 73%
               </span>
+              {/* Glow behind */}
+              <div className="absolute inset-0 blur-3xl bg-primary/20 -z-10" />
               <p className="text-foreground text-lg mt-2">
                 Operaciones reales
               </p>
@@ -46,8 +52,8 @@ const OperationalRealitySection = () => {
               </p>
             </div>
 
-            {/* VS */}
-            <span className="text-5xl md:text-6xl text-muted-foreground font-light opacity-50">
+            {/* VS - Animated */}
+            <span className="text-5xl md:text-6xl text-muted-foreground font-light opacity-50 animate-pulse">
               VS
             </span>
 
@@ -69,13 +75,14 @@ const OperationalRealitySection = () => {
           <p className="mt-12 font-serif text-xl md:text-2xl text-foreground max-w-2xl mx-auto">
             Te entrenan para equipos grandes que difícilmente tendrás.
             <br />
-            <span className="text-primary">Nosotros te preparamos para tu realidad.</span>
+            <span className="text-primary text-glow">Nosotros te preparamos para tu realidad.</span>
           </p>
         </div>
       </div>
 
       {/* Two Cards: Lobo Solitario & Binomio */}
       <div className="py-24 relative">
+        <AnimatedBackground variant="mesh" intensity="low" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/20 to-background" />
         
         <div className="container mx-auto px-6 relative z-10">
@@ -96,6 +103,9 @@ const OperationalRealitySection = () => {
               
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+              
+              {/* Animated border */}
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-inkoga-silver/40 transition-colors duration-500" />
               
               {/* Content */}
               <div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -122,8 +132,11 @@ const OperationalRealitySection = () => {
                 </ul>
               </div>
 
-              {/* Hover Glow */}
-              <div className="absolute inset-0 shadow-[inset_0_0_100px_hsl(38_70%_55%/0)] group-hover:shadow-[inset_0_0_100px_hsl(38_70%_55%/0.1)] transition-shadow duration-500" />
+              {/* Hover Glow - Enhanced */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 shadow-[inset_0_0_100px_hsl(220_15%_62%/0.15)]" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-inkoga-silver via-inkoga-silver-light to-inkoga-silver" />
+              </div>
             </div>
 
             {/* Card 2: Binomio */}
@@ -139,6 +152,9 @@ const OperationalRealitySection = () => {
               
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-transparent" />
+              
+              {/* Animated border */}
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary/40 transition-colors duration-500" />
               
               {/* Content */}
               <div className="absolute inset-0 flex flex-col justify-end p-8">
@@ -165,8 +181,11 @@ const OperationalRealitySection = () => {
                 </ul>
               </div>
 
-              {/* Hover Glow */}
-              <div className="absolute inset-0 shadow-[inset_0_0_100px_hsl(38_70%_55%/0)] group-hover:shadow-[inset_0_0_100px_hsl(38_70%_55%/0.1)] transition-shadow duration-500" />
+              {/* Hover Glow - Enhanced */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute inset-0 shadow-[inset_0_0_100px_hsl(38_70%_55%/0.15)]" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-gold-light to-primary" />
+              </div>
             </div>
           </div>
 
@@ -185,6 +204,7 @@ const OperationalRealitySection = () => {
 
       {/* GAP Table Section */}
       <div className="py-24 relative">
+        <AnimatedBackground variant="waves" intensity="low" />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/10 to-background" />
 
         <div className="container mx-auto px-6 relative z-10">
@@ -192,12 +212,12 @@ const OperationalRealitySection = () => {
             {/* Table Header */}
             <div className="text-center mb-12">
               <h3 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-                El <span className="text-gold-gradient">GAP</span> de Preparación
+                El <span className="text-gold-gradient text-glow">GAP</span> de Preparación
               </h3>
             </div>
 
-            {/* Table */}
-            <div className="overflow-x-auto">
+            {/* Table - Enhanced with glass effect */}
+            <div className="overflow-x-auto card-glass p-6 border border-border/30">
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b border-primary/30">
@@ -216,17 +236,17 @@ const OperationalRealitySection = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors">
+                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors group">
                     <td className="py-4 px-4 text-foreground font-medium">1 escolta solo</td>
                     <td className="py-4 px-4 text-center text-cream-muted">~45%</td>
                     <td className="py-4 px-4 text-center text-cream-muted">&lt;5%</td>
-                    <td className="py-4 px-4 text-center text-inkoga-red font-bold">-40%</td>
+                    <td className="py-4 px-4 text-center text-inkoga-red font-bold group-hover:text-glow">-40%</td>
                   </tr>
-                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors">
+                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors group">
                     <td className="py-4 px-4 text-foreground font-medium">2 escoltas (binomio)</td>
                     <td className="py-4 px-4 text-center text-cream-muted">~28%</td>
                     <td className="py-4 px-4 text-center text-cream-muted">&lt;3%</td>
-                    <td className="py-4 px-4 text-center text-inkoga-red font-bold">-25%</td>
+                    <td className="py-4 px-4 text-center text-inkoga-red font-bold group-hover:text-glow">-25%</td>
                   </tr>
                   <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors">
                     <td className="py-4 px-4 text-foreground font-medium">3-5 escoltas</td>
@@ -244,12 +264,14 @@ const OperationalRealitySection = () => {
               </table>
             </div>
 
-            {/* Interpretation */}
-            <div className="mt-8 p-6 border border-inkoga-red/30 bg-inkoga-red/5">
-              <p className="text-sm text-cream-muted mb-2">
+            {/* Interpretation - Enhanced */}
+            <div className="mt-8 p-6 border-2 border-inkoga-red/30 bg-inkoga-red/5 card-glass relative overflow-hidden">
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-inkoga-red/10 via-transparent to-inkoga-red/10 animate-pulse" />
+              <p className="relative text-sm text-cream-muted mb-2">
                 <span className="text-foreground font-medium">Interpretación:</span> El 73% de tu tiempo operativo recibe menos del 8% del entrenamiento disponible.
               </p>
-              <p className="text-sm text-inkoga-red font-medium">
+              <p className="relative text-sm text-inkoga-red font-medium">
                 Resultado: Cuando enfrentas tu realidad más común, no sabes qué hacer porque te entrenaron para una fantasía operativa.
               </p>
             </div>

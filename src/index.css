@@ -53,6 +53,10 @@
     --inkoga-red-light: 350 70% 58%;
     --inkoga-silver: 220 15% 62%;
     --inkoga-silver-light: 220 20% 75%;
+    
+    /* Emerald for "Hombre Gris" effect */
+    --inkoga-emerald: 160 60% 40%;
+    --inkoga-emerald-light: 160 70% 55%;
 
     /* Typography */
     --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -62,6 +66,7 @@
     --shadow-gold: 0 0 80px hsl(38 70% 55% / 0.2);
     --shadow-soft: 0 20px 50px hsl(220 20% 2% / 0.5);
     --shadow-glow: 0 0 40px hsl(38 70% 55% / 0.15);
+    --shadow-emerald: 0 0 60px hsl(160 60% 40% / 0.3);
 
     /* Transitions */
     --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -121,6 +126,12 @@
     background-image: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold)), hsl(var(--gold-dark)));
     filter: brightness(1.1);
   }
+  
+  .text-emerald-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--inkoga-emerald-light)), hsl(var(--inkoga-emerald)));
+    filter: brightness(1.1);
+  }
 
   .border-gold-gradient {
     border-image: linear-gradient(135deg, hsl(var(--gold-light)), hsl(var(--gold-dark))) 1;
@@ -134,7 +145,9 @@
     background: radial-gradient(ellipse at center top, hsl(var(--charcoal-light)) 0%, hsl(var(--background)) 70%);
   }
 
-  /* Floating particles container */
+  /* ============================================
+     ENHANCED FLOATING PARTICLES
+     ============================================ */
   .particles-container {
     position: absolute;
     inset: 0;
@@ -146,34 +159,240 @@
     position: absolute;
     width: 4px;
     height: 4px;
-    background: hsl(var(--gold) / 0.4);
+    background: hsl(var(--gold) / 0.6);
     border-radius: 50%;
     animation: floatParticle 15s ease-in-out infinite;
+    box-shadow: 0 0 10px hsl(var(--gold) / 0.4);
   }
 
-  .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 18s; }
-  .particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 20s; }
-  .particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 16s; }
-  .particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 22s; }
-  .particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 19s; }
-  .particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 17s; }
-  .particle:nth-child(7) { left: 70%; animation-delay: 2s; animation-duration: 21s; }
-  .particle:nth-child(8) { left: 80%; animation-delay: 4s; animation-duration: 18s; }
-  .particle:nth-child(9) { left: 90%; animation-delay: 1s; animation-duration: 20s; }
-  .particle:nth-child(10) { left: 15%; animation-delay: 3s; animation-duration: 16s; }
+  .particle:nth-child(1) { left: 5%; animation-delay: 0s; animation-duration: 18s; }
+  .particle:nth-child(2) { left: 10%; animation-delay: 1s; animation-duration: 20s; }
+  .particle:nth-child(3) { left: 15%; animation-delay: 2s; animation-duration: 16s; }
+  .particle:nth-child(4) { left: 20%; animation-delay: 0.5s; animation-duration: 22s; }
+  .particle:nth-child(5) { left: 25%; animation-delay: 3s; animation-duration: 19s; }
+  .particle:nth-child(6) { left: 30%; animation-delay: 1.5s; animation-duration: 17s; }
+  .particle:nth-child(7) { left: 35%; animation-delay: 2.5s; animation-duration: 21s; }
+  .particle:nth-child(8) { left: 40%; animation-delay: 0.2s; animation-duration: 18s; }
+  .particle:nth-child(9) { left: 45%; animation-delay: 4s; animation-duration: 20s; }
+  .particle:nth-child(10) { left: 50%; animation-delay: 1.8s; animation-duration: 16s; }
+  .particle:nth-child(11) { left: 55%; animation-delay: 3.2s; animation-duration: 19s; }
+  .particle:nth-child(12) { left: 60%; animation-delay: 0.8s; animation-duration: 21s; }
+  .particle:nth-child(13) { left: 65%; animation-delay: 2.2s; animation-duration: 17s; }
+  .particle:nth-child(14) { left: 70%; animation-delay: 4.5s; animation-duration: 22s; }
+  .particle:nth-child(15) { left: 75%; animation-delay: 1.2s; animation-duration: 18s; }
+  .particle:nth-child(16) { left: 80%; animation-delay: 3.8s; animation-duration: 20s; }
+  .particle:nth-child(17) { left: 85%; animation-delay: 0.6s; animation-duration: 16s; }
+  .particle:nth-child(18) { left: 90%; animation-delay: 2.8s; animation-duration: 19s; }
+  .particle:nth-child(19) { left: 95%; animation-delay: 1.5s; animation-duration: 21s; }
+  .particle:nth-child(20) { left: 98%; animation-delay: 4s; animation-duration: 17s; }
 
-  /* Ambient haze/smoke effect */
+  /* Glowing orbs */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: orbFloat 20s ease-in-out infinite;
+  }
+
+  .orb-1 {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, hsl(var(--gold) / 0.15), transparent 70%);
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+  }
+
+  .orb-2 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, hsl(var(--inkoga-emerald) / 0.1), transparent 70%);
+    top: 50%;
+    right: 10%;
+    animation-delay: -5s;
+  }
+
+  .orb-3 {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, hsl(var(--primary) / 0.12), transparent 70%);
+    bottom: 20%;
+    left: 40%;
+    animation-delay: -10s;
+  }
+
+  .orb-4 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, hsl(var(--inkoga-red) / 0.08), transparent 70%);
+    top: 30%;
+    right: 30%;
+    animation-delay: -15s;
+  }
+
+  /* Ambient haze/smoke effect - Enhanced */
   .ambient-haze {
     position: absolute;
     inset: 0;
     background: 
-      radial-gradient(ellipse 80% 50% at 20% 80%, hsl(var(--gold) / 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse 60% 40% at 80% 20%, hsl(var(--gold) / 0.05) 0%, transparent 50%);
+      radial-gradient(ellipse 80% 50% at 20% 80%, hsl(var(--gold) / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 80% 20%, hsl(var(--gold) / 0.08) 0%, transparent 50%);
     animation: hazeMove 20s ease-in-out infinite alternate;
     pointer-events: none;
   }
 
-  /* Card hover effects */
+  .ambient-haze-2 {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 70% 60% at 70% 70%, hsl(var(--inkoga-emerald) / 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse 50% 50% at 30% 30%, hsl(var(--inkoga-red) / 0.04) 0%, transparent 50%);
+    animation: hazeMove 25s ease-in-out infinite alternate-reverse;
+    pointer-events: none;
+  }
+
+  /* Scan lines for texture */
+  .scan-lines {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--foreground) / 0.01) 2px,
+      hsl(var(--foreground) / 0.01) 4px
+    );
+    pointer-events: none;
+  }
+
+  /* Glowing border accents */
+  .glow-accent {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.5), transparent);
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  .glow-accent-top {
+    top: 0;
+  }
+
+  .glow-accent-bottom {
+    bottom: 0;
+    animation-delay: 1.5s;
+  }
+
+  /* ============================================
+     AURORA EFFECT
+     ============================================ */
+  .aurora-layer {
+    position: absolute;
+    inset: -50%;
+    opacity: 0.6;
+    mix-blend-mode: screen;
+    filter: blur(100px);
+  }
+
+  .aurora-1 {
+    background: conic-gradient(from 0deg at 50% 50%, 
+      hsl(var(--gold) / 0.3),
+      hsl(var(--inkoga-emerald) / 0.2),
+      hsl(var(--gold) / 0.3),
+      transparent,
+      hsl(var(--gold) / 0.3)
+    );
+    animation: auroraRotate 30s linear infinite;
+  }
+
+  .aurora-2 {
+    background: conic-gradient(from 120deg at 50% 50%, 
+      hsl(var(--inkoga-emerald) / 0.2),
+      hsl(var(--primary) / 0.15),
+      transparent,
+      hsl(var(--inkoga-emerald) / 0.2)
+    );
+    animation: auroraRotate 40s linear infinite reverse;
+  }
+
+  .aurora-3 {
+    background: conic-gradient(from 240deg at 50% 50%, 
+      hsl(var(--primary) / 0.2),
+      transparent,
+      hsl(var(--gold) / 0.15),
+      hsl(var(--primary) / 0.2)
+    );
+    animation: auroraRotate 35s linear infinite;
+  }
+
+  /* ============================================
+     MESH GRADIENT
+     ============================================ */
+  .mesh-gradient {
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(at 40% 20%, hsl(var(--gold) / 0.15) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, hsl(var(--inkoga-emerald) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, hsl(var(--primary) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, hsl(var(--inkoga-red) / 0.08) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsl(var(--gold) / 0.1) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, hsl(var(--inkoga-emerald) / 0.08) 0px, transparent 50%);
+    animation: meshMove 20s ease-in-out infinite alternate;
+  }
+
+  /* ============================================
+     WAVE EFFECT
+     ============================================ */
+  .wave-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .wave {
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    height: 200%;
+    background: linear-gradient(90deg, 
+      transparent,
+      hsl(var(--gold) / 0.05),
+      transparent
+    );
+    transform-origin: center center;
+    animation: waveMove 15s ease-in-out infinite;
+  }
+
+  .wave-1 {
+    top: -50%;
+    animation-delay: 0s;
+  }
+
+  .wave-2 {
+    top: -25%;
+    animation-delay: -5s;
+    background: linear-gradient(90deg, 
+      transparent,
+      hsl(var(--inkoga-emerald) / 0.04),
+      transparent
+    );
+  }
+
+  .wave-3 {
+    top: 0%;
+    animation-delay: -10s;
+  }
+
+  /* Noise texture */
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  /* ============================================
+     CARD EFFECTS - ENHANCED
+     ============================================ */
   .card-hover {
     @apply transition-all duration-500;
   }
@@ -183,7 +402,43 @@
     box-shadow: 0 20px 40px hsl(var(--gold) / 0.1), 0 0 60px hsl(var(--gold) / 0.05);
   }
 
-  /* Scroll animations */
+  .card-glow {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, 
+      hsl(var(--gold) / 0.3),
+      transparent 50%,
+      hsl(var(--inkoga-emerald) / 0.2)
+    );
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: -1;
+  }
+
+  .card-glow:hover::before {
+    opacity: 1;
+  }
+
+  .card-glass {
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  .card-glass:hover {
+    background: hsl(var(--card) / 0.8);
+    border-color: hsl(var(--primary) / 0.3);
+  }
+
+  /* ============================================
+     SCROLL ANIMATIONS - ENHANCED
+     ============================================ */
   .animate-on-scroll {
     opacity: 0;
     transform: translateY(30px);
@@ -234,6 +489,54 @@
   .stagger-3 { transition-delay: 0.3s; }
   .stagger-4 { transition-delay: 0.4s; }
   .stagger-5 { transition-delay: 0.5s; }
+
+  /* ============================================
+     SPECIAL EFFECTS
+     ============================================ */
+  
+  /* Shimmer effect */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--gold) / 0.1),
+      transparent
+    );
+    animation: shimmer 3s infinite;
+    transform: translateX(-100%);
+  }
+
+  /* Glowing text */
+  .text-glow {
+    text-shadow: 
+      0 0 10px hsl(var(--primary) / 0.5),
+      0 0 20px hsl(var(--primary) / 0.3),
+      0 0 30px hsl(var(--primary) / 0.2);
+  }
+
+  /* Emerald glow for "Hombre Gris" */
+  .emerald-glow {
+    box-shadow: 
+      0 0 20px hsl(var(--inkoga-emerald) / 0.3),
+      0 0 40px hsl(var(--inkoga-emerald) / 0.2),
+      inset 0 0 20px hsl(var(--inkoga-emerald) / 0.1);
+  }
+
+  .emerald-border {
+    border-color: hsl(var(--inkoga-emerald) / 0.5);
+    background: linear-gradient(135deg, 
+      hsl(var(--inkoga-emerald) / 0.1),
+      transparent
+    );
+  }
 }
 
 @layer utilities {
@@ -253,6 +556,10 @@
     animation-delay: 200ms;
   }
 
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
   .animation-delay-400 {
     animation-delay: 400ms;
   }
@@ -270,6 +577,10 @@
     will-change: transform;
   }
 }
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
 
 @keyframes fadeUp {
   from {
@@ -308,16 +619,31 @@
     opacity: 0;
   }
   10% {
-    opacity: 0.6;
+    opacity: 0.8;
     transform: translateY(80vh) scale(1);
   }
   90% {
-    opacity: 0.3;
+    opacity: 0.4;
     transform: translateY(10vh) scale(0.5);
   }
   100% {
     opacity: 0;
     transform: translateY(0) scale(0);
+  }
+}
+
+@keyframes orbFloat {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(20px, 10px) scale(1.05);
   }
 }
 
@@ -327,5 +653,50 @@
   }
   100% {
     transform: translateX(5%) translateY(-5%);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes auroraRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes meshMove {
+  0% {
+    transform: scale(1) translateX(0) translateY(0);
+  }
+  50% {
+    transform: scale(1.1) translateX(-5%) translateY(-5%);
+  }
+  100% {
+    transform: scale(1) translateX(0) translateY(0);
+  }
+}
+
+@keyframes waveMove {
+  0%, 100% {
+    transform: rotate(-5deg) translateY(0);
+  }
+  50% {
+    transform: rotate(5deg) translateY(-50px);
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
   }
 }
