@@ -3,7 +3,9 @@ import HeroSection from "@/components/HeroSection";
 import WhyINKOGASection from "@/components/WhyINKOGASection";
 import OperationalRealitySection from "@/components/OperationalRealitySection";
 import SolutionSection from "@/components/SolutionSection";
+import IncidentCoverageSection from "@/components/IncidentCoverageSection";
 import ProgramsSection from "@/components/ProgramsSection";
+import FilterSection from "@/components/FilterSection";
 import ResourcesSection from "@/components/ResourcesSection";
 import FAQSection from "@/components/FAQSection";
 import BlogSection from "@/components/BlogSection";
@@ -20,7 +22,9 @@ const Index = () => {
       <WhyINKOGASection />
       <OperationalRealitySection />
       <SolutionSection />
+      <IncidentCoverageSection />
       <ProgramsSection />
+      <FilterSection />
       <ResourcesSection />
       <FAQSection />
       <BlogSection />
