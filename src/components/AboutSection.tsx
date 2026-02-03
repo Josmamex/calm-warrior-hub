@@ -82,7 +82,7 @@ const AboutSection = () => {
               Formación Directa Con:
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              {["Robert Koga", "Vladimir Vasiliev", "Matt Thomas", "Oleg Maltsev"].map((master) => (
+              {["Robert Koga", "Vladimir Vasiliev", "Matt Thomas", "Konstantin Komarov"].map((master) => (
                 <span
                   key={master}
                   className="px-6 py-3 border border-primary/30 bg-primary/5 text-primary font-medium text-sm"
