@@ -3,6 +3,7 @@ import pilarPsique from "@/assets/pilar-psique.jpg";
 import pilarFisico from "@/assets/pilar-fisico.jpg";
 import pilarTactica from "@/assets/pilar-tactica.jpg";
 import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
+import AnimatedBackground from "./AnimatedBackground";
 
 const pillars = [
   {
@@ -48,14 +49,18 @@ const SolutionSection = () => {
 
   return (
     <section id="metodologia" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Animated Background */}
+      <AnimatedBackground variant="aurora" intensity="low" />
+      
       {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/20 to-background" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       
-      {/* Ambient Glow */}
+      {/* Ambient Glow - Enhanced */}
       <div ref={bgParallax} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-primary/3 rounded-full blur-[120px]" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[150px] animate-pulse" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-[hsl(160_60%_40%/0.05)] rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[180px]" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -69,7 +74,7 @@ const SolutionSection = () => {
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6">
             25 Años perfeccionando la respuesta en{" "}
-            <span className="text-gold-gradient">entornos hostiles.</span>
+            <span className="text-gold-gradient text-glow">entornos hostiles.</span>
           </h2>
           <p className="text-cream-muted text-lg md:text-xl leading-relaxed">
             Nuestra experiencia integra tres sistemas probados para anular la desventaja numérica y física.
@@ -96,10 +101,16 @@ const SolutionSection = () => {
               {/* Overlay Gradient */}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/20" />
               
+              {/* Animated border */}
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-primary/30 transition-colors duration-500" />
+              
               {/* Content */}
               <div className="absolute inset-0 flex flex-col justify-end p-8">
-                {/* Icon */}
-                <span className="text-5xl mb-4 drop-shadow-lg">{pillar.icon}</span>
+                {/* Icon with glow */}
+                <div className="relative">
+                  <span className="text-5xl mb-4 drop-shadow-lg block">{pillar.icon}</span>
+                  <div className="absolute inset-0 blur-xl bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
                 
                 {/* Subtitle */}
                 <p className="text-primary text-xs uppercase tracking-[0.2em] mb-2">
@@ -107,7 +118,7 @@ const SolutionSection = () => {
                 </p>
                 
                 {/* Title */}
-                <h3 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4">
+                <h3 className="font-serif text-4xl md:text-5xl font-medium text-foreground mb-4 group-hover:text-glow transition-all duration-300">
                   {pillar.title}
                 </h3>
                 
@@ -128,34 +139,42 @@ const SolutionSection = () => {
                   </div>
                 </div>
 
-                {/* Decorative Line */}
-                <div className="mt-6 w-16 h-0.5 bg-gradient-to-r from-primary to-transparent group-hover:w-32 transition-all duration-500" />
+                {/* Decorative Line - Animated */}
+                <div className="mt-6 w-16 h-0.5 bg-gradient-to-r from-primary to-transparent group-hover:w-full transition-all duration-700" />
               </div>
 
-              {/* Hover Glow Effect */}
+              {/* Hover Glow Effect - Enhanced */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-gold-light to-primary" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/15 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-primary via-gold-light to-primary animate-pulse" />
+                <div className="absolute inset-0 shadow-[inset_0_0_80px_hsl(38_70%_55%/0.1)]" />
               </div>
+              
+              {/* Shimmer on hover */}
+              <div className="absolute inset-0 shimmer opacity-0 group-hover:opacity-50" />
             </div>
           ))}
         </div>
 
-        {/* Note about dual application */}
+        {/* Note about dual application - Enhanced */}
         <div className="mt-16 max-w-3xl mx-auto text-center">
-          <p className="text-cream-muted text-sm leading-relaxed border border-border/30 bg-card/30 backdrop-blur-sm p-6">
-            <span className="text-primary font-medium">Los 3 pilares se aplican en ambos contextos operativos.</span>{" "}
-            No entrenas "para ser lobo" o "para ser binomio". Entrenas para ser{" "}
-            <span className="text-foreground">efectivo en ambos contextos</span>, porque tu realidad operativa no te pregunta cuál prefieres.
-          </p>
+          <div className="relative">
+            <p className="text-cream-muted text-sm leading-relaxed border-2 border-border/30 bg-card/50 backdrop-blur-sm p-6 card-glass">
+              <span className="text-primary font-medium">Los 3 pilares se aplican en ambos contextos operativos.</span>{" "}
+              No entrenas "para ser lobo" o "para ser binomio". Entrenas para ser{" "}
+              <span className="text-foreground">efectivo en ambos contextos</span>, porque tu realidad operativa no te pregunta cuál prefieres.
+            </p>
+            {/* Subtle glow behind */}
+            <div className="absolute inset-0 -z-10 bg-primary/5 blur-xl" />
+          </div>
         </div>
 
-        {/* CTA */}
+        {/* CTA - Enhanced */}
         <div className="mt-12 text-center">
           <Button
             variant="hero"
             size="xl"
-            className="text-lg px-12 py-6 shadow-gold hover:shadow-[0_0_60px_hsl(38_70%_55%/0.4)] transition-all"
+            className="text-lg px-12 py-6 shadow-gold hover:shadow-[0_0_80px_hsl(38_70%_55%/0.5)] transition-all duration-500"
             onClick={() => scrollToSection("programas")}
           >
             Ver Programas →

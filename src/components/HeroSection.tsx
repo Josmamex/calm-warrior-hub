@@ -4,6 +4,7 @@ import problemFear from "@/assets/problem-fear.jpg";
 import problemEgo from "@/assets/problem-ego.jpg";
 import problemCopy from "@/assets/problem-copy.jpg";
 import FloatingParticles from "./FloatingParticles";
+import AnimatedBackground from "./AnimatedBackground";
 import { useParallax, useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const problems = [
@@ -55,18 +56,22 @@ const HeroSection = () => {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_70%)]" />
         </div>
 
-        {/* Floating Particles & Ambient Glow */}
+        {/* Animated Background Effects */}
+        <AnimatedBackground variant="full" intensity="medium" />
+
+        {/* Floating Particles & Ambient Glow - Enhanced */}
         <FloatingParticles />
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-[100px]" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[120px] animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[hsl(160_60%_40%/0.05)] rounded-full blur-[150px]" />
         </div>
 
         {/* Content - Minimal Text */}
         <div ref={textParallax} className="relative z-10 container mx-auto px-6 py-32 text-center">
           <div className="max-w-4xl mx-auto">
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm mb-8 opacity-0 animate-fade-up">
+            <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm mb-8 opacity-0 animate-fade-up shimmer">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               <span className="text-primary text-xs tracking-[0.3em] uppercase font-medium">
                 Ciencia del Control · Protección 1-2 Elementos
@@ -77,7 +82,7 @@ const HeroSection = () => {
             <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] mb-6 opacity-0 animate-fade-up animation-delay-200">
               Dominar el caos
               <br />
-              <span className="text-gold-gradient">sin perder la calma.</span>
+              <span className="text-gold-gradient text-glow">sin perder la calma.</span>
             </h1>
 
             {/* Subtitle */}
@@ -99,7 +104,7 @@ const HeroSection = () => {
               <Button
                 variant="hero"
                 size="xl"
-                className="text-lg px-10 py-6 shadow-gold hover:shadow-[0_0_60px_hsl(38_70%_55%/0.4)] transition-shadow"
+                className="text-lg px-10 py-6 shadow-gold hover:shadow-[0_0_80px_hsl(38_70%_55%/0.5)] transition-all duration-500"
                 onClick={() => scrollToSection("contacto")}
               >
                 Solicitar Información
@@ -107,8 +112,8 @@ const HeroSection = () => {
             </div>
 
             {/* Credential Badge */}
-            <div className="mt-16 inline-flex items-center gap-3 px-6 py-3 bg-primary/10 border border-primary/20 opacity-0 animate-fade-up animation-delay-600">
-              <span className="text-3xl font-serif text-primary font-medium">1er</span>
+            <div className="mt-16 inline-flex items-center gap-3 px-6 py-3 bg-primary/10 border border-primary/20 opacity-0 animate-fade-up animation-delay-600 card-glass">
+              <span className="text-3xl font-serif text-primary font-medium text-glow">1er</span>
               <span className="text-sm text-cream-muted text-left leading-tight">
                 Mexicano certificado<br />ONU en Seguridad
               </span>
@@ -116,10 +121,10 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - Enhanced */}
         <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 opacity-0 animate-fade-in animation-delay-800">
           <div className="flex flex-col items-center gap-3">
-            <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex items-start justify-center p-2">
+            <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex items-start justify-center p-2 shadow-[0_0_20px_hsl(38_70%_55%/0.3)]">
               <div className="w-1.5 h-3 bg-primary rounded-full animate-bounce" />
             </div>
           </div>
@@ -128,12 +133,16 @@ const HeroSection = () => {
 
       {/* PROBLEMS - Visual Cards with Images */}
       <div className="py-24 md:py-32 relative overflow-hidden">
+        {/* Animated Background */}
+        <AnimatedBackground variant="aurora" intensity="low" />
+        
         {/* Background Effects */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/30 to-background" />
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         
-        {/* Ambient Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/5 rounded-full blur-[150px]" />
+        {/* Ambient Glow - Enhanced */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-primary/8 rounded-full blur-[150px]" />
+        <div className="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-[hsl(160_60%_40%/0.05)] rounded-full blur-[120px]" />
 
         <div className="container mx-auto px-6 relative z-10">
           {/* Section Title */}
@@ -142,7 +151,7 @@ const HeroSection = () => {
               La Realidad Adversa
             </p>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium max-w-4xl mx-auto">
-              Tres frentes críticos que el entrenamiento estándar <span className="text-gold-gradient">ignora.</span>
+              Tres frentes críticos que el entrenamiento estándar <span className="text-gold-gradient text-glow">ignora.</span>
             </h2>
           </div>
 
@@ -157,7 +166,7 @@ const HeroSection = () => {
                 className={`group relative overflow-hidden animate-on-scroll stagger-${index + 1} ${problemsVisible ? "visible" : ""}`}
               >
                 {/* Image */}
-                <div className="aspect-square relative overflow-hidden">
+                <div className="aspect-square relative overflow-hidden border border-border/30 group-hover:border-primary/40 transition-colors duration-500">
                   <img
                     src={problem.image}
                     alt={problem.title}
@@ -176,8 +185,9 @@ const HeroSection = () => {
                     </p>
                   </div>
 
-                  {/* Hover Glow */}
+                  {/* Hover Glow - Enhanced */}
                   <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors duration-500" />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shadow-[inset_0_0_60px_hsl(38_70%_55%/0.15)]" />
                 </div>
               </div>
             ))}
