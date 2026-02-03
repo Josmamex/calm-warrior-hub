@@ -25,8 +25,8 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-md mb-6">
-              Protección Ejecutiva con Integridad. Ciencia aplicada para operaciones 
-              de 1-2 escoltas en LATAM. Fundador: Josafath Herrera.
+              Ciencia del Control para Protección 1-2 Elementos.<br />
+              Dominar el Caos sin perder la Calma.
             </p>
             <div className="flex items-center gap-6">
               <a

@@ -9,18 +9,18 @@ import { useParallax, useScrollAnimation } from "@/hooks/useScrollAnimation";
 const problems = [
   {
     image: problemFear,
-    title: "El Miedo Afecta tus Decisiones",
-    description: "Bajo estrés real, tu cerebro táctico se desconecta. Nadie te preparó realmente para esto.",
+    title: "El Entorno: La Soledad del Elemento",
+    description: "El agresor tiene la ventaja de la sorpresa. El protector tiene la desventaja de la multifuncionalidad: conductor, escolta y avanzada simultáneos. Se requiere capacidad para priorizar y resolver sin margen de error.",
   },
   {
     image: problemEgo,
-    title: "La Fuerza Excesiva te Destruye",
-    description: "En LATAM, el ego o el exceso de tu respuesta te lleva a la cárcel o a la muerte.",
+    title: "La Fisiología: El Bloqueo Interno",
+    description: "Bajo estrés, el mayor adversario es el propio sistema nervioso. El túnel visual y el bloqueo auditivo anulan la capacidad de respuesta. Utilizamos Systema para blindar la psique y mantener la claridad mental bajo fuego.",
   },
   {
     image: problemCopy,
-    title: "Realidad vs Teoría de Libro",
-    description: "25 años de experiencia verificable transformando a profesionales.",
+    title: "La Ley: El Riesgo Penal",
+    description: "Neutralizar la amenaza sin justificación es una derrota legal. El marco jurídico exige racionalidad. Enseñamos a controlar con fundamentos técnicos que resisten el escrutinio de un juez, evitando la prisión por uso indebido de la fuerza.",
   },
 ];
 
@@ -69,16 +69,30 @@ const HeroSection = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm mb-8 opacity-0 animate-fade-up">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               <span className="text-primary text-xs tracking-[0.3em] uppercase font-medium">
-                Protección del Ser · Ciencia del Control
+                Ciencia del Control · Protección 1-2 Elementos
               </span>
             </div>
 
             {/* Main Headline - BIG */}
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] mb-8 opacity-0 animate-fade-up animation-delay-200">
-              Domina el Caos
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-medium leading-[0.95] mb-6 opacity-0 animate-fade-up animation-delay-200">
+              Dominar el caos
               <br />
-              <span className="text-gold-gradient">sin Perder la Calma</span>
+              <span className="text-gold-gradient">sin perder la calma.</span>
             </h1>
+
+            {/* Subtitle */}
+            <div className="max-w-2xl mx-auto mb-10 opacity-0 animate-fade-up animation-delay-300">
+              <p className="text-cream-muted text-lg md:text-xl leading-relaxed mb-4">
+                La doctrina convencional entrena para equipos de cuatro. 
+                La realidad exige eficacia en solitario o en binomio.
+              </p>
+              <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
+                Desde hace 25 años preparando protectores en Finlandia, Holanda, 
+                Brasil, Canadá y México. Cuando no hay unidad de apoyo, 
+                tu psique, tu táctica y tu técnica son el único recurso 
+                para resolver la asimetría.
+              </p>
+            </div>
 
             {/* CTA - Prominent */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-up animation-delay-400">
@@ -88,7 +102,7 @@ const HeroSection = () => {
                 className="text-lg px-10 py-6 shadow-gold hover:shadow-[0_0_60px_hsl(38_70%_55%/0.4)] transition-shadow"
                 onClick={() => scrollToSection("contacto")}
               >
-                Comienza Ahora →
+                Solicitar Información
               </Button>
             </div>
 
@@ -124,8 +138,11 @@ const HeroSection = () => {
         <div className="container mx-auto px-6 relative z-10">
           {/* Section Title */}
           <div className="text-center mb-16">
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium">
-              ¿Te suena <span className="text-gold-gradient">familiar</span>?
+            <p className="text-primary text-xs tracking-[0.4em] uppercase mb-4 font-medium">
+              La Realidad Adversa
+            </p>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium max-w-4xl mx-auto">
+              Tres frentes críticos que el entrenamiento estándar <span className="text-gold-gradient">ignora.</span>
             </h2>
           </div>
 
@@ -164,13 +181,6 @@ const HeroSection = () => {
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Hook */}
-          <div className="mt-16 text-center">
-            <p className="font-serif text-2xl md:text-3xl text-foreground">
-              No eres el único. <span className="text-primary">Y tiene solución.</span>
-            </p>
           </div>
         </div>
       </div>

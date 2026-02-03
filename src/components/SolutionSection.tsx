@@ -8,29 +8,29 @@ const pillars = [
   {
     image: pilarPsique,
     icon: "🛡️",
-    title: "Psique",
-    subtitle: "Control Mental",
-    description: "Gestiona el miedo. Reprograma automatismos.",
+    title: "La Psique",
+    subtitle: "Blindaje Mental (Systema Vasiliev)",
+    description: "Antes de la táctica, está la mente. Se entrena la regulación del miedo. Controlar la respiración y el estado interno permite gestionar la violencia sin perder la claridad estratégica.",
     lobo: "Gestión del miedo en soledad absoluta. No hay a quién pedir apoyo emocional.",
     binomio: "Confianza mutua. Gestión del miedo compartido sin contagio emocional.",
   },
   {
-    image: pilarFisico,
-    icon: "⚡",
-    title: "Físico",
-    subtitle: "Biomecánica Eficiente",
-    description: "Eficiencia sin fuerza bruta. Koga + Systema.",
-    lobo: "Eficiencia máxima. Un error = no hay quien te cubra. Economía de movimiento crítica.",
-    binomio: "Coordinación física. Roles intercambiables sin chocar. Testigo biomecánico.",
-  },
-  {
     image: pilarTactica,
     icon: "🎯",
-    title: "Táctica",
-    subtitle: "Estrategia Aplicada",
-    description: "Decisiones inteligentes. OODA + Hombre Gris.",
+    title: "La Táctica",
+    subtitle: "Lectura y Evasión",
+    description: "La mejor resolución es la que evita el contacto. Desarrollamos la lectura de entorno para detectar y evadir la amenaza. Si la confrontación es inminente, se entrena la transición inmediata a la ofensiva controlada.",
     lobo: "Decisión autónoma instantánea. Ciclo OODA individual bajo presión extrema.",
     binomio: "Decisión distribuida. OODA compartido sin comunicación verbal constante.",
+  },
+  {
+    image: pilarFisico,
+    icon: "⚡",
+    title: "La Técnica",
+    subtitle: "Control Físico (Sistema Koga)",
+    description: "Cuando la fuerza es inevitable, se aplica biomecánica de control. Permite someter a oponentes sin depender de la fuerza bruta, asegurando la eficiencia energética y la legalidad de la intervención.",
+    lobo: "Eficiencia máxima. Un error = no hay quien te cubra. Economía de movimiento crítica.",
+    binomio: "Coordinación física. Roles intercambiables sin chocar. Testigo biomecánico.",
   },
 ];
 
@@ -62,16 +62,18 @@ const SolutionSection = () => {
         {/* Section Header */}
         <div
           ref={headerRef}
-          className={`text-center max-w-3xl mx-auto mb-20 animate-on-scroll ${headerVisible ? "visible" : ""}`}
+          className={`text-center max-w-4xl mx-auto mb-20 animate-on-scroll ${headerVisible ? "visible" : ""}`}
         >
           <p className="text-primary text-xs tracking-[0.4em] uppercase mb-4 font-medium">
-            La Solución
+            Nuestra Expertise
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight">
-            Protección del Ser:
-            <br />
-            <span className="text-gold-gradient">3 Pilares</span>
+          <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6">
+            25 Años perfeccionando la respuesta en{" "}
+            <span className="text-gold-gradient">entornos hostiles.</span>
           </h2>
+          <p className="text-cream-muted text-lg md:text-xl leading-relaxed">
+            Nuestra experiencia integra tres sistemas probados para anular la desventaja numérica y física.
+          </p>
         </div>
 
         {/* Pillars Grid - Visual First */}
@@ -82,7 +84,7 @@ const SolutionSection = () => {
           {pillars.map((pillar, index) => (
             <div
               key={pillar.title}
-              className={`group relative overflow-hidden h-[600px] animate-on-scroll stagger-${index + 1} ${pillarsVisible ? "visible" : ""}`}
+              className={`group relative overflow-hidden h-[650px] animate-on-scroll stagger-${index + 1} ${pillarsVisible ? "visible" : ""}`}
             >
               {/* Background Image */}
               <img
@@ -110,7 +112,7 @@ const SolutionSection = () => {
                 </h3>
                 
                 {/* Description */}
-                <p className="text-cream-muted text-lg leading-relaxed mb-4">
+                <p className="text-cream-muted text-base leading-relaxed mb-4">
                   {pillar.description}
                 </p>
 
