@@ -2,6 +2,8 @@ import { Download, MessageCircle, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import AnimatedBackground from "./AnimatedBackground";
+import BlurredImageBackground from "./BlurredImageBackground";
+import pilarFisico from "@/assets/pilar-fisico.jpg";
 
 const resources = [
   {
@@ -39,6 +41,15 @@ const ResourcesSection = () => {
 
   return (
     <section id="recursos" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Blurred Image Background */}
+      <BlurredImageBackground 
+        imageSrc={pilarFisico} 
+        blurAmount={100}
+        opacity={0.15}
+        overlay="emerald"
+        animate={true}
+      />
+      
       {/* Animated Background */}
       <AnimatedBackground variant="mesh" intensity="low" />
       
@@ -46,9 +57,9 @@ const ResourcesSection = () => {
       <div className="absolute inset-0 bg-gradient-radial opacity-50" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
       
-      {/* Emerald glow for "Hombre Gris" theme */}
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-[hsl(160_60%_40%/0.08)] rounded-full blur-[150px] animate-pulse" />
-      <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
+      {/* Emerald glow for "Hombre Gris" theme - Enhanced */}
+      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-[hsl(160_60%_40%/0.1)] rounded-full blur-[150px] animate-pulse-glow" />
+      <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-primary/8 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '1.5s' }} />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}

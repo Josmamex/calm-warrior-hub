@@ -1,6 +1,8 @@
 import { Shield, Hand, Target, Scale } from "lucide-react";
 import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
 import AnimatedBackground from "./AnimatedBackground";
+import BlurredImageBackground from "./BlurredImageBackground";
+import heroTactical from "@/assets/hero-tactical.jpg";
 
 const stages = [
   {
@@ -48,6 +50,15 @@ const IncidentCoverageSection = () => {
 
   return (
     <section className="py-24 md:py-32 relative overflow-hidden">
+      {/* Blurred Image Background */}
+      <BlurredImageBackground 
+        imageSrc={heroTactical} 
+        blurAmount={120}
+        opacity={0.15}
+        overlay="dark"
+        animate={true}
+      />
+      
       {/* Animated Background */}
       <AnimatedBackground variant="mesh" intensity="medium" />
       
@@ -57,9 +68,9 @@ const IncidentCoverageSection = () => {
       
       {/* Ambient Glow - Enhanced */}
       <div ref={bgParallax} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/8 rounded-full blur-[150px]" />
-        <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-[hsl(160_60%_40%/0.06)] rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-inkoga-red/5 rounded-full blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[150px] animate-pulse-glow" />
+        <div className="absolute top-1/4 left-1/4 w-[300px] h-[300px] bg-[hsl(160_60%_40%/0.08)] rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-[300px] h-[300px] bg-inkoga-red/8 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

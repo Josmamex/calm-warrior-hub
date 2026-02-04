@@ -5,6 +5,7 @@ import problemEgo from "@/assets/problem-ego.jpg";
 import problemCopy from "@/assets/problem-copy.jpg";
 import FloatingParticles from "./FloatingParticles";
 import AnimatedBackground from "./AnimatedBackground";
+import BlurredImageBackground from "./BlurredImageBackground";
 import { useParallax, useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const problems = [
@@ -41,7 +42,17 @@ const HeroSection = () => {
     <section id="inicio" className="relative">
       {/* HERO - Full Visual Impact */}
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background with Parallax */}
+        {/* Blurred Image Background Layer */}
+        <BlurredImageBackground 
+          imageSrc={heroTactical} 
+          blurAmount={60}
+          opacity={0.4}
+          overlay="dark"
+          animate={true}
+          parallax={true}
+        />
+        
+        {/* Background with Parallax - Sharp Image */}
         <div
           ref={bgParallax}
           className="absolute inset-0 scale-110"
@@ -62,9 +73,9 @@ const HeroSection = () => {
         {/* Floating Particles & Ambient Glow - Enhanced */}
         <FloatingParticles />
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[120px] animate-pulse" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[hsl(160_60%_40%/0.05)] rounded-full blur-[150px]" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[120px] animate-pulse-glow" />
+          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[hsl(160_60%_40%/0.08)] rounded-full blur-[150px] animate-pulse-glow" style={{ animationDelay: '1s' }} />
         </div>
 
         {/* Content - Minimal Text */}

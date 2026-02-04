@@ -13,10 +13,18 @@ import AboutSection from "@/components/AboutSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import CursorGlow from "@/components/CursorGlow";
+import GradientOrbs from "@/components/GradientOrbs";
+import NoiseOverlay from "@/components/NoiseOverlay";
 
 const Index = () => {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="min-h-screen bg-background relative">
+      {/* Global Effects */}
+      <CursorGlow color="gold" />
+      <GradientOrbs />
+      <NoiseOverlay />
+      
       <Navbar />
       <HeroSection />
       <WhyINKOGASection />

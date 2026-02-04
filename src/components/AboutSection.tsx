@@ -1,4 +1,6 @@
 import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
+import BlurredImageBackground from "./BlurredImageBackground";
+import pilarPsique from "@/assets/pilar-psique.jpg";
 
 const AboutSection = () => {
   const { ref: contentRef, isVisible: contentVisible } = useScrollAnimation();
@@ -6,6 +8,16 @@ const AboutSection = () => {
 
   return (
     <section id="sobre-mi" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Blurred Image Background */}
+      <BlurredImageBackground 
+        imageSrc={pilarPsique} 
+        blurAmount={120}
+        opacity={0.15}
+        overlay="gold"
+        animate={true}
+        parallax={true}
+      />
+      
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/20 to-background" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
@@ -14,7 +26,7 @@ const AboutSection = () => {
       <div ref={decorParallax} className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-32 -right-32 w-96 h-96 border border-primary/10 rotate-45" />
         <div className="absolute -bottom-32 -left-32 w-64 h-64 border border-primary/5 rotate-12" />
-        <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px]" />
+        <div className="absolute top-1/3 right-1/4 w-[400px] h-[400px] bg-primary/8 rounded-full blur-[100px] animate-pulse-glow" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
