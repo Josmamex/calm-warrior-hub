@@ -5,7 +5,6 @@ import problemEgo from "@/assets/problem-ego.jpg";
 import problemCopy from "@/assets/problem-copy.jpg";
 import FloatingParticles from "./FloatingParticles";
 import AnimatedBackground from "./AnimatedBackground";
-import BlurredImageBackground from "./BlurredImageBackground";
 import { useParallax, useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const problems = [
@@ -42,17 +41,7 @@ const HeroSection = () => {
     <section id="inicio" className="relative">
       {/* HERO - Full Visual Impact */}
       <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Blurred Image Background Layer */}
-        <BlurredImageBackground 
-          imageSrc={heroTactical} 
-          blurAmount={60}
-          opacity={0.4}
-          overlay="dark"
-          animate={true}
-          parallax={true}
-        />
-        
-        {/* Background with Parallax - Sharp Image */}
+        {/* Background with Parallax - Sharp Image - VISIBLE */}
         <div
           ref={bgParallax}
           className="absolute inset-0 scale-110"
@@ -61,10 +50,9 @@ const HeroSection = () => {
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${heroTactical})` }}
           />
-          {/* Overlays for depth */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/20 to-background" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-background/60" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,hsl(var(--background))_70%)]" />
+          {/* Minimal overlays - keep image visible */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/20 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-background/30" />
         </div>
 
         {/* Animated Background Effects */}
@@ -73,9 +61,8 @@ const HeroSection = () => {
         {/* Floating Particles & Ambient Glow - Enhanced */}
         <FloatingParticles />
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/15 rounded-full blur-[120px] animate-pulse-glow" />
-          <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/10 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[hsl(160_60%_40%/0.08)] rounded-full blur-[150px] animate-pulse-glow" style={{ animationDelay: '1s' }} />
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/8 rounded-full blur-[120px] animate-pulse-glow" />
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-primary/5 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
         </div>
 
         {/* Content - Minimal Text */}
