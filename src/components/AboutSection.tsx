@@ -11,9 +11,9 @@ const AboutSection = () => {
       {/* Blurred Image Background */}
       <BlurredImageBackground 
         imageSrc={pilarPsique} 
-        blurAmount={120}
-        opacity={0.15}
-        overlay="gold"
+        blurAmount={140}
+        opacity={0.08}
+        overlay="dark"
         animate={true}
         parallax={true}
       />

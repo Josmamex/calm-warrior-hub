@@ -11,10 +11,10 @@ interface BlurredImageBackgroundProps {
 }
 
 const overlayStyles = {
-  dark: 'bg-gradient-to-b from-background/60 via-background/40 to-background/80',
-  gold: 'bg-gradient-to-br from-primary/20 via-transparent to-primary/10',
-  emerald: 'bg-gradient-to-br from-[hsl(160_60%_40%/0.2)] via-transparent to-[hsl(160_60%_40%/0.1)]',
-  red: 'bg-gradient-to-br from-inkoga-red/15 via-transparent to-inkoga-red/10',
+  dark: 'bg-gradient-to-b from-background/80 via-background/60 to-background/90',
+  gold: 'bg-gradient-to-br from-primary/5 via-transparent to-primary/3',
+  emerald: 'bg-gradient-to-br from-[hsl(160_60%_40%/0.05)] via-transparent to-[hsl(160_60%_40%/0.03)]',
+  red: 'bg-gradient-to-br from-inkoga-red/5 via-transparent to-inkoga-red/3',
   none: '',
 };
 

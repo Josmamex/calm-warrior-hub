@@ -16,24 +16,12 @@ const faqs = [
     a: "Para Guardian Foundations, no. Está diseñado para profesionales que inician o tienen poca experiencia. Para Guardian Tactical, recomendamos al menos 1 año de experiencia operativa o haber completado Foundations primero.",
   },
   {
-    q: "¿La certificación es reconocida internacionalmente?",
-    a: "Guardian Mindset es una certificación privada basada en metodología propietaria. No es una certificación gubernamental ni está afiliada a organismos como ASIS. Su valor está en las competencias reales que desarrolla, no en el papel.",
-  },
-  {
     q: "¿Puedo certificarme con mi binomio actual?",
     a: "Sí, y de hecho lo recomendamos. Guardian Tactical incluye módulos específicos de coordinación que funcionan mejor cuando entrenas con tu compañero real de operaciones. Ofrecemos precio especial para binomios.",
   },
   {
-    q: "¿Qué pasa si trabajo solo el 100% del tiempo?",
-    a: "Guardian Foundations está diseñado exactamente para ti. Sin embargo, te recomendamos también Tactical porque la realidad operativa cambia: podrías necesitar coordinar con alguien eventualmente.",
-  },
-  {
     q: "¿Hay garantía de satisfacción?",
     a: "Si después del primer módulo sientes que no es para ti, devolvemos el 100% de tu inversión sin preguntas. No me interesa tener alumnos que no quieren estar ahí.",
-  },
-  {
-    q: "¿Qué incluyen los recursos gratuitos?",
-    a: "Todo lo de la sección Herramientas es completamente gratis: manuales, checklists, protocolos y plantillas. No hay truco. Es contenido real que puedes usar hoy.",
   },
   {
     q: "¿Cómo sé si Guardian Mindset es para mí?",
