@@ -1,279 +1,242 @@
 
 
-# Plan de Implementación: Textos INKOGA Definitivos
+# Plan: Fondos Difuminados con Imágenes Reales + Más Efectos React
 
-## Resumen Ejecutivo
+## El Problema Detectado
 
-Implementar todos los textos definitivos proporcionados, crear 2 nuevas secciones y actualizar SEO/metadata.
-
----
-
-## FASE 1: HeroSection.tsx
-
-### Cambios en el Hero Principal
-
-| Elemento | Actual | Nuevo |
-|----------|--------|-------|
-| **Badge** | "Protección del Ser · Ciencia del Control" | "Ciencia del Control · Protección 1-2 Elementos" |
-| **H1** | "Domina el Caos sin Perder la Calma" | "Dominar el caos sin perder la calma." |
-| **Subtítulo** | (no existe) | Agregar párrafo completo |
-| **CTA** | "Comienza Ahora →" | "Solicitar Información" |
-
-**Subtítulo a agregar (después del H1):**
-```
-La doctrina convencional entrena para equipos de cuatro. 
-La realidad exige eficacia en solitario o en binomio.
-
-Desde hace 25 años preparando protectores en Finlandia, Holanda, 
-Brasil, Canadá y México. Cuando no hay unidad de apoyo, 
-tu psique, tu táctica y tu técnica son el único recurso 
-para resolver la asimetría.
-```
-
-### Cambios en las 3 Cards de Problemas
-
-**Título de sección:** Cambiar de "¿Te suena familiar?" a:
-```
-Tres frentes críticos que el entrenamiento estándar ignora.
-```
-
-| Card | Título Actual | Título Nuevo | Descripción Nueva |
-|------|---------------|--------------|-------------------|
-| 1 | "El Miedo Afecta tus Decisiones" | "El Entorno: La Soledad del Elemento" | El agresor tiene la ventaja de la sorpresa. El protector tiene la desventaja de la multifuncionalidad: conductor, escolta y avanzada simultáneos. Se requiere capacidad para priorizar y resolver sin margen de error. |
-| 2 | "La Fuerza Excesiva te Destruye" | "La Fisiología: El Bloqueo Interno" | Bajo estrés, el mayor adversario es el propio sistema nervioso. El túnel visual y el bloqueo auditivo anulan la capacidad de respuesta. Utilizamos Systema para blindar la psique y mantener la claridad mental bajo fuego. |
-| 3 | "Realidad vs Teoría de Libro" | "La Ley: El Riesgo Penal" | Neutralizar la amenaza sin justificación es una derrota legal. El marco jurídico exige racionalidad. Enseñamos a controlar con fundamentos técnicos que resisten el escrutinio de un juez, evitando la prisión por uso indebido de la fuerza. |
-
-**Hook final:** Eliminar "No eres el único. Y tiene solución."
+Actualmente los efectos de fondo usan **CSS puro** (gradientes, conic-gradient), pero NO tienen:
+- **Imágenes reales difuminadas** como texturas de fondo
+- Profundidad visual con fotos borrosas debajo del contenido
+- El efecto "premium blur" que tienen sitios como Apple, Stripe, Linear
 
 ---
 
-## FASE 2: SolutionSection.tsx
+## Solución: 3 Capas de Efectos Visuales
 
-### Cambios en Header
+### Capa 1: Imágenes de Fondo Difuminadas (NUEVO)
 
-| Elemento | Actual | Nuevo |
-|----------|--------|-------|
-| **Etiqueta** | "La Solución" | "Nuestra Expertise" |
-| **Título** | "Protección del Ser: 3 Pilares" | "25 Años perfeccionando la respuesta en entornos hostiles." |
-| **Subtítulo** | (no existe) | "Nuestra experiencia integra tres sistemas probados para anular la desventaja numérica y física." |
+Agregar imágenes reales con blur extremo detrás del contenido:
 
-### Cambios en los 3 Pilares
-
-| Pilar | Actual | Nuevo |
-|-------|--------|-------|
-| **1 - Título** | "Psique / Control Mental" | "La Psique: Blindaje Mental (Systema Vasiliev)" |
-| **1 - Descripción** | "Gestiona el miedo. Reprograma automatismos." | "Antes de la táctica, está la mente. Se entrena la regulación del miedo. Controlar la respiración y el estado interno permite gestionar la violencia sin perder la claridad estratégica." |
-| **2 - Título** | "Físico / Biomecánica Eficiente" | "La Táctica: Lectura y Evasión" |
-| **2 - Descripción** | "Eficiencia sin fuerza bruta. Koga + Systema." | "La mejor resolución es la que evita el contacto. Desarrollamos la lectura de entorno para detectar y evadir la amenaza. Si la confrontación es inminente, se entrena la transición inmediata a la ofensiva controlada." |
-| **3 - Título** | "Táctica / Estrategia Aplicada" | "La Técnica: Control Físico (Sistema Koga)" |
-| **3 - Descripción** | "Decisiones inteligentes. OODA + Hombre Gris." | "Cuando la fuerza es inevitable, se aplica biomecánica de control. Permite someter a oponentes sin depender de la fuerza bruta, asegurando la eficiencia energética y la legalidad de la intervención." |
-
-**Nota:** Se mantienen las aplicaciones Lobo/Binomio existentes en cada pilar.
+| Sección | Imagen de Fondo | Efecto |
+|---------|-----------------|--------|
+| Hero | `hero-tactical.jpg` | blur(60px) + overlay oscuro |
+| WhyINKOGA | Textura abstracta dorada | blur(80px) + saturación |
+| Solution | `pilar-tactica.jpg` | blur(100px) + gradiente |
+| Programs | Textura oscura con oro | blur(50px) |
+| IncidentCoverage | Líneas geométricas | blur(40px) |
+| Filter | Contraste verde/rojo | blur(60px) |
+| About | Perfil borroso | blur(80px) |
 
 ---
 
-## FASE 3: Nueva Sección - IncidentCoverageSection.tsx
-
-### Crear nuevo componente
-
-**Ubicación:** `src/components/IncidentCoverageSection.tsx`
-
-**Contenido:**
+### Capa 2: Nuevo Componente `BlurredImageBackground.tsx`
 
 ```
-TÍTULO PRINCIPAL: Cobertura Total del Incidente
-
-TEXTO DESCRIPTIVO: En esquemas de 1-2 elementos, se debe garantizar 
-la seguridad del Principal en todas las etapas:
-
-4 ETAPAS (timeline horizontal o grid):
-
-┌─────────────┬─────────────┬─────────────┬─────────────┐
-│ PREVENCIÓN  │  DISUASIÓN  │  REACCIÓN   │RECUPERACIÓN │
-├─────────────┼─────────────┼─────────────┼─────────────┤
-│Inteligencia,│Romper la    │Uso de fuerza│Gestión legal│
-│contravigi-  │intención del│técnica      │del evento y │
-│lancia y     │agresor      │fundamentada │manejo del   │
-│lectura de   │mediante     │para         │estrés post- │
-│entorno.     │postura y    │neutralizar  │incidente.   │
-│             │dominio del  │el riesgo.   │             │
-│             │espacio.     │             │             │
-└─────────────┴─────────────┴─────────────┴─────────────┘
+Propósito: Renderizar imagen difuminada con:
+- blur variable (40px-120px)
+- overlay con gradiente
+- animación de escala sutil
+- parallax opcional
+- saturación/brillo ajustable
 ```
 
-**Estilo visual:**
-- Fondo con gradiente oscuro
-- Iconos para cada etapa (escudo, mano, puño, balance)
-- Hover effects en cada card
-- Línea conectora entre etapas
+**Props:**
+- `imageSrc`: ruta de imagen
+- `blurAmount`: intensidad del blur (40-120)
+- `overlay`: color/gradiente encima
+- `animate`: boolean para movimiento sutil
+- `parallax`: boolean para efecto scroll
 
 ---
 
-## FASE 4: AboutSection.tsx
+### Capa 3: Efectos React Adicionales
 
-### Cambios en el perfil de Josafath
+**Nuevos efectos a implementar:**
 
-| Elemento | Actual | Nuevo |
-|----------|--------|-------|
-| **Título cargo** | (solo nombre) | "CEO INKOGA · 25 Años de Experiencia Internacional" |
-
-**Texto bio a actualizar:**
-```
-Trayectoria operativa desarrollada en Finlandia, Holanda, Brasil, 
-Canadá y México. Experiencia real en entornos de alto riesgo 
-sin estructura de apoyo convencional.
-
-1er mexicano certificado por la ONU en Administración de Seguridad 
-y Representante del Sistema Koga en LATAM.
-
-Aquí no hay teorías; hay ciencia del control aplicada 
-a la resolución de conflictos para el elemento solo y el binomio.
-```
-
-**Mantener:** Stats grid, maestros, países, certificaciones.
+| Efecto | Descripción |
+|--------|-------------|
+| **Gradient Orbs Animados** | Círculos de color que se mueven suavemente |
+| **Grain/Noise Overlay** | Textura granulada sutil sobre todo |
+| **Glow Pulse** | Pulsos de luz que viajan por la pantalla |
+| **Scroll-Triggered Reveals** | Elementos que aparecen con desenfoque |
+| **Interactive Cursor Glow** | Halo de luz que sigue el cursor |
+| **Section Dividers Animados** | Líneas brillantes entre secciones |
 
 ---
 
-## FASE 5: Nueva Sección - FilterSection.tsx
+## Archivos a Crear
 
-### Crear nuevo componente
+### 1. `src/components/BlurredImageBackground.tsx` (NUEVO)
 
-**Ubicación:** `src/components/FilterSection.tsx`
+Componente reutilizable para fondos con imagen difuminada:
 
-**Diseño: 2 columnas**
-
+```text
+┌─────────────────────────────────────────────────┐
+│  Imagen original (ej: hero-tactical.jpg)        │
+├─────────────────────────────────────────────────┤
+│  + filter: blur(80px)                           │
+│  + transform: scale(1.2) // evitar bordes       │
+│  + opacity: 0.4-0.7                             │
+├─────────────────────────────────────────────────┤
+│  + overlay: gradient oscuro                     │
+│  + animation: subtle-scale 30s                  │
+└─────────────────────────────────────────────────┘
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    ¿Es Esto Para Ti?                        │
-├──────────────────────────┬──────────────────────────────────┤
-│     ✓ DIRIGIDO A         │      ✗ NO DIRIGIDO A             │
-├──────────────────────────┼──────────────────────────────────┤
-│ • Elementos que trabajan │ • Quienes creen que la seguridad │
-│   solos o en binomio y   │   se limita a la agresión física.│
-│   enfrentan la           │                                  │
-│   vulnerabilidad de la   │ • Buscadores de métodos rápidos  │
-│   falta de apoyo.        │   sin fundamento táctico ni      │
-│                          │   mental.                        │
-│ • Quienes entienden que  │                                  │
-│   la psique determina el │                                  │
-│   resultado tanto como   │                                  │
-│   el arma.               │                                  │
-│                          │                                  │
-│ • Profesionales que      │                                  │
-│   buscan respaldo legal  │                                  │
-│   en su actuar.          │                                  │
-└──────────────────────────┴──────────────────────────────────┘
-```
-
-**Estilo visual:**
-- Columna izquierda: borde verde/primario, checks verdes
-- Columna derecha: borde rojo/muted, X rojas
-- Fondo con gradiente sutil
 
 ---
 
-## FASE 6: Footer.tsx
+### 2. `src/components/CursorGlow.tsx` (NUEVO)
 
-### Actualizar textos
+Efecto de halo que sigue el cursor del mouse:
 
-**Cambiar descripción de marca:**
-```
-ACTUAL: "Protección Ejecutiva con Integridad. Ciencia aplicada 
-para operaciones de 1-2 escoltas en LATAM. Fundador: Josafath Herrera."
-
-NUEVO: "Ciencia del Control para Protección 1-2 Elementos. 
-Dominar el Caos sin perder la Calma."
-```
-
-**Mantener:** Links de navegación, contacto, newsletter, copyright.
+- Círculo difuminado que sigue al cursor
+- Color dorado/emerald según sección
+- Desaparece en móvil (touch)
+- Transición suave
 
 ---
 
-## FASE 7: index.html - SEO & Metadata
+### 3. `src/components/GradientOrbs.tsx` (NUEVO)
 
-### Actualizar meta tags
+Orbes de color que flotan animados:
 
-```html
-<!-- META TITLE -->
-<title>Protección Ejecutiva 1-2 Elementos | INKOGA Ciencia del Control</title>
+- 3-5 círculos grandes con blur
+- Movimiento aleatorio pero suave
+- Colores: dorado, emerald, rojo sutil
+- z-index detrás del contenido
 
-<!-- META DESCRIPTION -->
-<meta name="description" content="Especialización para escoltas solos 
-y binomios. Metodología Koga y Systema para resolver sin apoyo. 
-25 años de experiencia operativa internacional." />
-```
+---
 
-### Agregar Schema.org EducationalOccupationalProgram
+## Archivos a Modificar
 
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "EducationalOccupationalProgram",
-  "name": "Protección Ejecutiva para 1-2 Elementos",
-  "provider": {
-    "@type": "Organization",
-    "name": "INKOGA",
-    "founder": {
-      "@type": "Person",
-      "name": "Josafath Herrera",
-      "jobTitle": "CEO & Representante Koga LATAM"
-    }
-  },
-  "description": "Metodología de Ciencia del Control para 
-  escoltas operativos en solitario o binomio."
+### 4. `src/index.css`
+
+Agregar:
+```css
+/* Blur background utilities */
+.bg-blur-image {
+  position: absolute;
+  inset: -10%;
+  filter: blur(80px);
+  transform: scale(1.2);
+  opacity: 0.5;
+  animation: subtleScale 30s ease-in-out infinite;
+}
+
+/* Cursor glow */
+.cursor-glow {
+  pointer-events: none;
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, hsl(var(--gold) / 0.15), transparent 70%);
+  filter: blur(40px);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+}
+
+/* New animations */
+@keyframes subtleScale {
+  0%, 100% { transform: scale(1.2); }
+  50% { transform: scale(1.3); }
+}
+
+@keyframes orbDrift {
+  0% { transform: translate(0, 0); }
+  33% { transform: translate(50px, -30px); }
+  66% { transform: translate(-30px, 50px); }
+  100% { transform: translate(0, 0); }
 }
 ```
 
 ---
 
-## FASE 8: Index.tsx - Orden de Secciones
+### 5. Secciones a Actualizar
 
-### Agregar nuevas secciones al layout
+| Componente | Cambio |
+|------------|--------|
+| `HeroSection.tsx` | Añadir `<BlurredImageBackground>` con `hero-tactical.jpg` |
+| `WhyINKOGASection.tsx` | Añadir fondo difuminado dorado |
+| `SolutionSection.tsx` | Añadir imagen de pilar borrosa |
+| `ProgramsSection.tsx` | Intensificar blur background |
+| `IncidentCoverageSection.tsx` | Añadir patrón geométrico blur |
+| `FilterSection.tsx` | Añadir contraste verde/rojo difuminado |
+| `AboutSection.tsx` | Añadir imagen de textura blur |
+| `ResourcesSection.tsx` | Mantener emerald, añadir más blur |
 
+---
+
+### 6. `src/pages/Index.tsx`
+
+Agregar componentes globales:
 ```tsx
-<Navbar />
-<HeroSection />
-<WhyINKOGASection />
-<OperationalRealitySection />
-<SolutionSection />
-<IncidentCoverageSection />    // NUEVO
-<ProgramsSection />
-<FilterSection />              // NUEVO
-<ResourcesSection />
-<FAQSection />
-<BlogSection />
-<AboutSection />
-<ContactSection />
-<Footer />
-<WhatsAppButton />
+<CursorGlow />        // Sigue el cursor
+<GradientOrbs />      // Orbes flotantes globales
+```
+
+---
+
+### 7. Nuevas Imágenes de Textura
+
+Para fondos difuminados, usaremos las imágenes existentes:
+
+| Imagen | Uso |
+|--------|-----|
+| `hero-tactical.jpg` | Hero, fondo principal |
+| `pilar-tactica.jpg` | Solution section |
+| `pilar-psique.jpg` | About section |
+| `lobo-solitario.jpg` | Filter section |
+| `binomio.jpg` | Programs section |
+
+---
+
+## Resultado Visual Esperado
+
+```text
+┌─────────────────────────────────────────────────┐
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░ IMAGEN DIFUMINADA (blur 80px) ░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│     ┌─────────────────────────────────┐         │
+│     │                                 │         │
+│     │    CONTENIDO NÍTIDO             │         │
+│     │    Texto, cards, botones        │         │
+│     │                                 │         │
+│     └─────────────────────────────────┘         │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│ ░░░ ORBES ANIMADOS + CURSOR GLOW ░░░░░░░░░░░░░░ │
+│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+└─────────────────────────────────────────────────┘
 ```
 
 ---
 
 ## Resumen de Archivos
 
-| Archivo | Acción | Descripción |
-|---------|--------|-------------|
-| `HeroSection.tsx` | MODIFICAR | Badge, H1, subtítulo, CTA, 3 cards |
-| `SolutionSection.tsx` | MODIFICAR | Header, 3 pilares con descripciones |
-| `AboutSection.tsx` | MODIFICAR | Título cargo, bio actualizada |
-| `Footer.tsx` | MODIFICAR | Descripción de marca |
-| `IncidentCoverageSection.tsx` | CREAR | Nueva sección 4 etapas |
-| `FilterSection.tsx` | CREAR | Nueva sección filtro |
-| `Index.tsx` | MODIFICAR | Agregar 2 nuevas secciones |
-| `index.html` | MODIFICAR | Meta tags + Schema.org |
+| Archivo | Acción |
+|---------|--------|
+| `BlurredImageBackground.tsx` | CREAR |
+| `CursorGlow.tsx` | CREAR |
+| `GradientOrbs.tsx` | CREAR |
+| `index.css` | MODIFICAR - nuevas animaciones |
+| `HeroSection.tsx` | MODIFICAR - añadir blur bg |
+| `WhyINKOGASection.tsx` | MODIFICAR - añadir blur bg |
+| `SolutionSection.tsx` | MODIFICAR - añadir blur bg |
+| `ProgramsSection.tsx` | MODIFICAR - intensificar |
+| `IncidentCoverageSection.tsx` | MODIFICAR - añadir blur bg |
+| `FilterSection.tsx` | MODIFICAR - añadir blur bg |
+| `AboutSection.tsx` | MODIFICAR - añadir blur bg |
+| `ResourcesSection.tsx` | MODIFICAR - intensificar emerald |
+| `Index.tsx` | MODIFICAR - añadir componentes globales |
 
 ---
 
-## Lo que se PRESERVA
+## Beneficios
 
-- Todas las imágenes generadas
-- Efectos parallax y partículas flotantes
-- Animaciones de scroll (useScrollAnimation)
-- OperationalRealitySection completa (GAP + Lobo/Binomio)
-- ProgramsSection (3 niveles)
-- WhyINKOGASection
-- FAQSection, BlogSection, ResourcesSection
-- WhatsAppButton flotante
-- Estructura visual de cards con hover effects
+- **Profundidad visual**: Las imágenes difuminadas crean capas de profundidad
+- **Cohesión de marca**: Usa las fotos existentes del proyecto
+- **Performance**: blur() es acelerado por GPU
+- **Interactividad**: Cursor glow añade dinamismo
+- **Consistencia**: Mismo estilo que "Elige tu nivel"
 
