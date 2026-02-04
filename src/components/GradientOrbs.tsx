@@ -1,38 +1,24 @@
 const orbs = [
   {
     size: 500,
-    color: 'hsl(38 70% 55% / 0.08)',
+    color: 'hsl(220 20% 15% / 0.03)',
     position: { top: '10%', left: '15%' },
     duration: 25,
     delay: 0,
   },
   {
     size: 600,
-    color: 'hsl(160 60% 40% / 0.06)',
+    color: 'hsl(220 15% 20% / 0.03)',
     position: { top: '50%', right: '10%' },
     duration: 30,
     delay: -10,
   },
   {
     size: 400,
-    color: 'hsl(38 70% 55% / 0.05)',
+    color: 'hsl(220 20% 12% / 0.02)',
     position: { bottom: '20%', left: '40%' },
     duration: 35,
     delay: -15,
-  },
-  {
-    size: 350,
-    color: 'hsl(350 75% 45% / 0.04)',
-    position: { top: '30%', right: '25%' },
-    duration: 28,
-    delay: -5,
-  },
-  {
-    size: 450,
-    color: 'hsl(160 60% 40% / 0.05)',
-    position: { bottom: '40%', left: '10%' },
-    duration: 32,
-    delay: -20,
   },
 ];
 
@@ -47,7 +33,7 @@ const GradientOrbs = () => {
             width: orb.size,
             height: orb.size,
             background: `radial-gradient(circle, ${orb.color}, transparent 70%)`,
-            filter: 'blur(80px)',
+            filter: 'blur(100px)',
             ...orb.position,
             animationDuration: `${orb.duration}s`,
             animationDelay: `${orb.delay}s`,

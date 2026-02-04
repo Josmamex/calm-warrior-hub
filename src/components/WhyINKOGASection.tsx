@@ -37,9 +37,9 @@ const WhyINKOGASection = () => {
       {/* Blurred Image Background */}
       <BlurredImageBackground 
         imageSrc={pilarTactica} 
-        blurAmount={100}
-        opacity={0.3}
-        overlay="gold"
+        blurAmount={120}
+        opacity={0.15}
+        overlay="dark"
         animate={true}
       />
       

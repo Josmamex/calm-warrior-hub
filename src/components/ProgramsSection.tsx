@@ -78,9 +78,9 @@ const ProgramsSection = () => {
       {/* Blurred Image Background */}
       <BlurredImageBackground 
         imageSrc={binomio} 
-        blurAmount={80}
-        opacity={0.2}
-        overlay="gold"
+        blurAmount={120}
+        opacity={0.1}
+        overlay="dark"
         animate={true}
       />
       
