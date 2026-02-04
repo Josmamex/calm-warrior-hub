@@ -1,6 +1,8 @@
 import { Target, Brain, Shield } from "lucide-react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import AnimatedBackground from "./AnimatedBackground";
+import BlurredImageBackground from "./BlurredImageBackground";
+import pilarTactica from "@/assets/pilar-tactica.jpg";
 
 const differentiators = [
   {
@@ -32,6 +34,15 @@ const WhyINKOGASection = () => {
 
   return (
     <section id="por-que-inkoga" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Blurred Image Background */}
+      <BlurredImageBackground 
+        imageSrc={pilarTactica} 
+        blurAmount={100}
+        opacity={0.3}
+        overlay="gold"
+        animate={true}
+      />
+      
       {/* Animated Background */}
       <AnimatedBackground variant="waves" intensity="low" />
       
@@ -40,8 +51,8 @@ const WhyINKOGASection = () => {
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-inkoga-red/30 to-transparent" />
 
       {/* Ambient Glow - Enhanced */}
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-inkoga-red/8 rounded-full blur-[150px] animate-pulse" />
-      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px]" />
+      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-inkoga-red/8 rounded-full blur-[150px] animate-pulse-glow" />
+      <div className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}

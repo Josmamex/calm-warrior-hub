@@ -4,6 +4,7 @@ import pilarFisico from "@/assets/pilar-fisico.jpg";
 import pilarTactica from "@/assets/pilar-tactica.jpg";
 import { useScrollAnimation, useParallax } from "@/hooks/useScrollAnimation";
 import AnimatedBackground from "./AnimatedBackground";
+import BlurredImageBackground from "./BlurredImageBackground";
 
 const pillars = [
   {
@@ -49,6 +50,16 @@ const SolutionSection = () => {
 
   return (
     <section id="metodologia" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Blurred Image Background */}
+      <BlurredImageBackground 
+        imageSrc={pilarTactica} 
+        blurAmount={100}
+        opacity={0.25}
+        overlay="gold"
+        animate={true}
+        parallax={true}
+      />
+      
       {/* Animated Background */}
       <AnimatedBackground variant="aurora" intensity="low" />
       
@@ -58,9 +69,9 @@ const SolutionSection = () => {
       
       {/* Ambient Glow - Enhanced */}
       <div ref={bgParallax} className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[150px] animate-pulse" />
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-[hsl(160_60%_40%/0.05)] rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/3 rounded-full blur-[180px]" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-primary/8 rounded-full blur-[150px] animate-pulse-glow" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-[hsl(160_60%_40%/0.08)] rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[180px]" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
