@@ -1,242 +1,158 @@
 
 
-# Plan: Fondos Difuminados con Imágenes Reales + Más Efectos React
+# Plan de Corrección: Colores, Imágenes y Longitud
 
-## El Problema Detectado
+## Resumen de Problemas Detectados
 
-Actualmente los efectos de fondo usan **CSS puro** (gradientes, conic-gradient), pero NO tienen:
-- **Imágenes reales difuminadas** como texturas de fondo
-- Profundidad visual con fotos borrosas debajo del contenido
-- El efecto "premium blur" que tienen sitios como Apple, Stripe, Linear
-
----
-
-## Solución: 3 Capas de Efectos Visuales
-
-### Capa 1: Imágenes de Fondo Difuminadas (NUEVO)
-
-Agregar imágenes reales con blur extremo detrás del contenido:
-
-| Sección | Imagen de Fondo | Efecto |
-|---------|-----------------|--------|
-| Hero | `hero-tactical.jpg` | blur(60px) + overlay oscuro |
-| WhyINKOGA | Textura abstracta dorada | blur(80px) + saturación |
-| Solution | `pilar-tactica.jpg` | blur(100px) + gradiente |
-| Programs | Textura oscura con oro | blur(50px) |
-| IncidentCoverage | Líneas geométricas | blur(40px) |
-| Filter | Contraste verde/rojo | blur(60px) |
-| About | Perfil borroso | blur(80px) |
+| Problema | Causa | Impacto |
+|----------|-------|---------|
+| **Pantalla amarilla** | Múltiples overlays gold apilados + orbs dorados | Pierde el look profesional oscuro |
+| **Imágenes de policías/SWAT** | Fotos generadas incorrectas | No representa escoltas ejecutivos LATAM |
+| **Página muy larga** | 13 secciones, algunas redundantes | Pierde impacto, fatiga al visitante |
 
 ---
 
-### Capa 2: Nuevo Componente `BlurredImageBackground.tsx`
+## FASE 1: Corrección de Colores (URGENTE)
+
+### 1.1 Reducir saturación de GradientOrbs
+
+**Archivo:** `src/components/GradientOrbs.tsx`
+
+**Cambios:**
+- Reducir opacidad de orbs de 0.08 → 0.03
+- Cambiar colores dorados a neutros (gris/azul oscuro)
+- Mantener solo 2-3 orbs sutiles
+
+### 1.2 Eliminar overlays gold excesivos
+
+**Archivo:** `src/components/BlurredImageBackground.tsx`
+
+**Cambios:**
+- Cambiar overlay `gold` por `dark` en la mayoría de secciones
+- Reducir opacidad general de 0.5 → 0.2
+- Aumentar blur para que no compita con el contenido
+
+### 1.3 Secciones a corregir
+
+| Sección | Overlay actual | Corrección |
+|---------|---------------|------------|
+| HeroSection | dark | Mantener, reducir opacity |
+| WhyINKOGASection | gold | Cambiar a dark |
+| SolutionSection | gold | Cambiar a dark |
+| ProgramsSection | gold | Cambiar a dark |
+| IncidentCoverageSection | dark | Mantener |
+| FilterSection | dark | Mantener |
+| AboutSection | gold | Cambiar a dark |
+
+### 1.4 CSS: Reducir efectos de primary/gold
+
+**Archivo:** `src/index.css`
+
+- Reducir `text-glow` de 3 shadows a 1 sutil
+- Bajar opacidad de mesh gradients
+- Menos saturación en auroras
+
+---
+
+## FASE 2: Imágenes Correctas
+
+### 2.1 Necesitas generar/conseguir imágenes de:
+
+| Imagen | Descripción Correcta |
+|--------|---------------------|
+| **Hero** | Escolta ejecutivo en traje oscuro, discreto, junto a vehículo blindado negro, entorno urbano LATAM |
+| **Problema 1** | Escolta solo vigilando perímetro, expresión de alerta, sin apoyo visible |
+| **Problema 2** | Primer plano de rostro bajo estrés - sudor, tensión facial, ojos enfocados |
+| **Problema 3** | Escolta con manos visibles en posición neutral, contexto legal/profesional |
+| **Pilar Psique** | Meditación o respiración controlada, expresión serena pero alerta |
+| **Pilar Táctica** | Escolta escaneando entorno, mirando múltiples direcciones, discreto |
+| **Pilar Técnica** | Control de articulación estilo Koga - agarre de muñeca/codo, NO kung fu |
+| **Lobo Solitario** | Un solo escolta, espalda al cliente, mirando hacia amenaza |
+| **Binomio** | Dos escoltas en formación, uno adelante uno atrás, coordinados |
+
+### 2.2 Características de las fotos:
+
+- **NO militares/SWAT** - Sin cascos, chalecos tácticos, rifles
+- **Traje ejecutivo** - Traje oscuro, corbata opcional, profesional
+- **Contexto LATAM** - Ciudad mexicana, brasileña, etc.
+- **Alta definición** - Mínimo 1920x1080
+- **Tonos fríos** - Azules, grises, negros (NO sepia/cálidos)
+
+---
+
+## FASE 3: Reducir Longitud de Página
+
+### 3.1 Secciones a ELIMINAR o FUSIONAR
+
+| Acción | Sección | Razón |
+|--------|---------|-------|
+| **ELIMINAR** | BlogSection | Contenido secundario, distrae de conversión |
+| **FUSIONAR** | WhyINKOGASection + OperationalRealitySection | Mismo mensaje: "entrenamos para 1-2" |
+| **MOVER A SUBPÁGINA** | ResourcesSection | Los PDFs pueden estar en /recursos |
+| **SIMPLIFICAR** | FAQSection | Reducir de 10 preguntas a 5 esenciales |
+
+### 3.2 Nuevo orden optimizado (8 secciones vs 13 actuales)
 
 ```
-Propósito: Renderizar imagen difuminada con:
-- blur variable (40px-120px)
-- overlay con gradiente
-- animación de escala sutil
-- parallax opcional
-- saturación/brillo ajustable
+1. HeroSection (Hero + 3 Problemas)
+2. OperationalRealitySection (GAP + Lobo/Binomio) ← absorbe WhyINKOGA
+3. SolutionSection (3 Pilares)
+4. IncidentCoverageSection (4 Etapas)
+5. ProgramsSection (Elige tu nivel)
+6. FilterSection (¿Es para ti?)
+7. AboutSection (Josafath)
+8. ContactSection + FAQSection (fusionar)
+9. Footer
 ```
 
-**Props:**
-- `imageSrc`: ruta de imagen
-- `blurAmount`: intensidad del blur (40-120)
-- `overlay`: color/gradiente encima
-- `animate`: boolean para movimiento sutil
-- `parallax`: boolean para efecto scroll
+**Resultado:** De 13 → 9 secciones (30% más corta)
 
 ---
 
-### Capa 3: Efectos React Adicionales
+## FASE 4: Restaurar Impacto Visual
 
-**Nuevos efectos a implementar:**
+### 4.1 Paleta de colores corregida
 
-| Efecto | Descripción |
-|--------|-------------|
-| **Gradient Orbs Animados** | Círculos de color que se mueven suavemente |
-| **Grain/Noise Overlay** | Textura granulada sutil sobre todo |
-| **Glow Pulse** | Pulsos de luz que viajan por la pantalla |
-| **Scroll-Triggered Reveals** | Elementos que aparecen con desenfoque |
-| **Interactive Cursor Glow** | Halo de luz que sigue el cursor |
-| **Section Dividers Animados** | Líneas brillantes entre secciones |
+| Color | Uso | HSL |
+|-------|-----|-----|
+| **Background** | Fondo principal | 220 20% 6% (casi negro) |
+| **Foreground** | Texto principal | 40 25% 95% (crema) |
+| **Primary (Gold)** | SOLO acentos, CTA | 38 70% 55% |
+| **Neutral** | Bordes, separadores | 220 15% 20% |
 
----
+**Regla:** El dorado debe ser **10% o menos** de la pantalla, no 40% como ahora.
 
-## Archivos a Crear
+### 4.2 Contraste mejorado
 
-### 1. `src/components/BlurredImageBackground.tsx` (NUEVO)
-
-Componente reutilizable para fondos con imagen difuminada:
-
-```text
-┌─────────────────────────────────────────────────┐
-│  Imagen original (ej: hero-tactical.jpg)        │
-├─────────────────────────────────────────────────┤
-│  + filter: blur(80px)                           │
-│  + transform: scale(1.2) // evitar bordes       │
-│  + opacity: 0.4-0.7                             │
-├─────────────────────────────────────────────────┤
-│  + overlay: gradient oscuro                     │
-│  + animation: subtle-scale 30s                  │
-└─────────────────────────────────────────────────┘
-```
+- Fondo más oscuro (actualmente compite con efectos)
+- Menos capas de blur superpuestas
+- Texto más grande y con más weight
+- CTA único por sección (no múltiples)
 
 ---
 
-### 2. `src/components/CursorGlow.tsx` (NUEVO)
+## Resumen de Archivos a Modificar
 
-Efecto de halo que sigue el cursor del mouse:
-
-- Círculo difuminado que sigue al cursor
-- Color dorado/emerald según sección
-- Desaparece en móvil (touch)
-- Transición suave
-
----
-
-### 3. `src/components/GradientOrbs.tsx` (NUEVO)
-
-Orbes de color que flotan animados:
-
-- 3-5 círculos grandes con blur
-- Movimiento aleatorio pero suave
-- Colores: dorado, emerald, rojo sutil
-- z-index detrás del contenido
-
----
-
-## Archivos a Modificar
-
-### 4. `src/index.css`
-
-Agregar:
-```css
-/* Blur background utilities */
-.bg-blur-image {
-  position: absolute;
-  inset: -10%;
-  filter: blur(80px);
-  transform: scale(1.2);
-  opacity: 0.5;
-  animation: subtleScale 30s ease-in-out infinite;
-}
-
-/* Cursor glow */
-.cursor-glow {
-  pointer-events: none;
-  position: fixed;
-  width: 400px;
-  height: 400px;
-  border-radius: 50%;
-  background: radial-gradient(circle, hsl(var(--gold) / 0.15), transparent 70%);
-  filter: blur(40px);
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s;
-}
-
-/* New animations */
-@keyframes subtleScale {
-  0%, 100% { transform: scale(1.2); }
-  50% { transform: scale(1.3); }
-}
-
-@keyframes orbDrift {
-  0% { transform: translate(0, 0); }
-  33% { transform: translate(50px, -30px); }
-  66% { transform: translate(-30px, 50px); }
-  100% { transform: translate(0, 0); }
-}
-```
-
----
-
-### 5. Secciones a Actualizar
-
-| Componente | Cambio |
-|------------|--------|
-| `HeroSection.tsx` | Añadir `<BlurredImageBackground>` con `hero-tactical.jpg` |
-| `WhyINKOGASection.tsx` | Añadir fondo difuminado dorado |
-| `SolutionSection.tsx` | Añadir imagen de pilar borrosa |
-| `ProgramsSection.tsx` | Intensificar blur background |
-| `IncidentCoverageSection.tsx` | Añadir patrón geométrico blur |
-| `FilterSection.tsx` | Añadir contraste verde/rojo difuminado |
-| `AboutSection.tsx` | Añadir imagen de textura blur |
-| `ResourcesSection.tsx` | Mantener emerald, añadir más blur |
-
----
-
-### 6. `src/pages/Index.tsx`
-
-Agregar componentes globales:
-```tsx
-<CursorGlow />        // Sigue el cursor
-<GradientOrbs />      // Orbes flotantes globales
-```
-
----
-
-### 7. Nuevas Imágenes de Textura
-
-Para fondos difuminados, usaremos las imágenes existentes:
-
-| Imagen | Uso |
-|--------|-----|
-| `hero-tactical.jpg` | Hero, fondo principal |
-| `pilar-tactica.jpg` | Solution section |
-| `pilar-psique.jpg` | About section |
-| `lobo-solitario.jpg` | Filter section |
-| `binomio.jpg` | Programs section |
-
----
-
-## Resultado Visual Esperado
-
-```text
-┌─────────────────────────────────────────────────┐
-│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
-│ ░░ IMAGEN DIFUMINADA (blur 80px) ░░░░░░░░░░░░░░ │
-│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
-│     ┌─────────────────────────────────┐         │
-│     │                                 │         │
-│     │    CONTENIDO NÍTIDO             │         │
-│     │    Texto, cards, botones        │         │
-│     │                                 │         │
-│     └─────────────────────────────────┘         │
-│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
-│ ░░░ ORBES ANIMADOS + CURSOR GLOW ░░░░░░░░░░░░░░ │
-│ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
-└─────────────────────────────────────────────────┘
-```
-
----
-
-## Resumen de Archivos
-
-| Archivo | Acción |
+| Archivo | Cambio |
 |---------|--------|
-| `BlurredImageBackground.tsx` | CREAR |
-| `CursorGlow.tsx` | CREAR |
-| `GradientOrbs.tsx` | CREAR |
-| `index.css` | MODIFICAR - nuevas animaciones |
-| `HeroSection.tsx` | MODIFICAR - añadir blur bg |
-| `WhyINKOGASection.tsx` | MODIFICAR - añadir blur bg |
-| `SolutionSection.tsx` | MODIFICAR - añadir blur bg |
-| `ProgramsSection.tsx` | MODIFICAR - intensificar |
-| `IncidentCoverageSection.tsx` | MODIFICAR - añadir blur bg |
-| `FilterSection.tsx` | MODIFICAR - añadir blur bg |
-| `AboutSection.tsx` | MODIFICAR - añadir blur bg |
-| `ResourcesSection.tsx` | MODIFICAR - intensificar emerald |
-| `Index.tsx` | MODIFICAR - añadir componentes globales |
+| `GradientOrbs.tsx` | Reducir opacidad, colores neutros |
+| `BlurredImageBackground.tsx` | Overlay dark por defecto, menos opacity |
+| `HeroSection.tsx` | Reducir efectos, overlay más oscuro |
+| `WhyINKOGASection.tsx` | ELIMINAR o fusionar |
+| `SolutionSection.tsx` | Overlay dark, menos blur |
+| `ProgramsSection.tsx` | Overlay dark |
+| `AboutSection.tsx` | Overlay dark |
+| `BlogSection.tsx` | ELIMINAR |
+| `ResourcesSection.tsx` | Mover a subpágina o simplificar |
+| `FAQSection.tsx` | Reducir preguntas |
+| `Index.tsx` | Nuevo orden de secciones |
+| `index.css` | Reducir efectos de glow |
 
 ---
 
-## Beneficios
+## Sobre las Imágenes
 
-- **Profundidad visual**: Las imágenes difuminadas crean capas de profundidad
-- **Cohesión de marca**: Usa las fotos existentes del proyecto
-- **Performance**: blur() es acelerado por GPU
-- **Interactividad**: Cursor glow añade dinamismo
-- **Consistencia**: Mismo estilo que "Elige tu nivel"
+**Necesito que me proporciones nuevas imágenes** o que me indiques si quieres que genere prompts específicos para que las generes tú. Las imágenes actuales de policías con cascos NO representan tu marca de protección ejecutiva discreta.
+
+¿Quieres que proceda con las correcciones de color y longitud mientras consigues las imágenes correctas?
 
