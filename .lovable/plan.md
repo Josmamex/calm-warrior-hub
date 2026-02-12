@@ -1,151 +1,196 @@
 
+# Plan: Solucionar el Flickering/Rendering en Página Publicada
 
-# Plan: Generar Nuevas Imágenes de Protección Ejecutiva
+## Problema Identificado
 
-## Estado Actual
+La página tiene **flickering (parpadeo) y sections que desaparecen/reaparecen** causado por múltiples factores:
 
-Existen 11 imágenes en `src/assets/` que NO representan la marca correctamente:
+### Root Causes:
 
-| Imagen Actual | Problema | Nueva Descripción |
-|---------------|----------|-------------------|
-| `hero-tactical.jpg` | Militar/SWAT con casco | Escolta ejecutivo en traje oscuro, silueta discreta, entorno urbano nocturno |
-| `hero-background.jpg` | Desconocido | Ciudad latinoamericana nocturna, luces urbanas, atmósfera profesional |
-| `problem-fear.jpg` | Policía con equipo táctico | Escolta solo vigilando perímetro, expresión de alerta profesional |
-| `problem-ego.jpg` | Militar con casco | Primer plano de rostro bajo estrés controlado, sudor sutil, ojos enfocados |
-| `problem-copy.jpg` | SWAT/Navy Seal | Escolta con manos visibles en posición neutral, contexto legal |
-| `pilar-psique.jpg` | Kung fu/artes marciales | Hombre en traje meditando, respiración controlada, expresión serena |
-| `pilar-tactica.jpg` | Militar escaneando | Escolta en traje escaneando entorno discretamente, mirada periférica |
-| `pilar-fisico.jpg` | Desconocido | Control de articulación estilo Koga - agarre de muñeca/codo profesional |
-| `lobo-solitario.jpg` | Posiblemente incorrecto | Un solo escolta en traje, espalda al cliente, postura protectora |
-| `binomio.jpg` | Posiblemente incorrecto | Dos escoltas en traje en formación coordinada, uno adelante uno atrás |
-| `gap-comparison.jpg` | Diagrama/comparación | Mantener o regenerar con estilo visual consistente |
+1. **Intersection Observer triggering constantemente**
+   - El hook `useScrollAnimation` usa un umbral de 0.1-0.2
+   - Cuando elementos están cerca del borde de la ventana, el observer dispara/se detiene repetidamente
+   - Causa que la clase `.visible` se añada/quite constantemente = flickering
 
----
+2. **Transiciones largas (0.8s) combinadas con IntersectionObserver**
+   - Las animaciones `animate-on-scroll` tienen `transition: opacity 0.8s ease-out, transform 0.8s ease-out`
+   - Si el observer se detiene antes de que termine la animación, el elemento vuelve a `opacity: 0`
+   - Resultado: sections que "parpadean"
 
-## Proceso de Generación
+3. **Múltiples BlurredImageBackground + AnimatedBackground apilados**
+   - En `SolutionSection.tsx` hay `BlurredImageBackground` + `AnimatedBackground` + overlays
+   - Cada componente hace re-renders/animaciones
+   - Causa repaints frecuentes = flickering
 
-Usaré la API de **Nano banana (google/gemini-2.5-flash-image)** para generar cada imagen con prompts específicos.
+4. **useParallax disparando en cada scroll**
+   - El hook `useParallax` escucha `scroll` sin debounce
+   - Cada evento de scroll causa `style.transform` update
+   - En la página publicada, con muchos elementos animados = lag/flickering
 
-### Características de todas las imágenes:
+### Impacto en la Experiencia:
 
-- **NO militares/SWAT** - Sin cascos, chalecos tácticos, rifles
-- **Traje ejecutivo oscuro** - Profesional, discreto, elegante
-- **Contexto LATAM** - Arquitectura mexicana/brasileña cuando aplique
-- **Tonos fríos** - Azules, grises, negros (paleta cinematográfica)
-- **Alta calidad** - Estilo fotorrealista, iluminación dramática
-- **Aspecto 16:9** para fondos, **1:1** para cards
+- La página se ve "inestable" - sections parpadean
+- No es fluida porque hay constantes re-renders
+- Especialmente visible en navegación lenta (celular 3G, conexiones débiles)
 
 ---
 
-## Archivos a Modificar
+## Solución Propuesta
 
-| Archivo | Acción |
-|---------|--------|
-| `src/assets/hero-tactical.jpg` | REEMPLAZAR con nueva imagen |
-| `src/assets/hero-background.jpg` | REEMPLAZAR con nueva imagen |
-| `src/assets/problem-fear.jpg` | REEMPLAZAR con nueva imagen |
-| `src/assets/problem-ego.jpg` | REEMPLAZAR con nueva imagen |
-| `src/assets/problem-copy.jpg` | REEMPLAZAR con nueva imagen |
-| `src/assets/pilar-psique.jpg` | REEMPLAZAR con nueva imagen |
-| `src/assets/pilar-tactica.jpg` | REEMPLAZAR con nueva imagen |
-| `src/assets/pilar-fisico.jpg` | REEMPLAZAR con nueva imagen (Koga) |
-| `src/assets/lobo-solitario.jpg` | REEMPLAZAR con nueva imagen |
-| `src/assets/binomio.jpg` | REEMPLAZAR con nueva imagen |
-| `src/components/HeroSection.tsx` | Restaurar visibilidad de imagen |
+### FASE 1: Mejorar el hook useScrollAnimation
+
+**Archivo:** `src/hooks/useScrollAnimation.tsx`
+
+**Cambios:**
+
+1. **Una sola observación** - El observer NO debe volver a observar después de que `.visible` sea verdadero
+2. **Threshold más alto** - Cambiar de 0.1-0.2 a 0.25-0.3 para evitar trigger en bordes
+3. **Root margin** - Agregar `rootMargin` para que la animación inicie antes de que el elemento sea totalmente visible
+
+```tsx
+// Antes - observa constantemente
+const observer = new IntersectionObserver(
+  ([entry]) => {
+    if (entry.isIntersecting) {
+      setIsVisible(true);
+      observer.unobserve(entry.target);  // ← Se detiene correctamente
+    }
+  },
+  { threshold }
+);
+
+// Después - más estable
+const observer = new IntersectionObserver(
+  ([entry]) => {
+    if (entry.isIntersecting) {
+      setIsVisible(true);
+      observer.unobserve(entry.target);
+    }
+  },
+  { 
+    threshold: 0.25,  // ← Más alto para evitar flickering en bordes
+    rootMargin: '0px 0px -50px 0px'  // ← Inicia 50px antes
+  }
+);
+```
+
+### FASE 2: Optimizar useParallax
+
+**Archivo:** `src/hooks/useScrollAnimation.tsx`
+
+**Cambios:**
+
+1. **Agregar requestAnimationFrame** - Evitar múltiples updates en el mismo frame
+2. **Agregar debounce** - No actualizar transform en cada scroll
+3. **Cleanup adecuado** - Cancelar pending requests
+
+```tsx
+// Agregar RAF para throttle natural
+let rafId: number;
+
+const handleScroll = () => {
+  if (rafId) cancelAnimationFrame(rafId);
+  
+  rafId = requestAnimationFrame(() => {
+    if (!ref.current) return;
+    const scrolled = window.scrollY;
+    const rect = ref.current.getBoundingClientRect();
+    const elementTop = rect.top + scrolled;
+    const relativeScroll = scrolled - elementTop + window.innerHeight;
+    
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      ref.current.style.transform = `translateY(${relativeScroll * speed * 0.1}px)`;
+    }
+  });
+};
+```
+
+### FASE 3: Reducir animaciones redundantes
+
+**Archivos afectados:**
+- `src/components/SolutionSection.tsx` - Reducir glow orbs
+- `src/components/OperationalRealitySection.tsx` - Reducir BlurredImageBackground blur amount
+- `src/index.css` - Reducir complejidad de aurora/mesh gradients
+
+**Cambios específicos:**
+
+1. **SolutionSection.tsx** - Reducir blur de BlurredImageBackground:
+   ```tsx
+   // Antes
+   <BlurredImageBackground blurAmount={120} ... />
+   
+   // Después
+   <BlurredImageBackground blurAmount={40} ... />  // ← Menos trabajo para GPU
+   ```
+
+2. **index.css** - Simplificar aurora effects:
+   ```css
+   /* Antes - 3 capas complejas */
+   .aurora-layer {
+     opacity: 0.2;
+     filter: blur(120px);
+   }
+   
+   /* Después - menos intensas */
+   .aurora-layer {
+     opacity: 0.1;
+     filter: blur(80px);
+   }
+   ```
+
+### FASE 4: Estabilizar transiciones CSS
+
+**Archivo:** `src/index.css`
+
+**Cambios:**
+
+1. **Reducir duración de transiciones** - De 0.8s a 0.6s
+2. **Agregar `will-change`** - Optimizar para GPU
+3. **Usar `translate3d`** - Activar aceleración hardware
+
+```css
+.animate-on-scroll {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);  // ← 3D acceleration
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  will-change: opacity, transform;  // ← Prepara GPU
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+```
 
 ---
 
-## Prompts Específicos para Cada Imagen
+## Archivos a Modificar (En Orden de Impacto)
 
-### 1. Hero Principal (`hero-tactical.jpg`)
-```
-Professional executive protection agent in dark tailored suit, standing in 
-protective posture near a black armored SUV, urban Latin American city at 
-night, dramatic blue and grey lighting, cinematic photography, photorealistic, 
-silhouette visible, mysterious and professional atmosphere, no military gear, 
-no helmet, no tactical vest
-```
-
-### 2. Problema 1 - Soledad (`problem-fear.jpg`)
-```
-Single executive bodyguard in dark suit alone scanning a perimeter, alert 
-expression, professional demeanor, urban environment, no backup visible, 
-isolated, dramatic lighting, photorealistic, cold blue tones
-```
-
-### 3. Problema 2 - Estrés (`problem-ego.jpg`)
-```
-Close-up portrait of a professional bodyguard face under controlled stress, 
-subtle sweat, focused intense eyes, wearing dark suit collar visible, 
-dramatic side lighting, photorealistic, psychological tension
-```
-
-### 4. Problema 3 - Legal (`problem-copy.jpg`)
-```
-Executive protection agent with hands visible in neutral defensive position, 
-professional courtroom-appropriate posture, dark suit, legal context implied, 
-controlled demeanor, photorealistic, cold lighting
-```
-
-### 5. Pilar Psique (`pilar-psique.jpg`)
-```
-Professional man in dark executive suit practicing controlled breathing 
-meditation, serene but alert expression, eyes closed or soft focus, 
-minimalist dark background, photorealistic, zen professional atmosphere
-```
-
-### 6. Pilar Táctica (`pilar-tactica.jpg`)
-```
-Executive bodyguard in dark suit discreetly scanning environment, peripheral 
-vision engaged, looking multiple directions subtly, urban setting, 
-professional surveillance posture, photorealistic, cold blue tones
-```
-
-### 7. Pilar Técnica - KOGA (`pilar-fisico.jpg`)
-```
-Professional Koga technique demonstration, wrist lock joint control, 
-executive protection style, men in dark suits, realistic self-defense 
-training, NOT kung fu or martial arts, arm bar or wrist manipulation, 
-photorealistic, professional training environment
-```
-
-### 8. Lobo Solitario (`lobo-solitario.jpg`)
-```
-Single executive bodyguard in dark suit, back to camera protecting client, 
-facing potential threat direction, protective stance, alone, urban 
-environment, dramatic lighting, photorealistic, heroic silhouette
-```
-
-### 9. Binomio (`binomio.jpg`)
-```
-Two executive bodyguards in dark suits working as coordinated team, 
-one forward one behind formation, protecting movement, synchronized, 
-professional protection detail, urban environment, photorealistic
-```
-
-### 10. Hero Background (`hero-background.jpg`)
-```
-Latin American urban cityscape at night, Mexico City or São Paulo style 
-architecture, dramatic blue and grey lighting, professional atmosphere, 
-no people, cinematic wide shot, moody corporate noir aesthetic
-```
+| Archivo | Prioridad | Cambio |
+|---------|-----------|--------|
+| `src/hooks/useScrollAnimation.tsx` | 🔴 CRÍTICA | Mejorar threshold, agregar rootMargin, RAF en parallax |
+| `src/index.css` | 🔴 CRÍTICA | Usar translate3d, agregar will-change, reducir aurora opacity |
+| `src/components/SolutionSection.tsx` | 🟠 MEDIA | Reducir blurAmount de 120 a 40 |
+| `src/components/OperationalRealitySection.tsx` | 🟠 MEDIA | Revisar overlays, reducir complejidad |
 
 ---
 
-## Después de Generar Imágenes
+## Resultado Esperado Después
 
-Una vez reemplazadas las imágenes, también modificaré:
-
-1. **`HeroSection.tsx`** - Restaurar visibilidad reduciendo overlays
-2. **`BlurredImageBackground.tsx`** - Ajustar opacidad del overlay dark
+✅ **Flickering eliminado** - Sections ya no parpadean al scrollear
+✅ **Animaciones suaves** - Las transiciones son fluidas sin jittering
+✅ **Mejor rendimiento** - Hardware acceleration en CSS animations
+✅ **Scroll más fluido** - useParallax usa RAF para evitar jank
+✅ **Experiencia mobile mejorada** - Funciona bien en conexiones lentas
 
 ---
 
-## Resultado Esperado
+## Nota Técnica
 
-- **Hero visible** con silueta del operador en traje
-- **Consistencia visual** en toda la página
-- **Marca correcta** de Protección Ejecutiva LATAM
-- **Técnica Koga** correctamente representada (NO kung fu)
-- **Look profesional oscuro** sin saturación amarilla
+El problema actual es que el `IntersectionObserver` es correcto (desuscribe después de visible), pero:
+- El threshold bajo (0.1) hace que se "vea" parcialmente visible en bordes de ventana
+- Las transiciones largas (0.8s) combinadas con re-renders pueden causar flasheo
+- Las animaciones de fondo complejas compiten por GPU con las animaciones de elementos
+
+La solución combina: **mejor threshold + GPU acceleration + menos capas animadas**
 
