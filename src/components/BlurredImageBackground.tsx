@@ -32,20 +32,28 @@ const BlurredImageBackground = ({
   useEffect(() => {
     if (!parallax || !containerRef.current) return;
 
+    let rafId: number;
+    
     const handleScroll = () => {
-      if (!containerRef.current) return;
-      const scrolled = window.scrollY;
-      const rect = containerRef.current.getBoundingClientRect();
-      const elementTop = rect.top + scrolled;
-      const relativeScroll = scrolled - elementTop + window.innerHeight;
-      
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        containerRef.current.style.transform = `translateY(${relativeScroll * 0.05}px) scale(1.2)`;
-      }
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(() => {
+        if (!containerRef.current) return;
+        const scrolled = window.scrollY;
+        const rect = containerRef.current.getBoundingClientRect();
+        const elementTop = rect.top + scrolled;
+        const relativeScroll = scrolled - elementTop + window.innerHeight;
+        
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          containerRef.current.style.transform = `translateY(${relativeScroll * 0.05}px) scale(1.2)`;
+        }
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, [parallax]);
 
   return (
