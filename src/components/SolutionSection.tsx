@@ -53,11 +53,11 @@ const SolutionSection = () => {
       {/* Blurred Image Background */}
       <BlurredImageBackground 
         imageSrc={pilarTactica} 
-        blurAmount={120}
+        blurAmount={40}
         opacity={0.12}
         overlay="dark"
-        animate={true}
-        parallax={true}
+        animate={false}
+        parallax={false}
       />
       
       {/* Animated Background */}
