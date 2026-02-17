@@ -40,15 +40,15 @@ const OperationalRealitySection = () => {
             {/* Left Stat - Enhanced with glow */}
             <div className="text-center relative">
               <span className="block font-serif text-8xl md:text-9xl text-primary font-medium text-glow">
-                73%
+                La mayoría
               </span>
               {/* Glow behind */}
               <div className="absolute inset-0 blur-3xl bg-primary/20 -z-10" />
               <p className="text-foreground text-lg mt-2">
-                Operaciones reales
+                de las operaciones reales
               </p>
               <p className="text-muted-foreground text-sm">
-                1-2 escoltas
+                son 1-2 elementos
               </p>
             </div>
 
@@ -60,22 +60,24 @@ const OperationalRealitySection = () => {
             {/* Right Stat */}
             <div className="text-center">
               <span className="block font-serif text-8xl md:text-9xl text-muted-foreground/50 font-medium">
-                92%
+                Casi todo
               </span>
               <p className="text-muted-foreground text-lg mt-2">
-                Entrenamiento disponible
+                del entrenamiento disponible
               </p>
               <p className="text-muted-foreground/60 text-sm">
-                Para equipos de 4+
+                es para equipos de 4+
               </p>
             </div>
           </div>
 
           {/* Tagline */}
           <p className="mt-12 font-serif text-xl md:text-2xl text-foreground max-w-2xl mx-auto">
-            Te entrenan para equipos grandes que difícilmente tendrás.
+            El entrenamiento disponible asume equipos de 6+.
             <br />
-            <span className="text-primary text-glow">Nosotros te preparamos para tu realidad.</span>
+            Tu realidad: 1-2 personas, cero backup.
+            <br />
+            <span className="text-primary text-glow">Nosotros entrenamos para esa realidad.</span>
           </p>
         </div>
       </div>
@@ -202,87 +204,6 @@ const OperationalRealitySection = () => {
         </div>
       </div>
 
-      {/* GAP Table Section */}
-      <div className="py-24 relative">
-        <AnimatedBackground variant="waves" intensity="low" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-charcoal-light/10 to-background" />
-
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            {/* Table Header */}
-            <div className="text-center mb-12">
-              <h3 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-                El <span className="text-gold-gradient text-glow">GAP</span> de Preparación
-              </h3>
-            </div>
-
-            {/* Table - Enhanced with glass effect */}
-            <div className="overflow-x-auto card-glass p-6 border border-border/30">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="border-b border-primary/30">
-                    <th className="text-left py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-medium">
-                      Configuración
-                    </th>
-                    <th className="text-center py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-medium">
-                      % Operaciones
-                    </th>
-                    <th className="text-center py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-medium">
-                      % Entrenamiento
-                    </th>
-                    <th className="text-center py-4 px-4 text-xs uppercase tracking-wider text-muted-foreground font-medium">
-                      GAP
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors group">
-                    <td className="py-4 px-4 text-foreground font-medium">1 escolta solo</td>
-                    <td className="py-4 px-4 text-center text-cream-muted">~45%</td>
-                    <td className="py-4 px-4 text-center text-cream-muted">&lt;5%</td>
-                    <td className="py-4 px-4 text-center text-inkoga-red font-bold group-hover:text-glow">-40%</td>
-                  </tr>
-                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors group">
-                    <td className="py-4 px-4 text-foreground font-medium">2 escoltas (binomio)</td>
-                    <td className="py-4 px-4 text-center text-cream-muted">~28%</td>
-                    <td className="py-4 px-4 text-center text-cream-muted">&lt;3%</td>
-                    <td className="py-4 px-4 text-center text-inkoga-red font-bold group-hover:text-glow">-25%</td>
-                  </tr>
-                  <tr className="border-b border-border/20 hover:bg-primary/5 transition-colors">
-                    <td className="py-4 px-4 text-foreground font-medium">3-5 escoltas</td>
-                    <td className="py-4 px-4 text-center text-cream-muted">~20%</td>
-                    <td className="py-4 px-4 text-center text-cream-muted">~20%</td>
-                    <td className="py-4 px-4 text-center text-muted-foreground">0%</td>
-                  </tr>
-                  <tr className="hover:bg-primary/5 transition-colors">
-                    <td className="py-4 px-4 text-foreground font-medium">4+ escoltas</td>
-                    <td className="py-4 px-4 text-center text-cream-muted">~7%</td>
-                    <td className="py-4 px-4 text-center text-cream-muted">~72%</td>
-                    <td className="py-4 px-4 text-center text-primary font-bold">+65%</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            {/* Interpretation - Enhanced */}
-            <div className="mt-8 p-6 border-2 border-inkoga-red/30 bg-inkoga-red/5 card-glass relative overflow-hidden">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-inkoga-red/10 via-transparent to-inkoga-red/10 animate-pulse" />
-              <p className="relative text-sm text-cream-muted mb-2">
-                <span className="text-foreground font-medium">Interpretación:</span> El 73% de tu tiempo operativo recibe menos del 8% del entrenamiento disponible.
-              </p>
-              <p className="relative text-sm text-inkoga-red font-medium">
-                Resultado: Cuando enfrentas tu realidad más común, no sabes qué hacer porque te entrenaron para una fantasía operativa.
-              </p>
-            </div>
-
-            {/* Source */}
-            <p className="mt-4 text-xs text-muted-foreground text-center italic">
-              Fuente: Análisis TorchStone Global 2024, Royal American Group, TSS LATAM — Operaciones PE documentadas en México, Colombia, Brasil y Argentina.
-            </p>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };

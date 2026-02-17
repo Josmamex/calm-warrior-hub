@@ -29,8 +29,7 @@ const ContactSection = () => {
             Contacto
           </p>
           <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl font-medium leading-tight mb-8">
-            ¿Listo Para{" "}
-            <span className="text-gold-gradient">Transformarte</span>?
+            <span className="text-gold-gradient">¿Preguntas?</span>
           </h2>
 
           {/* CTAs - Big and Obvious */}
@@ -70,7 +69,7 @@ const ContactSection = () => {
 
           {/* Subtext */}
           <p className="text-cream-muted text-lg mb-8">
-            Respuesta en 24-48 hrs. Sin compromiso.
+            Escríbeme directo. Respuesta en 24 horas.
           </p>
 
           {/* Note */}
