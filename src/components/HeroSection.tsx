@@ -10,18 +10,18 @@ import { useParallax, useScrollAnimation } from "@/hooks/useScrollAnimation";
 const problems = [
   {
     image: problemFear,
-    title: "El Entorno: La Soledad del Elemento",
-    description: "El agresor tiene la ventaja de la sorpresa. El protector tiene la desventaja de la multifuncionalidad: conductor, escolta y avanzada simultáneos. Se requiere capacidad para priorizar y resolver sin margen de error.",
+    title: "Cuando la situación exige excelencia, ¿vas a responder?",
+    description: "No es falta de valor. Es que tu entrenamiento fue en condiciones controladas. Bajo presión real—con consecuencias irreversibles—respondes con lo que tienes probado. Si nunca entrenaste bajo presión real, no tienes evidencia de que puedes ejecutar cuando importa.",
   },
   {
     image: problemEgo,
-    title: "La Fisiología: El Bloqueo Interno",
-    description: "Bajo estrés, el mayor adversario es el propio sistema nervioso. El túnel visual y el bloqueo auditivo anulan la capacidad de respuesta. Utilizamos Systema para blindar la psique y mantener la claridad mental bajo fuego.",
+    title: "Ganas la confrontación. Pierdes todo lo demás.",
+    description: "Respondes correctamente. Hay video. El fiscal ve agresión. Tú ves defensa legítima. En 48 horas estás procesado. Tu familia sin sustento. Tu principal sin protector. El problema no es si puedes actuar. Es si tu técnica es explicable ante un juez.",
   },
   {
     image: problemCopy,
-    title: "La Ley: El Riesgo Penal",
-    description: "Neutralizar la amenaza sin justificación es una derrota legal. El marco jurídico exige racionalidad. Enseñamos a controlar con fundamentos técnicos que resisten el escrutinio de un juez, evitando la prisión por uso indebido de la fuerza.",
+    title: "Te entrenaron para equipos que no vas a tener.",
+    description: "Formaciones de diamante. Coordinación de caravana. Roles de avanzada. Tu realidad: un VIP, un vehículo, tú solo. El principal está en el restaurante, el blindado a 15 calles. A donde vayas, fallas. El entrenamiento que recibiste no refleja la operación que enfrentas.",
   },
 ];
 
@@ -72,7 +72,7 @@ const HeroSection = () => {
             <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm mb-8 opacity-0 animate-fade-up shimmer">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
               <span className="text-primary text-xs tracking-[0.3em] uppercase font-medium">
-                Ciencia del Control · Protección 1-2 Elementos
+                Ciencia del Control · Operador Solo · Binomio
               </span>
             </div>
 
@@ -82,6 +82,12 @@ const HeroSection = () => {
               <br />
               <span className="text-gold-gradient text-glow">sin perder la calma.</span>
             </h1>
+
+            {/* Subheadline */}
+            <p className="text-cream-muted text-lg md:text-xl max-w-2xl mx-auto mb-8 opacity-0 animate-fade-up animation-delay-300">
+              Antes, durante y después del incidente.<br />
+              Metodología completa para el escolta que opera solo o en binomio.
+            </p>
 
             {/* Subtitle */}
             <div className="max-w-2xl mx-auto mb-10 opacity-0 animate-fade-up animation-delay-300">
@@ -105,7 +111,7 @@ const HeroSection = () => {
                 className="text-lg px-10 py-6 shadow-gold hover:shadow-[0_0_80px_hsl(38_70%_55%/0.5)] transition-all duration-500"
                 onClick={() => scrollToSection("contacto")}
               >
-                Solicitar Información
+                Escríbeme → WhatsApp
               </Button>
             </div>
 

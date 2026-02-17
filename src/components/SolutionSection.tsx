@@ -11,28 +11,28 @@ const pillars = [
     image: pilarPsique,
     icon: "🛡️",
     title: "La Psique",
-    subtitle: "Blindaje Mental (Systema Vasiliev)",
-    description: "Antes de la táctica, está la mente. Se entrena la regulación del miedo. Controlar la respiración y el estado interno permite gestionar la violencia sin perder la claridad estratégica.",
-    lobo: "Gestión del miedo en soledad absoluta. No hay a quién pedir apoyo emocional.",
-    binomio: "Confianza mutua. Gestión del miedo compartido sin contagio emocional.",
+    subtitle: "Control Bajo Presión",
+    description: "Respiración de alto rendimiento que mantiene tu capacidad de pensar cuando la presión sube. No motivación. Entrenamiento real del sistema nervioso.",
+    lobo: "Gestión de presión en soledad absoluta. Sin apoyo emocional. Sin radio. Tú solo decides.",
+    binomio: "Confianza mutua sin contagio emocional. Si tu compañero pierde claridad, tú no.",
   },
   {
     image: pilarTactica,
     icon: "🎯",
     title: "La Táctica",
-    subtitle: "Lectura y Evasión",
-    description: "La mejor resolución es la que evita el contacto. Desarrollamos la lectura de entorno para detectar y evadir la amenaza. Si la confrontación es inminente, se entrena la transición inmediata a la ofensiva controlada.",
-    lobo: "Decisión autónoma instantánea. Ciclo OODA individual bajo presión extrema.",
-    binomio: "Decisión distribuida. OODA compartido sin comunicación verbal constante.",
+    subtitle: "Adaptación en Crisis",
+    description: "Toma de decisiones cuando el plan falla. Entrenamiento que te prepara para ejecutar cuando importa, no solo cuando es cómodo.",
+    lobo: "Protocolos de priorización cuando no puedes estar en dos lugares. Chofer-escolta: dos roles, una persona.",
+    binomio: "Roles intercambiables. Decisión distribuida sin depender de comunicación constante.",
   },
   {
     image: pilarFisico,
     icon: "⚡",
     title: "La Técnica",
-    subtitle: "Control Físico (Sistema Koga)",
-    description: "Cuando la fuerza es inevitable, se aplica biomecánica de control. Permite someter a oponentes sin depender de la fuerza bruta, asegurando la eficiencia energética y la legalidad de la intervención.",
-    lobo: "Eficiencia máxima. Un error = no hay quien te cubra. Economía de movimiento crítica.",
-    binomio: "Coordinación física. Roles intercambiables sin chocar. Testigo biomecánico.",
+    subtitle: "Congruencia Legal",
+    description: "Control sin destrucción. Mínima fuerza necesaria, máxima defensa legal. Doctrina civil que protege al VIP, neutraliza la amenaza, y te defiende ante el fiscal.",
+    lobo: "Técnicas que funcionan sin apoyo físico. Tú solo contra la amenaza.",
+    binomio: "Coordinación de control sin comunicación verbal. Testigo cruzado para respaldo legal.",
   },
 ];
 
@@ -84,11 +84,11 @@ const SolutionSection = () => {
             Nuestra Expertise
           </p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium leading-tight mb-6">
-            25 Años perfeccionando la respuesta en{" "}
-            <span className="text-gold-gradient text-glow">entornos hostiles.</span>
+            La Solución: 3 Pilares{" "}
+            <span className="text-gold-gradient text-glow">Integrados.</span>
           </h2>
           <p className="text-cream-muted text-lg md:text-xl leading-relaxed">
-            Nuestra experiencia integra tres sistemas probados para anular la desventaja numérica y física.
+            Psique, táctica y técnica entrenados como sistema único para operadores de 1-2 elementos.
           </p>
         </div>
 
