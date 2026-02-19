@@ -170,7 +170,7 @@ const HeroSection = () => {
                 className={`group relative overflow-hidden animate-on-scroll stagger-${index + 1} ${problemsVisible ? "visible" : ""}`}
               >
                 {/* Image */}
-                <div className="aspect-square relative overflow-hidden border border-border/30 group-hover:border-primary/40 transition-colors duration-500">
+                <div className="aspect-[3/4] relative overflow-hidden border border-border/30 group-hover:border-primary/40 transition-colors duration-500">
                   <img
                     src={problem.image}
                     alt={problem.title}
