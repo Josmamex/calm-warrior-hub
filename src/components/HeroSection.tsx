@@ -61,8 +61,8 @@ const HeroSection = () => {
         {/* Floating Particles & Ambient Glow - Enhanced */}
         <FloatingParticles />
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/8 rounded-full blur-[120px] animate-pulse-glow" />
-          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-primary/5 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/4 rounded-full blur-[150px]" />
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-primary/3 rounded-full blur-[120px]" />
         </div>
 
         {/* Content - Minimal Text */}
@@ -89,19 +89,6 @@ const HeroSection = () => {
               Metodología completa para el escolta que opera solo o en binomio.
             </p>
 
-            {/* Subtitle */}
-            <div className="max-w-2xl mx-auto mb-10 opacity-0 animate-fade-up animation-delay-300">
-              <p className="text-cream-muted text-lg md:text-xl leading-relaxed mb-4">
-                La doctrina convencional entrena para equipos de cuatro. 
-                La realidad exige eficacia en solitario o en binomio.
-              </p>
-              <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
-                Desde hace 25 años preparando protectores en Finlandia, Holanda, 
-                Brasil, Canadá y México. Cuando no hay unidad de apoyo, 
-                tu psique, tu táctica y tu técnica son el único recurso 
-                para resolver la asimetría.
-              </p>
-            </div>
 
             {/* CTA - Prominent */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-up animation-delay-400">

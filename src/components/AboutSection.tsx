@@ -50,9 +50,10 @@ const AboutSection = () => {
           {/* Bio Text */}
           <div className="text-center mb-12 space-y-6">
             <p className="text-cream-muted text-lg leading-relaxed max-w-2xl mx-auto">
-              Trayectoria operativa desarrollada en Finlandia, Holanda, Brasil, 
-              Canadá y México. Experiencia real en entornos de alto riesgo 
-              sin estructura de apoyo convencional.
+              Ha enseñado en Finlandia, Holanda, Brasil, Canadá, Estados Unidos, 
+              Francia y México. Especialista en operaciones de 1-2 elementos 
+              en entornos de alto riesgo. Entrenamiento mental y emocional 
+              de alto rendimiento.
             </p>
             <p className="text-cream-muted text-lg leading-relaxed max-w-2xl mx-auto">
               1er mexicano certificado por la ONU en Administración de Seguridad 
@@ -63,8 +64,7 @@ const AboutSection = () => {
           {/* Key Quote */}
           <div className="text-center mb-12">
             <blockquote className="font-serif text-2xl md:text-3xl text-primary/90 italic leading-relaxed max-w-3xl mx-auto">
-              "Aquí no hay teorías; hay ciencia del control aplicada 
-              a la resolución de conflictos para el elemento solo y el binomio."
+              "Ciencia del control aplicada al antes, durante y después de los incidentes para el operador solo y el binomio."
             </blockquote>
           </div>
 

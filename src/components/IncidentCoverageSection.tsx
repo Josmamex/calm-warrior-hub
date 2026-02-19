@@ -158,9 +158,7 @@ const IncidentCoverageSection = () => {
         <div className="mt-16 max-w-3xl mx-auto text-center">
           <div className="relative">
             <p className="text-cream-muted text-sm leading-relaxed border-2 border-border/30 card-glass p-6">
-              <span className="text-primary font-medium">El 95% del entrenamiento se enfoca en REACCIÓN.</span>{" "}
-              Tu carrera depende de{" "}
-              <span className="text-foreground font-medium">RECUPERACIÓN</span>.
+              Ni solo prevención, ni solo reacción. El protector completo domina todas las fases.
             </p>
             {/* Glow behind */}
             <div className="absolute inset-0 -z-10 bg-primary/5 blur-xl" />
