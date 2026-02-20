@@ -103,9 +103,9 @@ const HeroSection = () => {
             {/* CTA - Prominent */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-up animation-delay-400">
               <Button
-                variant="hero"
+                variant="whatsapp"
                 size="xl"
-                className="text-lg px-10 py-6 shadow-gold hover:shadow-[0_0_80px_hsl(38_70%_55%/0.5)] transition-all duration-500"
+                className="text-lg px-10 py-6"
                 onClick={() => scrollToSection("contacto")}
               >
                 Escríbeme → WhatsApp
