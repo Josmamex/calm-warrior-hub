@@ -41,7 +41,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <a
             href="#inicio"
@@ -51,7 +51,7 @@ const Navbar = () => {
             }}
             className="flex items-center gap-3 group"
           >
-            <img src={logoInkoga} alt="INKOGA" className="h-12 md:h-9 w-auto" />
+            <img src={logoInkoga} alt="INKOGA" className="w-36 md:w-auto md:h-9 h-auto" />
           </a>
 
           {/* Desktop Navigation */}
