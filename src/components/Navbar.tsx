@@ -51,7 +51,7 @@ const Navbar = () => {
             }}
             className="flex items-center gap-3 group"
           >
-            <img src={logoInkoga} alt="INKOGA" className="h-9 w-auto" />
+            <img src={logoInkoga} alt="INKOGA" className="h-12 md:h-9 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
