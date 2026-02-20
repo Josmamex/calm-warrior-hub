@@ -90,6 +90,16 @@ const HeroSection = () => {
             </p>
 
 
+            {/* Audience Chips */}
+            <div className="flex flex-row gap-3 justify-center opacity-0 animate-fade-up animation-delay-350 mb-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm">
+                <span className="text-primary text-xs tracking-[0.2em] uppercase font-medium">👤 Operador Solo</span>
+              </div>
+              <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm">
+                <span className="text-primary text-xs tracking-[0.2em] uppercase font-medium">👥 Binomio Táctico</span>
+              </div>
+            </div>
+
             {/* CTA - Prominent */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-fade-up animation-delay-400">
               <Button
