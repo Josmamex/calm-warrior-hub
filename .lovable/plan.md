@@ -1,68 +1,61 @@
 
+# Implementar Micro-chips de Audiencia en Hero
 
-# Plan: Cambios de Texto (Solo lo indicado en el prompt)
-
-Cero cambios de diseno, imagenes, colores, animaciones o estructura. Solo texto.
-
----
-
-## 1. HeroSection.tsx
-
-- **Badge**: Cambiar a "Ciencia del Control · Operador Solo · Binomio"
-- **Nuevo subheadline**: Insertar parrafo entre el H1 y el CTA con el texto "Antes, durante y despues del incidente..." (unico elemento nuevo)
-- **CTA**: Cambiar a "Escribeme -> WhatsApp"
-- **3 problemas**: Reemplazar titulos y descripciones con los textos nuevos del prompt
+Cambio mínimo: insertar 6 líneas de JSX en `src/components/HeroSection.tsx`.
 
 ---
 
-## 2. OperationalRealitySection.tsx
+## Archivo modificado
 
-- **Stats**: "73%" a "La mayoria", "92%" a "Casi todo"
-- **Textos stats**: Cambiar "Operaciones reales" a "de las operaciones reales", "1-2 escoltas" a "son 1-2 elementos", etc.
-- **Tagline**: Cambiar a las 3 lineas nuevas del prompt
-- **Tabla GAP**: Eliminar toda la seccion de tabla con porcentajes y la fuente falsa "TorchStone Global 2024..."
+`src/components/HeroSection.tsx` — un solo bloque nuevo entre el `</p>` del subheadline y el `<div>` del CTA.
 
 ---
 
-## 3. SolutionSection.tsx
+## Detalle técnico
 
-- **Titulo seccion**: Cambiar a "La Solucion: 3 Pilares Integrados"
-- **Subtitulo seccion**: Cambiar texto descriptivo
-- **3 pilares**: Actualizar subtitle, description, lobo y binomio de cada pilar con los textos exactos del prompt
+Insertar el siguiente bloque entre el cierre del párrafo del subheadline y el div del CTA:
+
+```tsx
+{/* Audience Chips */}
+<div className="flex flex-row gap-3 justify-center opacity-0 animate-fade-up animation-delay-350 mb-4">
+  <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm">
+    <span className="text-primary text-xs tracking-[0.2em] uppercase font-medium">👤 Operador Solo</span>
+  </div>
+  <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm">
+    <span className="text-primary text-xs tracking-[0.2em] uppercase font-medium">👥 Binomio Táctico</span>
+  </div>
+</div>
+```
 
 ---
 
-## 4. AboutSection.tsx
+## Posición exacta en el archivo
 
-- **SIN CAMBIOS en maestros**: Los 4 maestros actuales (Robert Koga, Vladimir Vasiliev, Matt Thomas, Konstantin Komarov) se mantienen
-- **SIN CAMBIOS en el stat**: Se mantiene en 4 Maestros
-- **Oleg Maltsev no existe en el codigo**, por lo tanto no hay nada que eliminar
+```text
+...subheadline </p>   ← línea existente
 
----
+[NUEVO BLOQUE AQUÍ]   ← los 2 chips
 
-## 5. ContactSection.tsx
-
-- **Titulo**: Cambiar "Listo Para Transformarte?" a "Preguntas?"
-- **Subtexto**: Cambiar a "Escribeme directo. Respuesta en 24 horas."
+{/* CTA */}           ← div existente sin modificar
+```
 
 ---
 
 ## Lo que NO se toca
 
-- Diseno visual
-- Imagenes
-- Colores, fuentes
-- Animaciones, parallax, efectos
-- Estructura de componentes
-- CSS / Tailwind classes
-- Los 4 maestros en AboutSection
+- Badge superior, H1, subheadline, CTA, credencial ONU
+- Diseño, colores, fuentes, animaciones, imágenes
+- Cualquier otro componente
 
-## Archivos modificados
+## Resultado en móvil
 
-1. `src/components/HeroSection.tsx` - Badge, subheadline nuevo, CTA, 3 problemas
-2. `src/components/OperationalRealitySection.tsx` - Stats, tagline, eliminar tabla GAP
-3. `src/components/SolutionSection.tsx` - Titulo, 3 pilares
-4. `src/components/ContactSection.tsx` - Titulo, subtexto
+```text
+  Antes, durante y después del incidente.
+  Metodología completa para el escolta...
 
-Total: 4 archivos. AboutSection NO se modifica.
+  ┌─────────────────┐  ┌──────────────────┐
+  │ 👤 OPERADOR SOLO│  │ 👥 BINOMIO TÁCTICO│
+  └─────────────────┘  └──────────────────┘
 
+  [ ESCRÍBEME → WHATSAPP ]
+```
