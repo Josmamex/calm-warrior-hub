@@ -1,61 +1,83 @@
 
-# Implementar Micro-chips de Audiencia en Hero
+# Ajustes Visuales Hero — Móvil
 
-Cambio mínimo: insertar 6 líneas de JSX en `src/components/HeroSection.tsx`.
-
----
-
-## Archivo modificado
-
-`src/components/HeroSection.tsx` — un solo bloque nuevo entre el `</p>` del subheadline y el `<div>` del CTA.
+Dos cambios quirúrgicos en dos archivos. Sin tocar textos, colores, estructura ni animaciones.
 
 ---
 
-## Detalle técnico
+## Cambio 1 — Logo más grande en móvil
 
-Insertar el siguiente bloque entre el cierre del párrafo del subheadline y el div del CTA:
+**Archivo**: `src/components/Navbar.tsx` — línea 54
+
+**Estado actual**:
+```tsx
+<img src={logoInkoga} alt="INKOGA" className="h-9 w-auto" />
+```
+
+**Cambio**:
+```tsx
+<img src={logoInkoga} alt="INKOGA" className="h-12 md:h-9 w-auto" />
+```
+
+- Móvil: `h-12` (48px) — aprox. 33% más grande que `h-9` (36px)
+- Desktop (`md:`): `h-9` (36px) — idéntico al actual, sin cambio
+
+---
+
+## Cambio 2 — Reposicionar imagen de fondo solo en móvil
+
+**Archivo**: `src/components/HeroSection.tsx` — línea 50-51
+
+**Estado actual**:
+```tsx
+className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+style={{ backgroundImage: `url(${heroTactical})` }}
+```
+
+**Cambio**:
+```tsx
+className="absolute inset-0 bg-cover bg-no-repeat"
+style={{
+  backgroundImage: `url(${heroTactical})`,
+  backgroundPosition: window.innerWidth < 768 ? 'center 30%' : 'center center'
+}}
+```
+
+Espera — usar `window.innerWidth` en el render no es la mejor práctica (re-renders, SSR). La solución correcta y más limpia es usar clases Tailwind con un override inline solo para móvil usando la clase `md:bg-center`:
 
 ```tsx
-{/* Audience Chips */}
-<div className="flex flex-row gap-3 justify-center opacity-0 animate-fade-up animation-delay-350 mb-4">
-  <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm">
-    <span className="text-primary text-xs tracking-[0.2em] uppercase font-medium">👤 Operador Solo</span>
-  </div>
-  <div className="inline-flex items-center gap-2 px-4 py-2 border border-primary/30 bg-background/50 backdrop-blur-sm">
-    <span className="text-primary text-xs tracking-[0.2em] uppercase font-medium">👥 Binomio Táctico</span>
-  </div>
-</div>
+className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] md:bg-center"
+style={{ backgroundImage: `url(${heroTactical})` }}
 ```
 
----
+- Móvil: `bg-[center_30%]` — mueve el punto focal al 30% desde arriba, mostrando más del torso/cabeza del escolta
+- Desktop `md:bg-center`: idéntico al actual `bg-center`, sin ningún cambio visual
 
-## Posición exacta en el archivo
+### Por qué `center 30%` funciona
 
 ```text
-...subheadline </p>   ← línea existente
-
-[NUEVO BLOQUE AQUÍ]   ← los 2 chips
-
-{/* CTA */}           ← div existente sin modificar
+  ┌─────────────────┐
+  │                 │  ← 0%
+  │   [ESCOLTA]     │  ← 30% ← punto focal aquí (móvil)
+  │                 │  ← 50% ← centro actual (desktop)
+  │                 │
+  └─────────────────┘
 ```
 
+Al usar `center 30%`, la figura del escolta sube visualmente en la pantalla del móvil, evitando que quede cortada hacia abajo.
+
 ---
+
+## Archivos modificados
+
+| Archivo | Línea | Cambio |
+|---|---|---|
+| `src/components/Navbar.tsx` | 54 | `h-9` → `h-12 md:h-9` |
+| `src/components/HeroSection.tsx` | 50 | `bg-center` → `bg-[center_30%] md:bg-center` |
 
 ## Lo que NO se toca
 
-- Badge superior, H1, subheadline, CTA, credencial ONU
-- Diseño, colores, fuentes, animaciones, imágenes
-- Cualquier otro componente
-
-## Resultado en móvil
-
-```text
-  Antes, durante y después del incidente.
-  Metodología completa para el escolta...
-
-  ┌─────────────────┐  ┌──────────────────┐
-  │ 👤 OPERADOR SOLO│  │ 👥 BINOMIO TÁCTICO│
-  └─────────────────┘  └──────────────────┘
-
-  [ ESCRÍBEME → WHATSAPP ]
-```
+- Textos, colores, fuentes, animaciones
+- Estructura del Hero o del Navbar
+- Footer, botones, secciones
+- Comportamiento desktop (idéntico al actual)
