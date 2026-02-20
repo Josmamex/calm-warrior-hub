@@ -1,6 +1,6 @@
 import { Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SharkLogo from "./SharkLogo";
+import logoInkoga from "@/assets/logo-inkoga-blanco.png";
 
 const Footer = () => {
   const scrollToSection = (href: string) => {
@@ -18,11 +18,7 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <SharkLogo size="md" />
-              <span className="font-sans text-2xl font-semibold tracking-widest">
-                <span className="text-primary">IN</span>
-                <span className="text-foreground">KOGA</span>
-              </span>
+              <img src={logoInkoga} alt="INKOGA" className="h-12 w-auto" />
             </div>
             <p className="text-muted-foreground leading-relaxed max-w-md mb-6">
               Ciencia del Control para Protección 1-2 Elementos.<br />

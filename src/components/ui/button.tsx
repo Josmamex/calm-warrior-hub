@@ -18,7 +18,7 @@ const buttonVariants = cva(
         hero: "bg-primary text-primary-foreground font-semibold tracking-wide uppercase text-xs px-8 py-4 hover:shadow-gold hover:scale-105 transition-all duration-300 rounded-none border border-primary/30",
         heroOutline: "bg-transparent border border-foreground/30 text-foreground font-medium tracking-wide uppercase text-xs px-8 py-4 hover:border-primary hover:text-primary transition-all duration-300 rounded-none",
         gold: "bg-gradient-to-r from-gold-dark via-gold to-gold-light text-background font-semibold tracking-wide uppercase text-xs hover:shadow-gold hover:scale-105 transition-all duration-300 rounded-none",
-        whatsapp: "bg-[hsl(142,70%,45%)] text-foreground font-semibold tracking-wide uppercase text-xs px-8 py-4 hover:bg-[hsl(142,70%,40%)] hover:shadow-[0_0_30px_hsl(142,70%,45%/0.4)] hover:scale-105 transition-all duration-300 rounded-none border border-[hsl(142,70%,50%/0.3)]",
+        whatsapp: "bg-[#25D366] text-white font-semibold tracking-wide uppercase text-xs px-8 py-4 hover:bg-[#20BD5A] hover:shadow-[0_0_30px_rgba(37,211,102,0.4)] hover:scale-105 transition-all duration-300 rounded-none border border-[rgba(37,211,102,0.3)]",
       },
       size: {
         default: "h-10 px-4 py-2",

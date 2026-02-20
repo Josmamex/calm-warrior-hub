@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import SharkLogo from "./SharkLogo";
+import logoInkoga from "@/assets/logo-inkoga-blanco.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -51,13 +51,7 @@ const Navbar = () => {
             }}
             className="flex items-center gap-3 group"
           >
-            <SharkLogo size="sm" />
-            <div className="hidden sm:flex items-center">
-              <span className="font-sans text-lg font-semibold tracking-widest">
-                <span className="text-primary">IN</span>
-                <span className="text-foreground">KOGA</span>
-              </span>
-            </div>
+            <img src={logoInkoga} alt="INKOGA" className="h-9 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
