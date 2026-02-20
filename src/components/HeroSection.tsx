@@ -47,7 +47,7 @@ const HeroSection = () => {
           className="absolute inset-0 scale-110"
         >
           <div
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            className="absolute inset-0 bg-cover bg-no-repeat bg-[center_30%] md:bg-center"
             style={{ backgroundImage: `url(${heroTactical})` }}
           />
           {/* Minimal overlays - keep image visible */}
